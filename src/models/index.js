@@ -16,6 +16,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.User = require("./User.js")(db.sequelize, db.Sequelize.DataTypes);
+db.Workplace = require("./Workplace.js")(db.sequelize, db.Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
