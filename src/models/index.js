@@ -15,7 +15,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.Car = require("./sample.js")(db.sequelize, db.Sequelize.DataTypes);
+//db.Car = require("./sample.js")(db.sequelize, db.Sequelize.DataTypes);
+db.Service = require("./services.js")(db.sequelize, db.Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
