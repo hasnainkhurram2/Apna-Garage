@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 
-class User extends Model {
+class Workplace extends Model {
   /*static associate(models) {
     Car.hasOne(models.Sale, { foreignKey: "car_id", as: "sale" });
     Car.hasOne(models.Order, { foreignKey: "car_id", as: "order" });
@@ -8,7 +8,7 @@ class User extends Model {
   }*/
 }
 module.exports = (sequelize) => {
-  User.init(
+  Workplace.init(
     {
       ID: {
         type: DataTypes.INTEGER,
@@ -18,26 +18,22 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Email: {
+      Address: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      DOB: {
-        type: DataTypes.DATEONLY,
+      Type: {
+        type: DataTypes.ENUM("Work Shop", "Fuel Pump"),
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "User",
-      tableName: "User", // optional: specify table name if different from model name
+      modelName: "Workplace",
+      tableName: "Workplace", // optional: specify table name if different from model name
       timestamps: false, // optional: disable timestamps if not needed
     }
   );
 
-  return User;
+  return Workplace;
 };
