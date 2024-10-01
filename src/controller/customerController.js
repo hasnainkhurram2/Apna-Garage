@@ -7,7 +7,7 @@ exports.createRequest = async (req, res) => {
 exports.getRequestHistory = async (req, res) => {
   const temp = await models.Request_Service.findAll({
     where:{
-      user_id: req.params.id,
+      requesting_user_id: req.params.id,
     },
   });
 
