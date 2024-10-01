@@ -1,8 +1,6 @@
 const index = require("./src/models/index");
 const express = require("express");
 //const User = require("./src/models/user");
-const Service = require("./src/models/services");
-const Role = require("./src/models/role");
 
 const app = express();
 

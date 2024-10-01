@@ -10,6 +10,7 @@ class Location extends Model {
       },
       as: "Workplace"
     });
+    Location.hasMany(models.Request_Service, { foreignKey: "loc_id", as: "Location" });
   }
 }
 module.exports = (sequelize) => {

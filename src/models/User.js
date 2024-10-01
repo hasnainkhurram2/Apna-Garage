@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require("sequelize");
 
 class User extends Model {
-  /*static associate(models) {
-    Car.hasOne(models.Sale, { foreignKey: "car_id", as: "sale" });
-    Car.hasOne(models.Order, { foreignKey: "car_id", as: "order" });
-    Car.hasMany(models.Review, { foreignKey: "car_id", as: "review" });
-  }*/
+  static associate(models) {
+    User.hasMany(models.Request_Service, { foreignKey: "requesting_user_id", as: "Requester" });
+    User.hasMany(models.Request_Service, { foreignKey: "providing_user_id", as: "Provider" });
+    User.belongsTo(models.Role, { foreignKey: "role_id", as: "Role" });
+  }
 }
 module.exports = (sequelize) => {
   User.init(

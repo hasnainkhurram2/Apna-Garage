@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 
 class Role extends Model {
   static associate(models) {
-    // Define associations if needed
+    Role.hasMany(models.User, {foreignKey: "role_id", as: "Role"});
   }
 }
 
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: "Role",
-      tableName: "roles", // Table name in pgAdmin
+      tableName: "Role", // Table name in pgAdmin
       timestamps: false, 
     }
   );
