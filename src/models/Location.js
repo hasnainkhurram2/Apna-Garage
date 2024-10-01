@@ -1,22 +1,28 @@
 const { Model, DataTypes } = require("sequelize");
 
 class Location extends Model {
-  /*static associate(models) {
-    Car.hasOne(models.Sale, { foreignKey: "car_id", as: "sale" });
-    Car.hasOne(models.Order, { foreignKey: "car_id", as: "order" });
-    Car.hasMany(models.Review, { foreignKey: "car_id", as: "review" });
-  }*/
+  static associate(models) {
+    Location.hasMany(models.Workplace, {
+      foreignKey: {
+        name: "loc_id",
+        allowNull: false,
+        timestamps: false,
+      },
+      as: "Workplace"
+    });
+  }
 }
 module.exports = (sequelize) => {
   Location.init(
     {
-      ID: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
-      Area_Name: {
+      area_name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
     },
     {
