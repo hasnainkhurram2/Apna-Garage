@@ -2,14 +2,14 @@ const { Model, DataTypes } = require("sequelize");
 
 class Service extends Model {
   static associate(models) {
-    // Define associations if needed, e.g., Service may belong to other models (e.g., Mechanic or Customer)
+    Service.hasMany(models.Request_Service, { foreignKey: "service_id", as: "Service" });
   }
 }
 
 module.exports = (sequelize) => {
   Service.init(
     {
-      serviceID: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true, // automatically increments the serviceID
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: "Service",
-      tableName: "services", // Table name in pgAdmin
+      tableName: "Service", // Table name in pgAdmin
       timestamps: false, // No timestamps are needed
     }
   );
