@@ -15,9 +15,11 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-//db.Car = require("./sample.js")(db.sequelize, db.Sequelize.DataTypes);
 db.Service = require("./services.js")(db.sequelize, db.Sequelize.DataTypes);
 db.Role = require("./role.js")(db.sequelize, db.Sequelize.DataTypes);
+db.User = require("./User.js")(db.sequelize, db.Sequelize.DataTypes);
+db.Workplace = require("./Workplace.js")(db.sequelize, db.Sequelize.DataTypes);
+db.Location = require("./Location.js")(db.sequelize, db.Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
@@ -26,7 +28,7 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize
-  .sync()
+  .sync({force: true})
   .then(() => {
     console.log("Database working");
   })
