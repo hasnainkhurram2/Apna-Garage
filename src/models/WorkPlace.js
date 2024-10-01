@@ -1,28 +1,33 @@
 const { Model, DataTypes } = require("sequelize");
 
 class Workplace extends Model {
-  /*static associate(models) {
-    Car.hasOne(models.Sale, { foreignKey: "car_id", as: "sale" });
-    Car.hasOne(models.Order, { foreignKey: "car_id", as: "order" });
-    Car.hasMany(models.Review, { foreignKey: "car_id", as: "review" });
-  }*/
+  static associate(models) {
+    Workplace.belongsTo(models.Location, {
+      foreignKey: {
+        name: "loc_id",
+        allowNull: false,
+        timestamps: false,
+      }, 
+      as: "Location"
+    });
+  }
 }
 module.exports = (sequelize) => {
   Workplace.init(
     {
-      ID: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
-      Name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Address: {
+      address: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      Type: {
+      work_type: {
         type: DataTypes.ENUM("Work Shop", "Fuel Pump"),
         allowNull: false,
       },
