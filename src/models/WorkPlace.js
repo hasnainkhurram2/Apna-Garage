@@ -7,7 +7,8 @@ class Workplace extends Model {
         name: "loc_id",
         allowNull: false,
         timestamps: false,
-      }, 
+      },
+      onUpdate: "CASCADE", onDelete: "CASCADE", 
       as: "Location"
     });
   }

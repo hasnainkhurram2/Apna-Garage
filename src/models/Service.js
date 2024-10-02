@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 
 class Service extends Model {
   static associate(models) {
-    Service.hasMany(models.Request_Service, { foreignKey: "service_id", as: "Service" });
+    Service.hasMany(models.Request_Service);
   }
 }
 
