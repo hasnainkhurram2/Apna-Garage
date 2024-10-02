@@ -29,7 +29,7 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize
-  .sync()
+  .sync({force: true})
   .then(() => {
     console.log("Database working");
   })
