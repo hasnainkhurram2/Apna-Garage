@@ -2,10 +2,10 @@ const { Model, DataTypes } = require("sequelize");
 
 class Request_Service extends Model {
   static associate(models) {
-    Request_Service.belongsTo(models.User, { foreignKey: "requesting_user_id", as: "Requester" });
-    Request_Service.belongsTo(models.User, { foreignKey: "providing_user_id", as: "Provider" });
-    Request_Service.belongsTo(models.Location, { foreignKey: "loc_id", as: "Location" });
-    Request_Service.belongsTo(models.Service, { foreignKey: "service_id", as: "Service" });
+    Request_Service.belongsTo(models.User, { foreignKey: "requesting_user_id", onUpdate: "CASCADE", onDelete: "CASCADE", as: "Requester" });
+    Request_Service.belongsTo(models.User, { foreignKey: "providing_user_id", onUpdate: "CASCADE", onDelete: "CASCADE", as: "Provider" });
+    Request_Service.belongsTo(models.Location, { foreignKey: "loc_id", onUpdate: "CASCADE", onDelete: "CASCADE", as: "Location" });
+    Request_Service.belongsTo(models.Service, { foreignKey: "service_id", onUpdate: "CASCADE", onDelete: "CASCADE", as: "Service" });
   }
 }
 module.exports = (sequelize) => {

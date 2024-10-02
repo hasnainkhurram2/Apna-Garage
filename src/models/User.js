@@ -4,7 +4,8 @@ class User extends Model {
   static associate(models) {
     User.hasMany(models.Request_Service, { foreignKey: "requesting_user_id", as: "Requester" });
     User.hasMany(models.Request_Service, { foreignKey: "providing_user_id", as: "Provider" });
-    User.belongsTo(models.Role, { foreignKey: "role_id", as: "Role" });
+    User.hasMany(models.Feedback, { foreignKey: "user_id" });
+    User.belongsTo(models.Role, { foreignKey: "role_id", onUpdate: "CASCADE", onDelete: "CASCADE", as: "Role" });
   }
 }
 module.exports = (sequelize) => {

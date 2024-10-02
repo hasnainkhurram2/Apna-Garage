@@ -14,13 +14,14 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-
 db.Service = require("./Service.js")(db.sequelize, db.Sequelize.DataTypes);
 db.Role = require("./Role.js")(db.sequelize, db.Sequelize.DataTypes);
 db.User = require("./User.js")(db.sequelize, db.Sequelize.DataTypes);
 db.Workplace = require("./Workplace.js")(db.sequelize, db.Sequelize.DataTypes);
 db.Location = require("./Location.js")(db.sequelize, db.Sequelize.DataTypes);
 db.Request_Service = require("./Request_Service.js")(db.sequelize, db.Sequelize.DataTypes);
+db.Feedback = require("./feedback.js")(db.sequelize, db.Sequelize.DataTypes);
+
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
@@ -29,7 +30,7 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize
-  .sync()
+  .sync({force: true})
   .then(() => {
     console.log("Database working");
   })

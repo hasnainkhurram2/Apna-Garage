@@ -2,15 +2,8 @@ const { Model, DataTypes } = require("sequelize");
 
 class Location extends Model {
   static associate(models) {
-    Location.hasMany(models.Workplace, {
-      foreignKey: {
-        name: "loc_id",
-        allowNull: false,
-        timestamps: false,
-      },
-      as: "Workplace"
-    });
-    Location.hasMany(models.Request_Service, { foreignKey: "loc_id", as: "Location" });
+    Location.hasMany(models.Workplace, { foreignKey: "loc_id" });
+    Location.hasMany(models.Request_Service, { foreignKey: "loc_id" });
   }
 }
 module.exports = (sequelize) => {
