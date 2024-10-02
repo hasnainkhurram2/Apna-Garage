@@ -109,3 +109,19 @@ exports.deleteCustomer = async (req, res) => {
   }
 };
 
+exports.login = async (req,res) => {
+
+};
+
+exports.signUp = async (req,res) => {
+
+};
+
+exports.getAllUsers = async (req,res) => {
+  const temp = await models.User.findAll();
+
+  res.status(200).json({
+    status: "success",
+    data: temp,
+  });
+}
