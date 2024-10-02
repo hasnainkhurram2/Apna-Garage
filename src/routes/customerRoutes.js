@@ -20,4 +20,10 @@ router.route("/signup").post(customerController.signUp);
 
 router.route("/").get(customerController.getAllUsers);
 
+router.route("/:id/feedbacks")
+.get(customerController.getFeedback)
+.post(customerController.postCustomerFeedback);
+
+router.route("/:id/request/:reqId/payments").post(customerController.paymentForRequest);
+
 module.exports = router;

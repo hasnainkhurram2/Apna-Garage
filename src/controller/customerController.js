@@ -125,3 +125,18 @@ exports.getAllUsers = async (req,res) => {
     data: temp,
   });
 }
+
+// function for retrieving feedback 
+exports.getFeedback = async (req, res) => {
+
+}
+
+//function for posting feedback
+exports.postCustomerFeedback = async (req, res) => {
+
+}
+
+// function for posting payment of request
+exports.paymentForRequest = async (req, res) => {
+
+}
