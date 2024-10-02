@@ -9,9 +9,10 @@ router.route("/:id/requests").post(customerController.createRequest);
 
 router.route("/:id/requests/:reqId").get(customerController.getRequest);
 
+router.route("/login").post(customerController.login);
 
-router.route("/:id").get(customerController.getCustomer);
-router.route("/:id").put(customerController.updateCustomer);
-router.route("/:id").delete(customerController.deleteCustomer);
+router.route("/signup").post(customerController.signUp);
+
+router.route("/").get(customerController.getAllUsers);
 
 module.exports = router;

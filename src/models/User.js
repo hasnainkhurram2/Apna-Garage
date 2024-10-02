@@ -5,6 +5,8 @@ class User extends Model {
     User.hasMany(models.Request_Service, { foreignKey: "requesting_user_id", as: "Requester" });
     User.hasMany(models.Request_Service, { foreignKey: "providing_user_id", as: "Provider" });
     User.belongsTo(models.Role, { foreignKey: "role_id", as: "Role" });
+    User.hasMany(models.Feedback, { foreignKey: "user_id", as: "feedbacks" });
+
   }
 }
 module.exports = (sequelize) => {
