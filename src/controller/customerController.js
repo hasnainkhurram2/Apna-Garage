@@ -38,3 +38,74 @@ exports.getRequest = async (req, res) => {
     });
   }
 };
+
+//get a specific customer by ID:
+exports.getCustomer = async (req, res) => {
+  try {
+    const customer = await models.User.findByPk(req.params.id); // Assuming "User" is the model for customers
+    if (!customer) {
+      return res.status(404).json({
+        error: "Customer not found.",
+      });
+    }
+    res.status(200).json({
+      status: "successful",
+      data: customer,
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: "Server error.",
+    });
+  }
+};
+
+//function to update a customer:
+exports.updateCustomer = async (req, res) => {
+  try {
+    const updated = await models.User.update(req.body, {
+      where: { id: req.params.id },
+      returning: true,
+      plain: true
+    });
+    
+    if (!updated) {
+      return res.status(404).json({
+        error: "Customer not found.",
+      });
+    }
+
+    res.status(200).json({
+      status: "successful",
+      data: updated[1], // updated customer object
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: "Server error.",
+    });
+  }
+};
+
+//function to delete a customer:
+exports.deleteCustomer = async (req, res) => {
+  try {
+    const deleted = await models.User.destroy({
+      where: { id: req.params.id },
+    });
+
+    if (!deleted) {
+      return res.status(404).json({
+        error: "Customer not found.",
+      });
+    }
+
+    res.status(204).json({
+      status: "successful",
+      data: null, // No data to return
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: "Server error.",
+    });
+  }
+};
+
