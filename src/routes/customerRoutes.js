@@ -1,24 +1,34 @@
-const express = require("express");
-const customerController = require("./../controller/customerController.js");
+const express = require('express');
+const customerController = require('./../controller/customerController.js');
 
 const router = express.Router();
 
-router.route("/:id/requests")
- .get(customerController.getRequestHistory)
- .post(customerController.createRequest);
+router
+  .route('/:id/requests')
+  .get(customerController.getRequestHistory)
+  .post(customerController.createRequest);
 
-router.route("/:id/requests/:reqId").get(customerController.getRequest);
+router.route('/:id/requests/:reqId').get(customerController.getRequest);
 
-router.route("/login").post(customerController.login);
+router
+  .route('/:id')
+  .get(customerController.getCustomer)
+  .put(customerController.updateCustomer)
+  .delete(customerController.deleteCustomer);
 
-router.route("/signup").post(customerController.signUp);
+router.route('/login').post(customerController.login);
 
-router.route("/").get(customerController.getAllUsers);
+router.route('/signup').post(customerController.signUp);
 
-router.route("/:id/feedbacks")
-.get(customerController.getFeedback)
-.post(customerController.postCustomerFeedback);
+router.route('/').get(customerController.getAllUsers);
 
-router.route("/:id/request/:reqId/payments").post(customerController.paymentForRequest);
+router
+  .route('/:id/feedbacks')
+  .get(customerController.getFeedback)
+  .post(customerController.postCustomerFeedback);
+
+router
+  .route('/:id/request/:reqId/payments')
+  .post(customerController.payForRequest);
 
 module.exports = router;
