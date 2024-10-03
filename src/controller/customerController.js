@@ -1,4 +1,4 @@
-const models = require("../models/index");
+const models = require('../models/index');
 
 exports.createRequest = async (req, res) => {};
 
@@ -11,15 +11,15 @@ exports.getRequestHistory = async (req, res) => {
 
   if (!temp) {
     res.status(404).json({
-      error: "No Requests Found.",
+      error: 'No Requests Found.',
     });
-    console.log("error");
+    console.log('error');
   } else {
     res.status(200).json({
-      status: "successful",
+      status: 'successful',
       data: temp,
     });
-    console.log("Success");
+    console.log('Success');
   }
 };
 
@@ -28,7 +28,7 @@ exports.getRequest = async (req, res) => {
   const yourReq = await models.Request_Service.findByPk(_reqid);
   if (!yourReq) {
     res.status(404).json({
-      error: "could not find request with that user_id",
+      error: 'could not find request with that user_id',
     });
   } else {
     res.status(200).json({
@@ -43,16 +43,16 @@ exports.getCustomer = async (req, res) => {
     const customer = await models.User.findByPk(req.params.id); // Assuming "User" is the model for customers
     if (!customer) {
       return res.status(404).json({
-        error: "Customer not found.",
+        error: 'Customer not found.',
       });
     }
     res.status(200).json({
-      status: "successful",
+      status: 'successful',
       data: customer,
     });
   } catch (err) {
     res.status(500).json({
-      error: "Server error.",
+      error: 'Server error.',
     });
   }
 };
@@ -68,17 +68,17 @@ exports.updateCustomer = async (req, res) => {
 
     if (!updated) {
       return res.status(404).json({
-        error: "Customer not found.",
+        error: 'Customer not found.',
       });
     }
 
     res.status(200).json({
-      status: "successful",
+      status: 'successful',
       data: updated[1], // updated customer object
     });
   } catch (err) {
     res.status(500).json({
-      error: "Server error.",
+      error: 'Server error.',
     });
   }
 };
@@ -92,17 +92,17 @@ exports.deleteCustomer = async (req, res) => {
 
     if (!deleted) {
       return res.status(404).json({
-        error: "Customer not found.",
+        error: 'Customer not found.',
       });
     }
 
     res.status(204).json({
-      status: "successful",
+      status: 'successful',
       data: null, // No data to return
     });
   } catch (err) {
     res.status(500).json({
-      error: "Server error.",
+      error: 'Server error.',
     });
   }
 };
@@ -115,7 +115,7 @@ exports.getAllUsers = async (req, res) => {
   const temp = await models.User.findAll();
 
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: temp,
   });
 };
