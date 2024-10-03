@@ -1,12 +1,10 @@
 const models = require("../models/index");
 
-exports.createRequest = async (req, res) => {
-
-}
+exports.createRequest = async (req, res) => {};
 
 exports.getRequestHistory = async (req, res) => {
   const temp = await models.Request_Service.findAll({
-    where:{
+    where: {
       requesting_user_id: req.params.id,
     },
   });
@@ -65,9 +63,9 @@ exports.updateCustomer = async (req, res) => {
     const updated = await models.User.update(req.body, {
       where: { id: req.params.id },
       returning: true,
-      plain: true
+      plain: true,
     });
-    
+
     if (!updated) {
       return res.status(404).json({
         error: "Customer not found.",
@@ -109,34 +107,24 @@ exports.deleteCustomer = async (req, res) => {
   }
 };
 
-exports.login = async (req,res) => {
+exports.login = async (req, res) => {};
 
-};
+exports.signUp = async (req, res) => {};
 
-exports.signUp = async (req,res) => {
-
-};
-
-exports.getAllUsers = async (req,res) => {
+exports.getAllUsers = async (req, res) => {
   const temp = await models.User.findAll();
 
   res.status(200).json({
     status: "success",
     data: temp,
   });
-}
+};
 
-// function for retrieving feedback 
-exports.getFeedback = async (req, res) => {
-
-}
+// function for retrieving feedback
+exports.getFeedback = async (req, res) => {};
 
 //function for posting feedback
-exports.postCustomerFeedback = async (req, res) => {
-
-}
+exports.postCustomerFeedback = async (req, res) => {};
 
 // function for posting payment of request
-exports.paymentForRequest = async (req, res) => {
-
-}
+exports.payForRequest = async (req, res) => {};
