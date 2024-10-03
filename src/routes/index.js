@@ -1,11 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const customerRoutes = require("./customerRoutes");
+const customerRoutes = require('./customerRoutes');
 
-const healthRoutes = require("./healthRoutes");
+const adminRoutes = require('./adminRoutes.js');
 
-router.use("/customers", customerRoutes);
+const healthRoutes = require('./healthRoutes');
 
-router.use("/health", healthRoutes);
+router.use('/customers', customerRoutes);
+
+router.use('/health', healthRoutes);
+
+router.use('/admin', adminRoutes);
 
 module.exports = router;
