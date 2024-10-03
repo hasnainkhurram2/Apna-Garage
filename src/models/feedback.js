@@ -1,25 +1,30 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 class Feedback extends Model {
   static associate(models) {
-    Feedback.belongsTo(models.User, { foreignKey: "user_id", as: "user" }); // A feedback belongs to a user
+    Feedback.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      as: 'feedbacks',
+    }); // A feedback belongs to a user
   }
 }
 
 module.exports = (sequelize) => {
   Feedback.init(
     {
-      FeedbackID: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true, 
+        autoIncrement: true,
       },
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "User", // References the User table
-          key: "id",
+          model: 'User', // References the User table
+          key: 'id',
         },
       },
       FeedbackText: {
@@ -29,9 +34,9 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: "Feedback",
-      tableName: "Feedbacks", // Table name in the database
-      timestamps: false, 
+      modelName: 'Feedback',
+      tableName: 'Feedbacks', // Table name in the database
+      timestamps: false,
     }
   );
 
