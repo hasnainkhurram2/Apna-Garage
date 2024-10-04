@@ -121,7 +121,27 @@ exports.getAllUsers = async (req, res) => {
 };
 
 // function for retrieving feedback
-exports.getFeedback = async (req, res) => {};
+exports.getFeedback = async (req, res) => {
+
+  const _feedbackId = req.params.feedbackId; // Extract the feedback ID from the request URL.
+  const feedback = await models.feedback.findByPk(_feedbackId);
+    
+    // If feedback with the given ID doesn't exist.
+    if (!feedback) 
+    {
+        return res.status(404).json({
+          error: 'Feedback not found with that ID',
+        });
+    }
+    else
+    {
+          return res.status(200).json({
+          data: feedback,
+        });
+    }
+
+
+};
 
 //function for posting feedback
 exports.postCustomerFeedback = async (req, res) => {};
