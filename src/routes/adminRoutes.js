@@ -8,4 +8,7 @@ router.route('/users/:id/accept').put(adminController.acceptWorker);
 
 router.route('/users/:id/reject').delete(adminController.rejectWorker);
 
+router.route("users/:id/delete")
+
+
 module.exports = router;
