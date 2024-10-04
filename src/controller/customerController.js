@@ -142,8 +142,6 @@ exports.getFeedback = async (req, res) => {
           data: feedback,
         });
     }
-
-
 };
 
 //function for posting feedback
