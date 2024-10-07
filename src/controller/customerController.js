@@ -106,7 +106,39 @@ exports.deleteCustomer = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {};
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const _user = await models.User.findOne({ where: { email } });
+    if (_user) {
+      if (_user.password == password) {
+        res.status(200).json({
+          status: 'success',
+          message: `Login Successful! Welcome ${_user.name}!`,
+        });
+        console.log(`Success! ${_user.name}`);
+      } else {
+        res.status(500).json({
+          status: 'Failed',
+          message: 'Incorrect Password.',
+        });
+        console.log('Fail! Incorrect Password.');
+      }
+    } else {
+      res.status(404).json({
+        status: 'Fail',
+        message: 'No User found with Email ',
+        email,
+      });
+      console.log('Fail!, Invalid Credentials');
+    }
+  } catch (err) {
+    res.status(500).json({
+      error: 'Server error.',
+    });
+    console.log(err);
+  }
+};
 
 exports.signUp = async (req, res) => {
   const _user = {
@@ -133,25 +165,32 @@ exports.signUp = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   const temp = await models.User.findAll();
-
-  res.status(200).json({
-    status: 'success',
-    data: temp,
-  });
+  if (temp) {
+    res.status(200).json({
+      status: 'success',
+      data: temp,
+    });
+    console.log('Success in retrieving All Users.');
+  } else {
+    res.status(404).json({
+      status: 'Fail',
+    });
+    console.log('Fail to retrieve Users.');
+  }
 };
 
 // function for retrieving feedback
 exports.getFeedback = async (req, res) => {
-  const _feedbackId = req.params.feedbackId; // Extract the feedback ID from the request URL.
+  const _feedbackId = req.params.id; // Extract the feedback ID from the request URL.
   const feedback = await models.feedback.findByPk(_feedbackId);
 
   // If feedback with the given ID doesn't exist.
   if (!feedback) {
-    return res.status(404).json({
+    res.status(404).json({
       error: 'Feedback not found with that ID',
     });
   } else {
-    return res.status(200).json({
+    res.status(200).json({
       data: feedback,
     });
   }
