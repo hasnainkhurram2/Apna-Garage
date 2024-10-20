@@ -1,4 +1,5 @@
 const models = require('../models/index');
+const { bcrypt } = require('bcrypt');
 
 exports.createRequest = async (req, res) => {};
 
@@ -142,14 +143,18 @@ exports.login = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-  const _user = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    dob: req.body.dob,
-    role_id: req.body.role_id,
-  };
   try {
+    const salt = 10;
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    const _user = {
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword,
+      dob: req.body.dob,
+      role_id: req.body.role_id,
+    };
+
     models.User.create(_user);
     res.status(200).json({
       status: 'success',
