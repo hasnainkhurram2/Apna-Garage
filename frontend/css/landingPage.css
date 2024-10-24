@@ -1,0 +1,88 @@
+/* General body styling */
+body {
+  margin: 0;
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Navigation Bar Styling */
+.navbar {
+  width: 100%;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Left side: "APNA GARAGE" Styling */
+.nav-left h1 {
+  font-size: 24px;
+  margin: 0;
+  color: orange;
+}
+
+/* Right side: Buttons Styling */
+.nav-right {
+  display: flex;
+  gap: 10px;
+  margin-right: 20px; /* This shifts the buttons a little to the left */
+}
+
+.nav-button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+
+/* Ensure banner is below the nav */
+.banner-container {
+  margin-top: 80px; /* Adjust to keep space for nav bar */
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Banner image styling */
+.banner {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+}
+
+.banner img.active {
+  opacity: 1;
+}
