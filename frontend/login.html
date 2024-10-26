@@ -1,186 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ApnaGarage - Login</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            animation: backgroundFade 10s infinite alternate;
-        }
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        animation: backgroundFade 10s infinite alternate;
+      }
 
-        @keyframes backgroundFade {
-            0% { background-color: #36d1dc; }
-            25% { background-color: #5b86e5; }
-            50% { background-color: #f9d423; }
-            75% { background-color: #ff4e50; }
-            100% { background-color: #ff6f61; }
+      @keyframes backgroundFade {
+        0% {
+          background-color: #36d1dc;
         }
+        25% {
+          background-color: #5b86e5;
+        }
+        50% {
+          background-color: #f9d423;
+        }
+        75% {
+          background-color: #ff4e50;
+        }
+        100% {
+          background-color: #ff6f61;
+        }
+      }
 
-        .container {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
+      .container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
 
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
 
-        input[type="text"], input[type="password"], select {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
+      input[type='email'],
+      input[type='password'] {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
 
-        input[type="text"]:focus, input[type="password"]:focus, select:focus {
-            border-color: #36d1dc;
-            box-shadow: 0 0 8px rgba(54, 209, 220, 0.2);
-        }
+      input[type='email']:focus,
+      input[type='password']:focus {
+        border-color: #36d1dc;
+        box-shadow: 0 0 8px rgba(54, 209, 220, 0.2);
+      }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            background: #36d1dc;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+      button {
+        width: 100%;
+        padding: 15px;
+        background: #36d1dc;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-        button:hover {
-            background: #5b86e5;
-            color: #fff;
-        }
+      button:hover {
+        background: #5b86e5;
+        color: #fff;
+      }
 
-        .error {
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
+      .error {
+        color: red;
+        font-size: 0.9rem;
+        margin-top: 10px;
+      }
 
-        .link {
-            display: block;
-            margin-top: 20px;
-            color: #36d1dc;
-            text-decoration: none;
-        }
+      .link {
+        display: block;
+        margin-top: 20px;
+        color: #36d1dc;
+        text-decoration: none;
+      }
 
-        .link:hover {
-            text-decoration: underline;
-        }
+      .link:hover {
+        text-decoration: underline;
+      }
 
-        .logo {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-
-        /* Additional styling for fields that will be conditionally displayed */
-        .conditional-field {
-            display: none; /* Hidden by default */
-        }
+      .logo {
+        width: 150px;
+        margin-bottom: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <img src="images/symbol.jpg" alt="ApnaGarage Logo" class="logo">
-        
-        <h2>Login to ApnaGarage</h2>
-        <form id="loginForm">
-            <input type="text" id="username" name="username" placeholder="Enter Username" required>
-            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+      <img src="images/symbol.jpg" alt="ApnaGarage Logo" class="logo" />
 
-            <!-- Role Selection -->
-            <label for="role">Login as:</label>
-            <select id="role" name="role" required>
-                <option value="">Select Role</option>
-                <option value="customer">Customer</option>
-                <option value="technician">Technician</option>
-            </select>
-
-            <!-- Conditional fields for Technician -->
-            <div id="technicianFields" class="conditional-field">
-                <label for="expertise">Expertise:</label>
-                <select id="expertise" name="expertise" required>
-                    <option value="">Select Expertise</option>
-                    <option value="electrician">Electrician</option>
-                    <option value="Fuel supplier">Fuel supplier</option>
-                    <option value="Mechanic">mechanic</option>
-                    <option value="Body worker">Body worker</option>
-                    
-                </select>
-            </div>
-
-            <button type="submit">Login</button>
-            <p class="error" id="error"></p>
-            <a href="signup.html" class="link">Don't have an account? Sign Up</a>
-        </form>
+      <h2>Login to ApnaGarage</h2>
+      <form id="loginForm">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter Email"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter Password"
+          required
+        />
+        <button type="submit">Login</button>
+        <p class="error" id="error"></p>
+        <a href="signup.html" class="link">Don't have an account? Sign Up</a>
+      </form>
     </div>
 
     <script>
-        const roleSelect = document.getElementById('role');
-        const technicianFields = document.getElementById('technicianFields');
-        const loginForm = document.getElementById('loginForm');
-        const errorElement = document.getElementById('error');
+      const loginForm = document.getElementById('loginForm');
+      const errorElement = document.getElementById('error');
 
-        // Show or hide technician-specific fields based on role selection
-        roleSelect.addEventListener('change', function () {
-            if (roleSelect.value === 'technician') {
-                technicianFields.style.display = 'block'; // Show technician fields
-            } else {
-                technicianFields.style.display = 'none'; // Hide technician fields
+      loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+          const response = await fetch(
+            'http://localhost:3000/api/v1/customers/login',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email,
+                password: password,
+              }),
             }
-        });
+          );
 
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+          const data = await response.json();
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
-            const expertise = document.getElementById('expertise').value;
-
-            // Validate role selection
-            if (role === "") {
-                errorElement.textContent = "Please select a role (Customer or Technician)!";
-                return;
-            }
-
-            // If the user selects technician, validate technician-specific fields
-            if (role === "technician" && !expertise) {
-                errorElement.textContent = "Please select your expertise!";
-                return;
-            }
-
-            // Simulate login success based on role
-            if (role === "customer") {
-                alert('Login successful! Welcome, Customer!');
-            } else if (role === "technician") {
-                alert('Login successful! Welcome, Technician!');
-            }
-
-            errorElement.textContent = ""; // Clear any errors
-        });
+          if (response.ok) {
+            alert(data.message);
+            // Redirect or take further actions based on login success
+          } else {
+            errorElement.textContent =
+              data.message || 'Login failed. Please try again.';
+          }
+        } catch (error) {
+          errorElement.textContent =
+            'An error occurred. Please try again later.';
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

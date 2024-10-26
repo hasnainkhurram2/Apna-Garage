@@ -2,12 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 
 class Offer extends Model {
   static associate(models) {
-    Offer.belongsTo(models.User, {
-      foreignKey: 'user_id',
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE',
-      as: 'Offer',
-    });
+    //
   }
 }
 
