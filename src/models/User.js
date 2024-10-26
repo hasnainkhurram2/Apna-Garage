@@ -2,22 +2,22 @@ const { Model, DataTypes } = require('sequelize');
 
 class User extends Model {
   static associate(models) {
-    User.hasMany(models.Request_Service, {
-      foreignKey: 'requesting_user_id',
-      as: 'Requester',
-    });
-    User.hasMany(models.Request_Service, {
-      foreignKey: 'providing_user_id',
-      as: 'Provider',
-    });
-    User.hasMany(models.Feedback, { foreignKey: 'user_id' });
-    User.hasMany(models.Offer, { foreignKey: 'user_id' });
-    User.belongsTo(models.Role, {
-      foreignKey: 'role_id',
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-      as: 'Role',
-    });
+    // User.hasMany(models.Request, {
+    //   foreignKey: 'requesting_user_id',
+    //   as: 'Requester',
+    // });
+    // User.hasMany(models.Request, {
+    //   foreignKey: 'providing_user_id',
+    //   as: 'Provider',
+    // });
+    // User.hasMany(models.Feedback, { foreignKey: 'user_id' });
+    // User.hasMany(models.Offer, { foreignKey: 'user_id' });
+    // User.belongsTo(models.Role, {
+    //   foreignKey: 'role_id',
+    //   onUpdate: 'CASCADE',
+    //   onDelete: 'CASCADE',
+    //   as: 'Role',
+    // });
   }
 }
 module.exports = (sequelize) => {
@@ -43,6 +43,14 @@ module.exports = (sequelize) => {
       },
       dob: {
         type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      contact: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
