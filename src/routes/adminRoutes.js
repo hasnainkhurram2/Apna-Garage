@@ -10,4 +10,6 @@ router.route('/users/:id/reject').delete(adminController.rejectWorker);
 
 router.route('/feedbacks').get(adminController.getAllFeedbacks);
 
+// router.route('/register').post(adminController.register);
+
 module.exports = router;

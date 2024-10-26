@@ -1,8 +1,9 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
+// const request = require('./request')
 
 class Service extends Model {
   static associate(models) {
-    Service.hasMany(models.Request_Service);
+    Service.hasMany(models.Request, { foreignKey: 'service_id' });
   }
 }
 
@@ -25,8 +26,8 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: "Service",
-      tableName: "Service", // Table name in pgAdmin
+      modelName: 'Service',
+      tableName: 'Service', // Table name in pgAdmin
       timestamps: false, // No timestamps are needed
     }
   );

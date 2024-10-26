@@ -19,15 +19,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'User', // References the User table
-          key: 'id',
-        },
-      },
-      FeedbackText: {
+      content: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -35,7 +27,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: 'Feedback',
-      tableName: 'Feedbacks', // Table name in the database
+      tableName: 'Feedback', // Table name in the database
       timestamps: false,
     }
   );
