@@ -11,13 +11,6 @@ class User extends Model {
       as: 'Provider',
     });
     User.hasMany(models.Feedback, { foreignKey: 'user_id' });
-    User.hasMany(models.Offer, { foreignKey: 'user_id' });
-    User.belongsTo(models.Role, {
-      foreignKey: 'role_id',
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-      as: 'Role',
-    });
   }
 }
 module.exports = (sequelize) => {
