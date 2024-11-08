@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      feedback_text: {
+      content: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: 'Feedback',
-      tableName: 'Feedbacks', // Table name in the database
+      tableName: 'Feedback', // Table name in the database
       timestamps: false,
     }
   );
