@@ -51,8 +51,8 @@ body {
 }
 
 .nav-button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: orange;
+  color: black;
 }
 
 
