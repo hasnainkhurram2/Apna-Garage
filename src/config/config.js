@@ -1,9 +1,13 @@
-module.exports = {
-  development: {
-    username: 'postgres',
-    password: '18022003',
-    database: 'Apna_Garage',
-    host: '127.0.0.1',
-    dialect: 'postgres',
+require('dotenv').config();
+
+const config = {
+  database: {
+    host: process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    dialect: process.env.DB_DIALECT,
+    database: process.env.DB_NAME,
   },
 };
+
+module.exports = config;
