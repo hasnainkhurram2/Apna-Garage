@@ -1,4 +1,5 @@
 const models = require('../models/index');
+const bcrypt = require('bcrypt');
 
 exports.createRequest = async (req, res) => {};
 
@@ -141,15 +142,38 @@ exports.login = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-  const _user = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    dob: req.body.dob,
-    role_id: req.body.role_id,
-  };
   try {
-    models.User.create(_user);
+    const salt = 10;
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    console.log(req.body);
+    // const _user = {
+    //   // id: req.body.id,
+    //   name: req.body.name,
+    //   email: req.body.email,
+    //   password: hashedPassword,
+    //   dob: req.body.dob,
+    //   address: req.body.address,
+    //   contact: req.body.contact,
+    //   rating: 0,
+    //   balance: 0,
+    // };
+
+    const _user = await models.User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword,
+      dob: req.body.dob,
+      address: req.body.address,
+      contact: req.body.contact,
+    });
+
+    const _customer = await models.Customer.create({
+      rating: 0,
+      balance: 0,
+      userId: _user.id,
+    });
+
     res.status(200).json({
       status: 'success',
       data: _user,
@@ -157,7 +181,7 @@ exports.signUp = async (req, res) => {
     console.log('Success');
   } catch (err) {
     res.status(500).json({
-      error: 'Server error.',
+      error: err.message,
     });
     console.log(err);
   }
