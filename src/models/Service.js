@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-// const request = require('./request')
+const request = require('./request');
 
 class Service extends Model {
   static associate(models) {

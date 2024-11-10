@@ -1,25 +1,21 @@
 const { Model, DataTypes } = require('sequelize');
-
+const sequelize = require('./database');
+const Technician = require('./technician')(sequelize, DataTypes);
+const Customer = require('./customer.js')(sequelize, DataTypes);
 class Request extends Model {
   static associate(models) {
-    Request.belongsTo(models.User, {
+    Request.belongsTo(models.Customer, {
       foreignKey: 'requesting_user_id',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
       as: 'Requester',
     });
-    Request.belongsTo(models.User, {
+    Request.belongsTo(models.Technician, {
       foreignKey: 'providing_user_id',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
       as: 'Provider',
     });
-    // Request_Service.belongsTo(models.Location, {
-    //   foreignKey: 'loc_id',
-    //   onUpdate: 'CASCADE',
-    //   onDelete: 'CASCADE',
-    //   as: 'Location',
-    // });
     Request.belongsTo(models.Service, {
       foreignKey: 'service_id',
       onUpdate: 'CASCADE',
