@@ -1,35 +1,38 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('./database');
 const User = require('./User')(sequelize, DataTypes);
-// const sequelize = require('./../config/config');
-
-// const { User } = require('./User');
 
 class Customer extends User {
-  //   static associate(models) {
-  //     Feedback.belongsTo(models.User, {
-  //       foreignKey: 'user_id',
-  //       onDelete: 'CASCADE',
-  //       onUpdate: 'CASCADE',
-  //       as: 'feedbacks',
-  //     }); // A feedback belongs to a user
-  //   }
+  static associate(models) {
+    Customer.hasMany(models.Request, {
+      foreignKey: 'requesting_user_id',
+      as: 'Requester',
+    });
+  }
 }
 
 Customer.init(
   {
+    user_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     rating: {
       type: DataTypes.FLOAT,
       allowNull: true,
-      // autoIncrement: true,
+      defaultValue: 0.0,
     },
     balance: {
       type: DataTypes.FLOAT,
+      defaultValue: 0.0,
       allowNull: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   {
