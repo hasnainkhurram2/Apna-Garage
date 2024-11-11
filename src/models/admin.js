@@ -2,19 +2,21 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('./database');
 const User = require('./User')(sequelize, DataTypes);
 
-class Admin extends User {
-  //   static associate(models) {
-  //     Feedback.belongsTo(models.User, {
-  //       foreignKey: 'user_id',
-  //       onDelete: 'CASCADE',
-  //       onUpdate: 'CASCADE',
-  //       as: 'feedbacks',
-  //     }); // A feedback belongs to a user
-  //   }
-}
+class Admin extends User {}
 
 Admin.init(
   {
+    user_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     lastLogin: {
       type: DataTypes.DATE,
       allowNull: false,

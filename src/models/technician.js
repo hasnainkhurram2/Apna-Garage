@@ -3,24 +3,34 @@ const sequelize = require('./database');
 const User = require('./User')(sequelize, DataTypes);
 
 class Technician extends User {
-  //   static associate(models) {
-  //     Feedback.belongsTo(models.User, {
-  //       foreignKey: 'user_id',
-  //       onDelete: 'CASCADE',
-  //       onUpdate: 'CASCADE',
-  //       as: 'feedbacks',
-  //     }); // A feedback belongs to a user
-  //   }
+  static associate(models) {
+    Technician.hasMany(models.Request, {
+      foreignKey: 'providing_user_id',
+      as: 'Provider',
+    });
+  }
 }
 
 Technician.init(
   {
-    rating: {
+    user_id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
+    rating: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0.0,
     },
     hourlyRate: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      defaultValue: 1000.0
     },
     experience: {
       type: DataTypes.FLOAT,
@@ -28,10 +38,12 @@ Technician.init(
     },
     availability: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     },
     approved: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     },
     currentOffers: {
@@ -50,10 +62,6 @@ Technician.init(
     workplace: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   {
