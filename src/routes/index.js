@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const customerRoutes = require('./customerRoutes');
+const technicianRoutes = require('./technicianRoutes');
 
 const adminRoutes = require('./adminRoutes.js');
 
 const healthRoutes = require('./healthRoutes');
 
 router.use('/customers', customerRoutes);
+
+router.use('/technicians', technicianRoutes);
 
 router.use('/health', healthRoutes);
 

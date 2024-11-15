@@ -1,4 +1,5 @@
 const models = require('../models/index');
+const bcrypt = require('bcrypt');
 const session = require('express-session');
 exports.signUp = async (req, res) => {
   try {
@@ -8,7 +9,6 @@ exports.signUp = async (req, res) => {
     console.log(req.body);
 
     const _user = await models.User.create({
-      name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
       dob: req.body.dob,
@@ -16,24 +16,18 @@ exports.signUp = async (req, res) => {
       contact: req.body.contact,
       type: '3',
     });
-    const email = req.body.email;
-    const password = hashedPassword;
-    const _id = await models.User.findOne({
-      where: { email, password },
-      attributes: ['id'],
-    });
     const _technician = await models.Technician.create({
-      user_id: _id,
+      user_id: _user.id,
       experience: req.body.experience,
       type: req.body.expertise,
+      workplace: req.body.workplace,
     });
 
     res.status(200).json({
       status: 'success',
       data: _user,
     });
-    req.session.userId = _id;
-    req.session.userName = req.body.name;
+    req.session.userId = _user.id;
     req.session.userType = '3';
     console.log('Success');
   } catch (err) {

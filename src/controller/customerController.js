@@ -148,37 +148,27 @@ exports.signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     console.log(req.body);
-    // const _user = {
-    //   // id: req.body.id,
-    //   name: req.body.name,
-    //   email: req.body.email,
-    //   password: hashedPassword,
-    //   dob: req.body.dob,
-    //   address: req.body.address,
-    //   contact: req.body.contact,
-    //   rating: 0,
-    //   balance: 0,
-    // };
 
     const _user = await models.User.create({
-      name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
       dob: req.body.dob,
       address: req.body.address,
       contact: req.body.contact,
+      type: '2',
     });
 
     const _customer = await models.Customer.create({
+      user_id: +_user.id,
       rating: 0,
       balance: 0,
-      userId: _user.id,
     });
-
     res.status(200).json({
       status: 'success',
       data: _user,
     });
+    req.session.userId = _user.id;
+    req.session.userType = '2';
     console.log('Success');
   } catch (err) {
     res.status(500).json({
