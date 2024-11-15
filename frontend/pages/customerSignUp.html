@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Sign Up</title>
+  <link rel="stylesheet" href="../css/customerSignUp.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <h1>APNA GARAGE</h1>
+    </div>
+    <div class="nav-right">
+      <button class="nav-button" onclick="redirectToSignUpSegregation()">RETURN</button>
+    </div>
+  </div>
+
+  <!-- Sign Up Form -->
+  <div class="form-container">
+    <h2>Customer Sign Up</h2>
+    <form id="signUpForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+
+      <label for="contact">Contact:</label>
+      <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" required>
+
+      <button type="submit" class="submit-button">SIGN UP</button>
+    </form>
+
+    <!-- Already have an account -->
+    <div class="login-link">
+      <p>Already have an account? <a href="../pages/loginPage.html">Log In</a></p>
+    </div>
+  </div>
+
+  <script src="../js/customerSignUp.js"></script>
+</body>
+</html>
