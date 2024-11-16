@@ -23,12 +23,12 @@ exports.signUp = async (req, res) => {
       workplace: req.body.workplace,
     });
 
+    req.session.userId = _user.id;
+    req.session.userType = '2';
     res.status(200).json({
       status: 'success',
       data: _user,
     });
-    req.session.userId = _user.id;
-    req.session.userType = '3';
     console.log('Success');
   } catch (err) {
     res.status(500).json({
