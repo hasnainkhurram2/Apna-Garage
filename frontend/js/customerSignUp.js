@@ -9,12 +9,18 @@ const signUpForm = document.getElementById('signUpForm');
 signUpForm.addEventListener('submit', async function (e) {
   e.preventDefault(); // Prevent form submission
 
+  const fullName = document.getElementById("fullName").value.trim();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
   const dob = document.getElementById('dob').value;
   const address = document.getElementById('address').value;
   const contact = document.getElementById('contact').value;
+
+  if (fullName === "") {
+    alert("Full Name is required!");
+    e.preventDefault();
+  }
 
   // Simple validation
   if (password !== confirmPassword) {
