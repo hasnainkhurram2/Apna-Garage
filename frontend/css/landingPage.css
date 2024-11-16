@@ -48,6 +48,7 @@ body {
   font-size: 14px;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 7px;
 }
 
 .nav-button:hover {
