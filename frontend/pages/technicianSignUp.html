@@ -1,67 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technician Sign Up</title>
+    <link rel="stylesheet" href="../css/technicianSignUp.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technician Sign Up</title>
-  <link rel="stylesheet" href="../css/technicianSignUp.css">
-</head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <button
+          class="nav-button"
+          onclick="window.location.href='signUpSegregation.html'"
+        >
+          RETURN
+        </button>
+      </div>
+    </nav>
+    <div class="form-container">
+      <h2>Technician Sign Up</h2>
+      <form id="technicianSignUpForm">
+        <label for="fullName">Full Name:</label>
+        <input
+          type="text"
+          id="fullName"
+          name="fullName"
+          placeholder="Enter your full name"
+          required
+        />
 
-<body>
-  <nav class="navbar">
-    <div class="nav-left">
-      <h1>APNA GARAGE</h1>
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        />
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="address">Address:</label>
+        <textarea
+          id="address"
+          name="address"
+          rows="2"
+          placeholder="Enter your address"
+          required
+        ></textarea>
+
+        <label for="contact">Contact:</label>
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          placeholder="Enter your contact number"
+          required
+        />
+
+        <label for="expertise">Expertise:</label>
+        <select id="expertise" name="expertise" required>
+          <option value="" disabled selected>Select your expertise</option>
+          <option value="mechanic">Mechanic</option>
+          <option value="electrician">Electrician</option>
+          <option value="bodyWorker">Body Worker</option>
+          <option value="fuelSupplier">Fuel Supplier</option>
+        </select>
+
+        <label for="experience">Years of Experience:</label>
+        <input
+          type="number"
+          id="experience"
+          name="experience"
+          min="0"
+          placeholder="Enter your years of Experience"
+          required
+        />
+
+        <label for="workplace">Workplace Name:</label>
+        <input
+          type="text"
+          id="workplace"
+          name="workplace"
+          placeholder="Enter your workplace's name"
+          required
+        />
+
+        <button type="submit" class="submit-button">Sign Up</button>
+        <p>
+          Already have an account?
+          <a href="loginPage.html" class="link">Log In</a>
+        </p>
+      </form>
     </div>
-    <div class="nav-right">
-      <button class="nav-button" onclick="window.location.href='signUpSegregation.html'">RETURN</button>
-    </div>
-  </nav>
-  <div class="form-container">
-    <h2>Technician Sign Up</h2>
-    <form id="technicianSignUpForm">
-      <label for="fullName">Full Name:</label>
-      <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-
-      <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" name="dob" required>
-
-      <label for="address">Address:</label>
-      <textarea id="address" name="address" rows="2" placeholder="Enter your address" required></textarea>
-
-      <label for="contact">Contact:</label>
-      <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
-
-      <label for="expertise">Expertise:</label>
-      <select id="expertise" name="expertise" required>
-        <option value="" disabled selected>Select your expertise</option>
-        <option value="mechanic">Mechanic</option>
-        <option value="electrician">Electrician</option>
-        <option value="body worker">Body Worker</option>
-        <option value="fuel supplier">Fuel Supplier</option>
-      </select>
-
-      <label for="experience">Years of Experience:</label>
-      <input type="number" id="experience" name="experience" min="0" placeholder="Enter your years of Experience"
-        required>
-
-      <label for="workplace">Workplace Name:</label>
-      <input type="text" id="workplace" name="workplace" placeholder="Enter your workplace's name" required>
-
-      <button type="submit" class="submit-button">Sign Up</button>
-      <p>Already have an account? <a href="loginPage.html" class="link">Log In</a></p>
-    </form>
-  </div>
-  <script src="../js/technicianSignUp.js"></script>
-</body>
-
+    <script src="../js/technicianSignUp.js"></script>
+  </body>
 </html>

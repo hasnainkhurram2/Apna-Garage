@@ -24,7 +24,7 @@ form.addEventListener('submit', async function (e) {
     return;
   }
   const technicianData = {
-    fullName,
+    name: fullName,
     email,
     password,
     dob,
@@ -36,12 +36,13 @@ form.addEventListener('submit', async function (e) {
   };
   try {
     const response = await fetch(
-      'http://localhost:3000/api/v1/technicians/signup',
+      'http://127.0.0.1:3000/api/v1/technicians/signup',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(technicianData),
       }
     );

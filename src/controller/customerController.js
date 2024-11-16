@@ -150,7 +150,7 @@ exports.signUp = async (req, res) => {
     console.log(req.body);
 
     const _user = await models.User.create({
-      name: req.body.name,
+      name: req.body.fullName,
       email: req.body.email,
       password: hashedPassword,
       dob: req.body.dob,
@@ -164,9 +164,12 @@ exports.signUp = async (req, res) => {
       rating: 0,
       balance: 0,
     });
-    req.session.userId = _user.id;
-    req.session.userType = '2';
-    req.session.name = _user.name;
+    const userDetails = {
+      userId: _user.id,
+      userType: '2',
+      userName: _user.name,
+    };
+    req.session.userDetails = userDetails;
     res.status(200).json({
       status: 'success',
       data: _user,
