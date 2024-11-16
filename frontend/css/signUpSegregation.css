@@ -1,0 +1,93 @@
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    padding: 1rem;
+    color: orange;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .nav-left h1 {
+    color: orange;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  /* Body styling */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+
+  .nav-right .nav-button {
+    background-color: #000;
+    color: orange;
+    border: 2px solid orange;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 40px; /* Moves button slightly left */
+  }
+  
+  .nav-right .nav-button:hover {
+    background-color: orange;
+    color: black;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  
+  /* Button container */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  /* Buttons styling */
+  .role-button {
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+    border: 2px solid white;
+    padding: 0.3rem 1rem;
+  }
+  
+  .customer-button {
+    background-image: url("../img/customerMarble.png");
+  }
+  
+  .technician-button {
+    background-image: url("../img/technicianMarble.png");
+  }
+  
+  .role-button:hover {
+    transform: scale(1.2);
+  }
+  
