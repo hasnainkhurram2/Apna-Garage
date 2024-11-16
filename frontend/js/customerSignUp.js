@@ -38,12 +38,13 @@ signUpForm.addEventListener('submit', async function (e) {
   };
   try {
     const response = await fetch(
-      'http://localhost:3000/api/v1/customers/signup',
+      'http://127.0.0.1:3000/api/v1/customers/signup',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(customerData),
       }
     );

@@ -3,23 +3,28 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 
+const store = new session.MemoryStore();
 const app = express();
 
 app.use(express.json());
+
 app.use(
   cors({
     origin: 'http://127.0.0.1:5500',
+    credentials: true,
   })
 );
 
 app.use(
   session({
-    secret: '#22L-XXXX',
+    secret: 'something',
     resave: false,
     saveUninitialized: false,
     cookie: {
+      secure: false,
       maxAge: 60 * 30 * 1000,
       httpOnly: true,
+      store,
     },
   })
 );
