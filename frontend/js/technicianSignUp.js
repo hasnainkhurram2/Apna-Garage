@@ -3,6 +3,7 @@ const form = document.getElementById('technicianSignUpForm');
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
 
+  const fullName = document.getElementById('fullName').value.trim();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
@@ -13,11 +14,17 @@ form.addEventListener('submit', async function (e) {
   const experience = document.getElementById('experience').value;
   const workplace = document.getElementById('workplace').value;
 
+  if (fullName === '') {
+    alert('Full Name is required!');
+    e.preventDefault();
+  }
+
   if (password !== confirmPassword) {
     alert('Passwords do not match!');
     return;
   }
   const technicianData = {
+    fullName,
     email,
     password,
     dob,

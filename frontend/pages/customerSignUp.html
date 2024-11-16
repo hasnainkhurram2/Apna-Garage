@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Sign Up</title>
   <link rel="stylesheet" href="../css/customerSignUp.css">
 </head>
+
 <body>
   <!-- Navbar -->
   <div class="navbar">
@@ -21,6 +23,9 @@
   <div class="form-container">
     <h2>Customer Sign Up</h2>
     <form id="signUpForm">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
@@ -50,4 +55,5 @@
 
   <script src="../js/customerSignUp.js"></script>
 </body>
+
 </html>
