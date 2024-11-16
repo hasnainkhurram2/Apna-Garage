@@ -1,3 +1,23 @@
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:3000/api/v1/session/', {
+      method: 'GET',
+      credentials: 'include',
+    });
+    const result = await response.json();
+    if (!response.ok || result.message === 'Unauthorized.') {
+       if (confirm('Session Expired or Unauthorized Access. Please Login.')) {
+         window.location.href = './login.html';
+       }
+      console.log(`Failed inside the try block: ${response.message}.`);
+    }
+    const welcomeElement = document.querySelector('.services-title h1');
+    welcomeElement.textContent = `WELCOME ${result.userDetails.userName}`;
+  } catch (error) {
+    console.log(`Error while fetching Session data: ${error}`);
+  }
+});
+
 const buttons = document.querySelectorAll('.carousel-button');
 
 // Function to set the active button
@@ -27,16 +47,16 @@ buttons.forEach((button, index) => {
   button.addEventListener('click', () => {
     switch (index) {
       case 0:
-        window.location.href = "../pages/hireMechanic.html"; // Redirect for first button
+        window.location.href = '../pages/hireMechanic.html'; // Redirect for first button
         break;
       case 1:
-        window.location.href = "../pages/hireElectrician.html"; // Redirect for second button
+        window.location.href = '../pages/hireElectrician.html'; // Redirect for second button
         break;
       case 2:
-        window.location.href = "../pages/hireBodyTechnician.html"; // Redirect for third button
+        window.location.href = '../pages/hireBodyTechnician.html'; // Redirect for third button
         break;
       case 3:
-        window.location.href = "../pages/getFuel.html"; // Redirect for fourth button
+        window.location.href = '../pages/getFuel.html'; // Redirect for fourth button
         break;
       default:
         break;
@@ -46,7 +66,7 @@ buttons.forEach((button, index) => {
 
 // Log out function with confirmation
 function logout() {
-  if (confirm("Are you sure you want to log out?")) {
-    window.location.href = "../pages/landingPage.html"; // Redirect to login page
+  if (confirm('Are you sure you want to log out?')) {
+    window.location.href = '../pages/landingPage.html'; // Redirect to login page
   }
 }
