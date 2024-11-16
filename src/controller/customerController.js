@@ -163,12 +163,12 @@ exports.signUp = async (req, res) => {
       rating: 0,
       balance: 0,
     });
+    req.session.userId = _user.id;
+    req.session.userType = '2';
     res.status(200).json({
       status: 'success',
       data: _user,
     });
-    req.session.userId = _user.id;
-    req.session.userType = '2';
     console.log('Success');
   } catch (err) {
     res.status(500).json({
