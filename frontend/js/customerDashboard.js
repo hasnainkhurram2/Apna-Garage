@@ -27,16 +27,16 @@ buttons.forEach((button, index) => {
   button.addEventListener('click', () => {
     switch (index) {
       case 0:
-        window.location.href = "../pages/hireMechanic.html"; // Redirect for first button
+        window.location.href = '../pages/hireMechanic.html'; // Redirect for first button
         break;
       case 1:
-        window.location.href = "../pages/hireElectrician.html"; // Redirect for second button
+        window.location.href = '../pages/hireElectrician.html'; // Redirect for second button
         break;
       case 2:
-        window.location.href = "../pages/hireBodyTechnician.html"; // Redirect for third button
+        window.location.href = '../pages/hireBodyTechnician.html'; // Redirect for third button
         break;
       case 3:
-        window.location.href = "../pages/getFuel.html"; // Redirect for fourth button
+        window.location.href = '../pages/hireFuelSupplier.html'; // Redirect for fourth button
         break;
       default:
         break;
@@ -46,7 +46,7 @@ buttons.forEach((button, index) => {
 
 // Log out function with confirmation
 function logout() {
-  if (confirm("Are you sure you want to log out?")) {
-    window.location.href = "../pages/landingPage.html"; // Redirect to login page
+  if (confirm('Are you sure you want to log out?')) {
+    window.location.href = '../pages/landingPage.html'; // Redirect to login page
   }
 }
