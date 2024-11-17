@@ -32,14 +32,14 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      requestedBy: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      acceptedBy: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
+      // requestedBy: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      // },
+      // acceptedBy: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: true,
+      // },
       location: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -48,18 +48,18 @@ module.exports = (sequelize) => {
         type: DataTypes.TIME,
         allowNull: true,
       },
-      expectedTime: {
-        type: DataTypes.TIME,
-        allowNull: true,
-      },
+      // expectedTime: {
+      //   type: DataTypes.TIME,
+      //   allowNull: true,
+      // },
       completed: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      endTime: {
-        type: DataTypes.TIME,
-        allowNull: true,
-      },
+      // endTime: {
+      //   type: DataTypes.TIME,
+      //   allowNull: true,
+      // },
     },
     {
       sequelize,
