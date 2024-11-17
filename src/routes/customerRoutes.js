@@ -16,8 +16,6 @@ router
   .put(customerController.updateCustomer)
   .delete(customerController.deleteCustomer);
 
-router.route('/login').post(customerController.login);
-
 router.route('/signup').post(customerController.signUp);
 
 router.route('/').get(customerController.getAllUsers);
