@@ -76,9 +76,26 @@ input {
     color: white;
 }
 
+/* Forgot Password Link */
+.forgot-password {
+    margin-top: 0.5rem;
+    text-align: center; /* Center the link above the login button */
+}
+
+.forgot-password a {
+    color: orange;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.forgot-password a:hover {
+    color: white;
+    text-decoration: none;
+}
+
 /* Submit Button */
 .submit-button {
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: orange;
     color: black;
     padding: 0.7rem 1.5rem;
@@ -94,19 +111,20 @@ input {
     border: 2px solid orange;
 }
 
-/* Forgot Password Link */
-.forgot-password {
+/* Sign Up Link */
+.signup-link {
     margin-top: 1rem;
     color: orange;
+    text-align: center;
 }
 
-.forgot-password a {
+.signup-link a {
     color: orange;
     text-decoration: underline;
     font-weight: bold;
 }
 
-.forgot-password a:hover {
+.signup-link a:hover {
     color: white;
     text-decoration: none;
 }
