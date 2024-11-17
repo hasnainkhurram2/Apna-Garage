@@ -26,8 +26,8 @@ hireForm.addEventListener('submit', async function (e) {
   }
 
   const requestData = {
-    requestedBy: 1,
-    acceptedBy: null,
+    // requestedBy: 1,
+    // acceptedBy: null,
     location,
     startTime: null,
     expectedTime: null,
