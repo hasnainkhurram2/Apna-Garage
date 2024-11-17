@@ -26,12 +26,13 @@ hireForm.addEventListener('submit', async function (e) {
   }
 
   const requestData = {
-    fullName,
-    email,
-    password,
-    dob,
-    address,
-    contact,
+    requestedBy: 1,
+    acceptedBy: null,
+    location,
+    startTime: null,
+    expectedTime: null,
+    completed: false,
+    endTime: null,
   };
   try {
     const response = await fetch('http://localhost:3000/api/v1/requests/', {
