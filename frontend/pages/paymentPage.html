@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="../css/paymentPage.css" />
+    <script src="../js/paymentPage.js"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <button class="nav-button" onclick="navigateToDashboard()">
+          RETURN
+        </button>
+      </div>
+    </nav>
+
+    <!-- Payment Form -->
+    <div class="payment-container">
+      <h1>PAYMENT</h1>
+      <form class="payment-form">
+        <label for="card-number">Card Number</label>
+        <input
+          type="text"
+          id="card-number"
+          name="card-number"
+          placeholder="XXXX XXXX XXXX XXXX"
+          required
+        />
+
+        <div class="form-row">
+          <div>
+            <label for="exp-date">Exp Date</label>
+            <input
+              type="text"
+              id="exp-date"
+              name="exp-date"
+              placeholder="MM/YY"
+              required
+            />
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="XXX" required />
+          </div>
+        </div>
+
+        <button type="submit" class="pay-button">PAY</button>
+      </form>
+    </div>
+  </body>
+</html>
