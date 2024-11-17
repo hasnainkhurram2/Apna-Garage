@@ -1,168 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ApnaGarage - Login</title>
-    <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #000; /* Set solid black background */
-      }
-
-      .container {
-        background: #1e1e1e;
-        border-radius: 10px;
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-        padding: 40px;
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-      }
-
-      h2 {
-        color: #f0f0f0;
-        margin-bottom: 20px;
-        font-size: 24px;
-      }
-
-      input[type='email'],
-      input[type='password'] {
-        background-color: #555;
-        color: #f0f0f0;
-        width: 100%;
-        padding: 15px;
-        margin: 10px 0;
-        border: 1px solid #777;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: all 0.3s;
-      }
-
-      /* Placeholder text color */
-      input::placeholder {
-        color: #f0f0f0;
-        opacity: 1;
-      }
-
-      input[type='email']:focus,
-      input[type='password']:focus {
-        border-color: #36d1dc;
-        box-shadow: 0 0 8px rgba(54, 209, 220, 0.2);
-      }
-
-      button {
-        width: 100%;
-        padding: 15px;
-        background: #ff7f50; /* Set button color to orange */
-        color: #f0f0f0;
-        border: none;
-        border-radius: 5px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      button:hover {
-        background: #e67300; /* Darker orange on hover */
-      }
-
-      .error {
-        color: #ff4e50;
-        font-size: 0.9rem;
-        margin-top: 10px;
-      }
-
-      .link {
-        display: block;
-        margin-top: 20px;
-        color: #36d1dc;
-        text-decoration: none;
-      }
-
-      .link:hover {
-        text-decoration: underline;
-      }
-
-      .logo {
-        width: 150px;
-        margin-bottom: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <img src="images/symbol.jpg" alt="ApnaGarage Logo" class="logo" />
-
-      <h2>Login to ApnaGarage</h2>
-      <form id="loginForm">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter Email"
-          required
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter Password"
-          required
-        />
-        <button type="submit">Login</button>
-        <p class="error" id="error"></p>
-        <a href="./signup.html" class="link">Don't have an account? Sign Up</a>
-      </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ApnaGarage</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-left">
+            <h1>APNA GARAGE</h1>
+        </div>
+        <div class="nav-right">
+            <button class="nav-button" onclick="redirectToHome()">RETURN</button>
+        </div>
     </div>
 
-    <script>
-      const loginForm = document.getElementById('loginForm');
-      const errorElement = document.getElementById('error');
+    <!-- Login Form -->
+    <div class="form-container">
+        <h2>Log In</h2>
+        <form id="loginForm">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
-      loginForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+            <!-- Login Button -->
+            <button type="submit" class="submit-button">LOG IN</button>
 
-        try {
-          const response = await fetch(
-            'http://localhost:3000/api/v1/customers/login',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                email: email,
-                password: password,
-              }),
-            }
-          );
+            <!-- Forgot Password -->
+            <div class="forgot-password">
+                <a href="../pages/reset_password.html">Forgot Password?</a>
+            </div>
+        </form>
+    </div>
 
-          const data = await response.json();
-
-          if (response.ok) {
-            alert(data.message);
-            // Redirect or take further actions based on login success
-          } else {
-            errorElement.textContent =
-              data.message || 'Login failed. Please try again.';
-          }
-        } catch (error) {
-          errorElement.textContent =
-            'An error occurred. Please try again later.';
-        }
-      });
-    </script>
-     
-  </body>
+    <script src="../js/login.js"></script>
+</body>
 </html>
