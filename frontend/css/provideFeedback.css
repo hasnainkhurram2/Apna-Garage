@@ -14,7 +14,7 @@ body {
 }
 
 .feedback-container {
-    background-color: orange;
+    background-color: hsl(26, 100%, 50%);
     padding: 20px;
     max-width: 400px;
     width: 100%;
