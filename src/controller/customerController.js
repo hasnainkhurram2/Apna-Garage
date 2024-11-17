@@ -108,40 +108,6 @@ exports.deleteCustomer = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const _user = await models.User.findOne({ where: { email } });
-    if (_user) {
-      if (_user.password == password) {
-        res.status(200).json({
-          status: 'success',
-          message: `Login Successful! Welcome ${_user.name}!`,
-        });
-        console.log(`Success! ${_user.name}`);
-      } else {
-        res.status(500).json({
-          status: 'Failed',
-          message: 'Incorrect Password.',
-        });
-        console.log('Fail! Incorrect Password.');
-      }
-    } else {
-      res.status(404).json({
-        status: 'Fail',
-        message: 'No User found with Email ',
-        email,
-      });
-      console.log('Fail!, Invalid Credentials');
-    }
-  } catch (err) {
-    res.status(500).json({
-      error: 'Server error.',
-    });
-    console.log(err);
-  }
-};
-
 exports.signUp = async (req, res) => {
   try {
     const salt = 10;
