@@ -149,7 +149,7 @@ exports.signUp = async (req, res) => {
     console.log(req.body);
 
     const _user = await models.User.create({
-      name: req.body.name,
+      fullName: req.body.fullName,
       email: req.body.email,
       password: hashedPassword,
       dob: req.body.dob,
@@ -165,7 +165,7 @@ exports.signUp = async (req, res) => {
     });
     req.session.userId = _user.id;
     req.session.userType = '2';
-    req.session.name = _user.name;
+    req.session.fullName = _user.fullName;
     res.status(200).json({
       status: 'success',
       data: _user,
