@@ -18,4 +18,24 @@ function changeImage() {
 setInterval(changeImage, 3500);
 
 
+function redirectToSignUpSegregation() {
+  window.location.href = "../pages/signUpSegregation.html";
+}
+function redirectToLogInPage() {
+  window.location.href = "../pages/login.html";
+}
+function redirectToAboutUs() {
+  window.location.href = "../pages/aboutUs.html";
+}
+function redirectToContactUs() {
+  window.location.href = "../pages/contact us.html";
+}
+function redirectToFAQs() {
+  window.location.href = "../pages/faq.html";
+}
+function redirectToTermsAndConditions() {
+  window.location.href = "../pages/termsAndConditions.html";
+}
+
+
 
