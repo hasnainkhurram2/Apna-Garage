@@ -1,0 +1,43 @@
+
+
+/* Body */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 70px; /* Offset for navbar */
+    text-align: center;
+}
+
+/* Contact Container */
+.contact-container {
+    margin-top: 50px;
+}
+
+.contact-container h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Contact Table */
+.contact-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 90%; /* Increased table width */
+    max-width: 800px; /* Larger maximum width */
+    background-color: #222; /* Slightly darker background */
+    color: #ddd; /* Lighter grey text */
+    border: 2px solid orange;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Enhanced shadow for emphasis */
+}
+
+.contact-table td {
+    padding: 1.5rem; /* Larger padding for better spacing */
+    font-size: 1.2rem; /* Larger font size for better readability */
+    text-align: left;
+    border: 1px solid orange;
+    color: #ddd; /* Ensures both labels and data are lighter grey */
+}

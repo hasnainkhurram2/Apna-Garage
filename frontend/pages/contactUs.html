@@ -3,177 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApnaGarage - Contact Us</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Navigation Bar */
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #f9d423;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #f9d423;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 50px 20px;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-
-        .contact-section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        .contact-info {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .contact-info p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 40px auto;
-            text-align: left;
-        }
-
-        .contact-form label {
-            font-size: 16px;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .contact-form textarea {
-            height: 150px;
-        }
-
-        .submit-button {
-            background-color: #ff4e50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .submit-button:hover {
-            background-color: #f9d423;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        footer a {
-            color: #f9d423;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Contact Us - ApnaGarage</title>
+    <link rel="stylesheet" href="../css/contactUs.css">
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-left">
+            <h1>APNA GARAGE</h1>
+        </div>
+        <div class="nav-right">
+            <button class="nav-button" onclick="redirectToHome()">RETURN</button>
+        </div>
+    </div>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="logo">ApnaGarage</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contacts.html">Contact Us</a></li>
-        </ul>
-    </nav>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
+    <!-- Contact Us Section -->
+    <div class="contact-container">
         <h2>Contact Us</h2>
+        <table class="contact-table">
+            <tr>
+                <td>Email:</td>
+                <td>contact@apnagarage.com</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>+123 456 7890</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>123 Main Street, Auto City, CA</td>
+            </tr>
+        </table>
+    </div>
 
-        <div class="contact-info">
-            <p><strong>Email:</strong> contact@apnagarage.com</p>
-            <p><strong>Phone:</strong> +1 123 456 7890</p>
-            <p><strong>Address:</strong> 123 Mechanic Lane, AutoCity, TX 78910</p>
-        </div>
-
-        <!-- Contact Form -->
-        <div class="contact-form">
-            <form action="#" method="post">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-
-                <button type="submit" class="submit-button">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 ApnaGarage. All Rights Reserved. | <a href="contacts.html">Contact Us</a></p>
-    </footer>
-
+    <script src="../js/contactUs.js"></script>
 </body>
 </html>
