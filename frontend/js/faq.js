@@ -16,3 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+function navigateToDashboard() {
+    window.location.href = "customerDashboard.html";
+  }
