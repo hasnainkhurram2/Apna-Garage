@@ -11,6 +11,55 @@ body {
   align-items: center;
 }
 
+<<<<<<< HEAD
+=======
+/* Navigation Bar Styling */
+.navbar {
+  width: 100%;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Left side: "APNA GARAGE" Styling */
+.nav-left h1 {
+  font-size: 24px;
+  margin: 0;
+  color: orange;
+}
+
+/* Right side: Buttons Styling */
+.nav-right {
+  display: flex;
+  gap: 10px;
+  margin-right: 20px; /* This shifts the buttons a little to the left */
+}
+
+.nav-button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 7px;
+}
+
+.nav-button:hover {
+  background-color: orange;
+  color: black;
+}
+
+
+>>>>>>> Update-Landing-Page-To-Add-More-Required-Buttons
 /* Ensure banner is below the nav */
 .banner-container {
   margin-top: 80px; /* Adjust to keep space for nav bar */
