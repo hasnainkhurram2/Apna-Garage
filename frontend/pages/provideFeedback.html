@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Provide Feedback</title>
-  <link rel="stylesheet" href="../css/provideFeedback.css">
-</head>
-
-<body>
-  <nav class="navbar">
-    <div class="nav-left">
-      <h1>APNA GARAGE</h1>
-    </div>
-    <div class="nav-right">
-      <button class="nav-button" onclick="goToSignUp()">Sign Up</button>
-      <button class="nav-button" onclick="goToLogIn()">Log In</button>
-      <button class="nav-button" onclick="goToContactUs()">Contact Us</button>
-    </div>
-  </nav>
-  <div class="feedback-container">
-    <h2>John Doe</h2>
-
-    <p>Technician Rating</p>
-    <div class="rating">
-      <input type="radio" name="star" id="star5"><label for="star5">★</label>
-      <input type="radio" name="star" id="star4"><label for="star4">★</label>
-      <input type="radio" name="star" id="star3"><label for="star3">★</label>
-      <input type="radio" name="star" id="star2"><label for="star2">★</label>
-      <input type="radio" name="star" id="star1"><label for="star1">★</label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Provide Feedback - ApnaGarage</title>
+    <link rel="stylesheet" href="../css/provideFeedback.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      </div>
     </div>
 
-    <p>Please leave a review of your experience</p>
-    <textarea placeholder="Write your review here"></textarea>
+    <!-- Feedback Section -->
+    <div class="feedback-container">
+      <!-- Technician Info -->
+      <div class="technician-info">
+        <h2>John Doe</h2>
+        <p>Technician Rating</p>
+      </div>
 
-    <button type="submit">Submit Feedback</button>
-  </div>
-</body>
+      <!-- Star Rating -->
+      <div class="star-rating" id="starRating">
+        <span data-value="1">&#9733;</span>
+        <span data-value="2">&#9733;</span>
+        <span data-value="3">&#9733;</span>
+        <span data-value="4">&#9733;</span>
+        <span data-value="5">&#9733;</span>
+      </div>
 
+      <!-- Review Text -->
+      <p class="review-prompt">Please leave a review of your experience</p>
+      <textarea
+        class="review-box"
+        placeholder="Write your review here..."
+      ></textarea>
+
+      <!-- Submit Button -->
+      <button class="submit-feedback">Submit Feedback</button>
+    </div>
+
+    <script src="../js/provideFeedback.js"></script>
+  </body>
 </html>

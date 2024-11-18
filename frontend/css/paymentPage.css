@@ -11,42 +11,6 @@ body {
     overflow: hidden;
 }
 
-/* Navbar styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000;
-    padding: 1rem 2rem;
-    color: orange;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-/* Left section of navbar */
-.nav-left h1 {
-    color: orange;
-    margin: 0;
-}
-
-/* Right section of navbar with buttons */
-.nav-right .nav-button {
-    background-color: #000;
-    color: #fff;
-    border: 2px solid #fff;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.nav-right .nav-button:hover {
-    background-color: orange;
-    color: black;
-}
-
 /* Payment form container */
 .payment-container {
     background-color: #121212; /* Slightly lighter black for contrast */

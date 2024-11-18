@@ -17,3 +17,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(`Error while fetching Session data: ${error}`);
   }
 });
+
+function logout() {
+  if (confirm('Are you sure you want to log out?')) {
+    window.location.href = '../pages/landingPage.html'; // Redirect to login page
+  }
+}
