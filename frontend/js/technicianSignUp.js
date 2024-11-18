@@ -49,11 +49,9 @@ form.addEventListener('submit', async function (e) {
     const result = await response.json();
     if (response.ok) {
       if (
-        confirm(
-          'Technician Sign Up successful! Press OK to proceed to your Dashboard.'
-        )
+        confirm('Technician Sign Up successful! Press OK to proceed to Login.')
       ) {
-        window.location.href = './technicianDashboard.html';
+        window.location.href = './login.html';
       }
     } else {
       alert(`Oops, Something went wrong. Try Again Later.`);
