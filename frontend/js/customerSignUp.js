@@ -9,7 +9,8 @@ const signUpForm = document.getElementById('signUpForm');
 signUpForm.addEventListener('submit', async function (e) {
   e.preventDefault(); // Prevent form submission
 
-  const fullName = document.getElementById('fullName').value.trim();
+  const name = document.getElementById('fullName').value.trim();
+  console.log(name);
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
@@ -17,7 +18,7 @@ signUpForm.addEventListener('submit', async function (e) {
   const address = document.getElementById('address').value;
   const contact = document.getElementById('contact').value;
 
-  if (fullName === '') {
+  if (name === '') {
     alert('Full Name is required');
     e.preventDefault();
   }
@@ -29,7 +30,7 @@ signUpForm.addEventListener('submit', async function (e) {
   }
 
   const customerData = {
-    fullName,
+    name,
     email,
     password,
     dob,

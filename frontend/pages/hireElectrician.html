@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hire Mechanic - Apna Garage</title>
-    <link rel="stylesheet" href="../css/hireFuelSupplier.css" />
+    <title>Hire Electrician - Apna Garage</title>
+    <link rel="stylesheet" href="../css/hireElectrician.css" />
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -21,7 +21,7 @@
 
     <!-- Hire Mechanic Form -->
     <div class="form-container">
-      <h2>HIRE FUEL SUPPLIER</h2>
+      <h2>HIRE AN ELECTRICIAN</h2>
       <form id="hireForm">
         <label for="location">Location:</label>
         <select id="location" name="location" required>
@@ -32,13 +32,20 @@
           <option value="city3">Faisal Town - D Block</option>
         </select>
 
-        <label for="serviceType">Fuel Type:</label>
+        <label for="serviceType">Service Type:</label>
         <select id="serviceType" name="serviceType" required>
-          <option value="" disabled selected>Select Fuel Type</option>
-          <option value="Petrol">Petrol</option>
-          <option value="Diesel">Diesel</option>
-          <option value="CNG">CNG</option>
-          <option value="Hi-Octane">Petrol (Hi-Octane)</option>
+          <option value="" disabled selected>Select Service</option>
+          <option value="Battery">Wiring</option>
+          <option value="Brake repair">Battery Maintenance</option>
+          <option value="Diagnostics">Battery Replacement</option>
+          <option value="Oil change">Electrical System Diagnosis</option>
+          <option value="Oil Filter">Lighting Systems</option>
+          <option value="Suspension">Dashboard Warning Lights</option>
+          <option value="Tire rotation">
+            ECU (Electronic Control Unit) Diagnosis
+          </option>
+          <option value="Tires">Air Conditioning</option>
+          <option value="Transmission repair">Climate Control Systems</option>
         </select>
 
         <label for="description">Description:</label>

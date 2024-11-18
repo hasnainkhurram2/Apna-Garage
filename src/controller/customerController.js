@@ -115,7 +115,7 @@ exports.signUp = async (req, res) => {
     console.log(req.body);
 
     const _user = await models.User.create({
-      name: req.body.fullName,
+      name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
       dob: req.body.dob,
