@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Dashboard - Apna Garage</title>
-  <!-- Link to the customer dashboard CSS -->
-  <link rel="stylesheet" href="../css/customerDashboard.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Dashboard - Apna Garage</title>
+    <!-- Link to the customer dashboard CSS -->
+    <link rel="stylesheet" href="../css/customerDashboard.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <!-- Log out button with confirmation -->
+        <button class="nav-button" onclick="logout()">Log Out</button>
+      </div>
+    </nav>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <h1>APNA GARAGE</h1>
+    <!-- Large Services Text -->
+    <div class="services-title">
+      <h1>WELCOME, FAROOQ HAIDER.</h1>
     </div>
-    <div class="nav-right">
-      <!-- Log out button with confirmation -->
-      <button class="nav-button" onclick="logout()">Log Out</button>
+
+    <!-- Carousel Section -->
+    <div class="carousel-container">
+      <div class="carousel">
+        <!-- Carousel buttons representing services -->
+        <button class="carousel-button" id="btn1">
+          <img src="../img/service1.jpg" alt="Service 1" />
+        </button>
+        <button class="carousel-button" id="btn2">
+          <img src="../img/service2.jpg" alt="Service 2" />
+        </button>
+        <button class="carousel-button" id="btn3">
+          <img src="../img/service3.jpg" alt="Service 3" />
+        </button>
+        <button class="carousel-button" id="btn4">
+          <img src="../img/service4.jpg" alt="Service 4" />
+        </button>
+      </div>
     </div>
-  </nav>
 
-  <!-- Large Services Text -->
-  <div class="services-title">
-    <h1>WELCOME, FAROOQ HAIDER.</h1>
-  </div>
-
-  <!-- Carousel Section -->
-  <div class="carousel-container">
-    <div class="carousel">
-      <!-- Carousel buttons representing services -->
-      <button class="carousel-button" id="btn1">
-        <img src="../img/service1.jpg" alt="Service 1">
-      </button>
-      <button class="carousel-button" id="btn2">
-        <img src="../img/service2.jpg" alt="Service 2">
-      </button>
-      <button class="carousel-button" id="btn3">
-        <img src="../img/service3.jpg" alt="Service 3">
-      </button>
-      <button class="carousel-button" id="btn4">
-        <img src="../img/service4.jpg" alt="Service 4">
-      </button>
-    </div>
-  </div>
-
-  <!-- Link to the customer dashboard JavaScript -->
-  <script src="../js/customerDashboard.js"></script>
-</body>
+    <!-- Link to the customer dashboard JavaScript -->
+    <script src="../js/customerDashboard.js"></script>
+  </body>
 </html>
