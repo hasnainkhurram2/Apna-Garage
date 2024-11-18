@@ -1,6 +1,6 @@
 // Redirect to home page
 function redirectToHome() {
-  window.location.href = '../pages/homepage.html';
+  window.location.href = '../pages/landingPage.html';
 }
 
 // Login Form Submission
