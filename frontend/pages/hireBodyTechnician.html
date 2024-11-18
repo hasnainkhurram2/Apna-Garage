@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hire Body Technician - Apna Garage</title>
+  <link rel="stylesheet" href="../css/hireBodyTechnician.css">
+  <link rel="stylesheet" href="../css/navbar.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1>APNA GARAGE</h1>
+    </div>
+    <div class="nav-right">
+      <button class="nav-button" onclick="redirectToDashboard()">RETURN</button>
+    </div>
+  </nav>
+
+  <!-- Hire Mechanic Form -->
+  <div class="form-container">
+    <h2>HIRE A BODY TECHNICIAN</h2>
+    <form id="hireForm">
+      <label for="location">Location:</label>
+      <select id="location" name="location" required>
+        <option value="" disabled selected>Select Location</option>
+        <option value="city1">Faisal Town - A Block</option>
+        <option value="city2">Faisal Town - B Block</option>
+        <option value="city3">Faisal Town - C Block</option>
+        <option value="city3">Faisal Town - D Block</option>
+      </select>
+
+      <label for="serviceType">Service Type:</label>
+      <select id="serviceType" name="serviceType" required>
+        <option value="" disabled selected>Select Service</option>
+        <option value="Battery">Wiring</option>
+        <option value="Brake repair">Painting</option>
+        <option value="Diagnostics">Wraping</option>
+        <option value="Oil change">Polishing</option>
+        <option value="Oil change">Dents Repairing</option>
+        <option value="Oil Filter">Scratches Buffing</option>
+
+      </select>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" rows="8" placeholder="Provide details about the issue..."></textarea>
+
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+
+  <script src="../js/hireTechnician.js"></script>
+</body>
+</html>
