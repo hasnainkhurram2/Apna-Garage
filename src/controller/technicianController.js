@@ -23,12 +23,6 @@ exports.signUp = async (req, res) => {
       type: req.body.expertise,
       workplace: req.body.workplace,
     });
-    const userDetails = {
-      userId: _user.id,
-      userType: '2',
-      userName: _user.name,
-    };
-    req.session.userDetails = userDetails;
     res.status(200).json({
       status: 'success',
       data: _user,
