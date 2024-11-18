@@ -40,6 +40,7 @@ const reviewBox = document.querySelector('.review-box');
 
 submitButton.addEventListener('click', async () => {
   const reviewContent = reviewBox.value.trim();
+  console.log(reviewContent);
 
   // Validate input
   if (selectedRating === 0 || reviewContent === '') {

@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     const result = await response.json();
     if (!response.ok || result.message === 'Unauthorized.') {
-       if (confirm('Session Expired or Unauthorized Access. Please Login.')) {
-         window.location.href = './login.html';
-       }
+      if (confirm('Session Expired or Unauthorized Access. Please Login.')) {
+        window.location.href = './login.html';
+      }
       console.log(`Failed inside the try block: ${response.message}.`);
     }
     const welcomeElement = document.querySelector('.services-title h1');
@@ -48,15 +48,19 @@ buttons.forEach((button, index) => {
     switch (index) {
       case 0:
         window.location.href = '../pages/hireMechanic.html'; // Redirect for first button
+
         break;
       case 1:
         window.location.href = '../pages/hireElectrician.html'; // Redirect for second button
+
         break;
       case 2:
         window.location.href = '../pages/hireBodyTechnician.html'; // Redirect for third button
+
         break;
       case 3:
-        window.location.href = '../pages/getFuel.html'; // Redirect for fourth button
+        window.location.href = '../pages/hireFuelSupplier.html'; // Redirect for fourth button
+
         break;
       default:
         break;

@@ -1,0 +1,124 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for visibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    padding: 1rem 2rem;
+    color: orange;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+/* Left section of navbar */
+.nav-left h1 {
+    color: orange;
+    margin: 0;
+}
+
+/* Right section of navbar with buttons */
+.nav-right .nav-button {
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.nav-right .nav-button:hover {
+    background-color: orange;
+    color: black;
+}
+
+/* Payment form container */
+.payment-container {
+    background-color: #121212; /* Slightly lighter black for contrast */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Orange glow */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Label styles */
+label {
+    display: block; /* Ensure the label takes up a full line */
+    margin-bottom: 10px; /* Space between label and input */
+    text-align: left; /* Ensure label is aligned to the left */
+}
+
+/* Form heading */
+.payment-container h1 {
+    margin-bottom: 1.5rem;
+    margin-top: -10px;
+    color: orange;
+    font-size: 1.8rem; /* Slightly bigger for emphasis */
+}
+
+/* Input field styles */
+.payment-container input {
+    width: 80%; /* Make input take full width */
+    padding: 0.7rem;
+    margin-bottom: 2rem;
+    border: 0.5px solid orange;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.payment-container input::placeholder {
+    color: #aaa; /* Light gray placeholder */
+}
+
+/* Pay button styles */
+.payment-container button {
+    width: 20%;
+    padding: 0.5rem;
+    background-color: orange;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.payment-container button:hover {
+    background-color: red; /* Lighter orange on hover */
+    color: white;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .payment-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .payment-container input {
+        width: 100%; /* Ensure input fields take full width on mobile */
+    }
+}
