@@ -36,6 +36,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       startTime: {
         type: DataTypes.TIME,
         allowNull: true,
