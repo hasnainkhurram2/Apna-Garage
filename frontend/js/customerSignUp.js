@@ -51,11 +51,9 @@ signUpForm.addEventListener('submit', async function (e) {
     const result = await response.json();
     if (response.ok) {
       if (
-        confirm(
-          'Customer Sign Up successful! Press OK to proceed to your Dashboard.'
-        )
+        confirm('Customer Sign Up successful! Press OK to proceed to Login.')
       ) {
-        window.location.href = './customerDashboard.html';
+        window.location.href = './login.html';
       }
     } else {
       alert(`Oops, Something went wrong. Try Again Later.`);

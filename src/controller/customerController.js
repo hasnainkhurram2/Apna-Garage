@@ -130,12 +130,6 @@ exports.signUp = async (req, res) => {
       rating: 0,
       balance: 0,
     });
-    const userDetails = {
-      userId: _user.id,
-      userType: '2',
-      userName: _user.name,
-    };
-    req.session.userDetails = userDetails;
     res.status(200).json({
       status: 'success',
       data: _user,
@@ -185,8 +179,37 @@ exports.getFeedback = async (req, res) => {
 };
 
 //function for posting feedback
-exports.postCustomerFeedback = async (req, res) => {};
-exports.postCustomerFeedback = async (req, res) => {};
+exports.provideFeedback = async (req, res) => {
+  try {
+    const content = req.body.content;
+
+    // Validate input
+    console.log(
+      `Content: ${content}, Session: ${req.session.userDetails.userName}`
+    );
+    if (!content) {
+      return res
+        .status(400)
+        .json({ message: 'User ID and content are required.' });
+    }
+
+    // Create feedback
+    const feedback = await models.Feedback.create({
+      user_id: req.session.userDetails.userId,
+      content,
+    });
+
+    res.status(201).json({
+      message: 'Feedback submitted successfully.',
+      feedback,
+    });
+  } catch (error) {
+    console.error('Error providing feedback:', error);
+    res
+      .status(500)
+      .json({ message: 'An error occurred while submitting feedback.', error });
+  }
+};
 
 // function for posting payment of request
 exports.payForRequest = async (req, res) => {};
