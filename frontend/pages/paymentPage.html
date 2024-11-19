@@ -1,4 +1,4 @@
-<!DOCTYE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,7 +23,14 @@
     <!-- Payment Form -->
     <div class="payment-container">
       <h1>PAYMENT</h1>
-      <form class="payment-form" id="'payment">
+
+      <!-- Displaying the cost -->
+      <div class="payment-summary">
+        <h2>Total Amount</h2>
+        <p id="payment-cost">PKR 0</p>
+      </div>
+
+      <form class="payment-form" id="payment">
         <label for="card-number">Card Number</label>
         <input
           type="text"
@@ -35,7 +42,7 @@
 
         <div class="form-row">
           <div>
-            <label for="exp-date">Exp Date</label>
+            <label for="exp-date">Expiry Date</label>
             <input
               type="text"
               id="exp-date"
@@ -54,5 +61,11 @@
       </form>
     </div>
     <script src="../js/paymentPage.js"></script>
+    <script>
+      // Example dynamic cost update (you can replace this logic)
+      const costElement = document.getElementById('payment-cost');
+      const totalCost = 1500; // Replace with dynamic value if needed
+      costElement.textContent = `PKR ${totalCost.toLocaleString()}`;
+    </script>
   </body>
 </html>

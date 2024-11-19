@@ -2,24 +2,30 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text for visibility */
+    background-color: #000; 
+    color: #fff; 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column; 
+    height: 100vh; 
     overflow: hidden;
 }
 
-/* Payment form container */
+/* Content container */
 .payment-container {
-    background-color: #121212; /* Slightly lighter black for contrast */
+    background-color: #121212; 
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Orange glow */
-    width: 100%;
-    max-width: 400px;
+    border-radius: 15px; 
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.7); 
+    width: 90%; 
+    max-width: 500px; 
+    height: auto; 
     text-align: center;
+    margin: 0 auto; 
+    position: absolute; 
+    top: 10%; 
+    left: 27%; 
+    transform: scale(0.8);
+    
 }
 
 /* Label styles */
@@ -37,11 +43,33 @@ label {
     font-size: 1.8rem; /* Slightly bigger for emphasis */
 }
 
+/* Payment Summary Section */
+.payment-summary {
+    margin-bottom: 2rem;
+    background-color: #1e1e1e; /* Darker contrast for section */
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3); /* Subtle glow */
+}
+
+.payment-summary h2 {
+    margin: 0;
+    color: #47cf47;
+    font-size: 1.5rem;
+}
+
+.payment-summary p {
+    margin: 0.5rem 0 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
 /* Input field styles */
 .payment-container input {
     width: 80%; /* Make input take full width */
     padding: 0.7rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border: 0.5px solid orange;
     border-radius: 5px;
     background-color: #000;
@@ -71,18 +99,3 @@ label {
     color: white;
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem 1rem;
-    }
-
-    .payment-container {
-        width: 90%;
-        padding: 1.5rem;
-    }
-
-    .payment-container input {
-        width: 100%; /* Ensure input fields take full width on mobile */
-    }
-}
