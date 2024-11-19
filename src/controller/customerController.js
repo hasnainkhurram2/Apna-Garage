@@ -1,5 +1,6 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
+const config = require('../config/config');
 
 exports.getRequestHistory = async (req, res) => {
   const temp = await models.Request_Service.findAll({

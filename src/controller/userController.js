@@ -1,5 +1,7 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const config = require('../config/config');
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -13,7 +15,7 @@ exports.login = async (req, res) => {
           userId: _user.id,
           userType: _user.type,
         };
-        req.session.userDetails = userDetails
+        req.session.userDetails = userDetails;
         res.status(200).json({
           status: 'success',
           message: `Login Successful! Welcome ${_user.name}!`,
@@ -40,5 +42,37 @@ exports.login = async (req, res) => {
       error: 'Server error.',
     });
     console.log(err);
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'your_email', // Replace with your email
+        pass: config.database.appPassword, // Replace with your app password
+      },
+    });
+
+    const resetLink =
+      'C:UsersHpDesktopApna-Garage/frontendpages/resetPassword.html';
+    // Email options
+    const mailOptions = {
+      from: 'hasnain.khurram2019@gmail.com', // Your email
+      to: req.params.id, // Recipient's email
+      subject: 'Reset Your Password',
+      text: `Click the link to reset your password: ${resetLink}`, // Plain text email
+      html: `<p>Click the link to reset your password: <a href="${resetLink}">${resetLink}</a></p>`, // HTML version
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    console.log('Password reset email sent successfully!');
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: 'Oops, Something went wrong. Try Again Later.',
+    });
   }
 };
