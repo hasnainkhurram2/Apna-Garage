@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hire Mechanic - Apna Garage</title>
-    <link rel="stylesheet" href="../css/hireFuelSupplier.css" />
+    <link rel="stylesheet" href="../css/hireTechnician.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
   </head>
   <body>
@@ -36,24 +36,26 @@
         <label for="serviceType">Fuel Type:</label>
         <select id="serviceType" name="serviceType" required>
           <option value="" disabled selected>Select Fuel Type</option>
-          <option value="Petrol">Petrol</option>
-          <option value="Diesel">Diesel</option>
-          <option value="CNG">CNG</option>
-          <option value="Hi-Octane">Petrol (Hi-Octane)</option>
+          <option value="15">Petrol</option>
+          <option value="16">Diesel</option>
+          <option value="17">CNG</option>
+          <option value="18">Petrol (Hi-Octane)</option>
         </select>
 
-        <label for="description">Description:</label>
-        <textarea
+        <label for="description">Amount:</label>
+        <input
+          type="number"
           id="description"
+          class="description"
           name="description"
-          rows="8"
-          placeholder="Provide details about the issue..."
-        ></textarea>
+          placeholder="Enter Amount of Fuel you require"
+          required
+        />
 
         <button type="submit" class="submit-button">Submit</button>
       </form>
     </div>
 
     <script src="../js/hireTechnician.js"></script>
-  </body>
+  </body>
 </html>

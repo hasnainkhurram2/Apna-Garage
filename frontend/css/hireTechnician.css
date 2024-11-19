@@ -1,8 +1,7 @@
 
-  
   body {
     padding-top: 70px; /* Offset to account for fixed navbar height */
-    background: url("../img/banner5.jpg") no-repeat center center fixed;
+    background: url("../img/banner3.jpg") no-repeat center center fixed;
     background-size: cover;
     background-blend-mode: overlay;
     background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for opacity */
@@ -45,7 +44,7 @@
     color: white;
   }
   
-  select, textarea {
+  select, textarea, .description {
     width: 100%;
     padding: 0.5rem;
     margin-top: 0.5rem;
@@ -60,7 +59,7 @@
     color: gray;
   }
   
-  textarea {
+  textarea, .description {
     resize: none;
   }
   

@@ -23,6 +23,9 @@ module.exports = (sequelize) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
       },
+      providerType: {
+        type: DataTypes.ENUM('1', '2', '3', '4'), //1 = bodyTechnician, 2 = electrician, 3 = fuelSupplier, 4 = mechanic.
+      },
     },
     {
       sequelize,
