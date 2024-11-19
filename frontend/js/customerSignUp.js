@@ -57,11 +57,11 @@ signUpForm.addEventListener('submit', async function (e) {
         window.location.href = './login.html';
       }
     } else {
-      alert(`Oops, Something went wrong. Try Again Later.`);
+      alert(`Oops, Something went wrong. Try Again Later. ${result.message}`);
       console.log(`Error while trying to Sign Up: ${result.message}`);
     }
   } catch (error) {
-    alert(`Oops, Something went wrong. Try Again Later.`);
+    alert(`Oops, Something went wrong. Try Again Later. ${result.message}`);
     console.log(`Error while trying to Sign Up: ${result.message}`);
   }
 });
