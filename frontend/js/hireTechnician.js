@@ -27,6 +27,7 @@ hireForm.addEventListener('submit', async function (e) {
 
   const requestData = {
     content: description,
+    service_id: serviceType,
     location,
     startTime: null,
     completed: false,
@@ -43,11 +44,9 @@ hireForm.addEventListener('submit', async function (e) {
     const result = await response.json();
     if (response.ok) {
       if (
-        confirm(
-          'Request Lodged successfully! Press OK to proceed to your Dashboard.'
-        )
+        confirm('Request Lodged successfully! Press OK to proceed to Payment.')
       ) {
-        window.location.href = './customerDashboard.html';
+        window.location.href = './paymentPage.html';
       }
     } else {
       alert(`Oops, Something went wrong. Try Again Later.`);

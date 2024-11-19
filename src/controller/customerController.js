@@ -1,8 +1,6 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
 
-exports.createRequest = async (req, res) => {};
-
 exports.getRequestHistory = async (req, res) => {
   const temp = await models.Request_Service.findAll({
     where: {
@@ -142,22 +140,6 @@ exports.signUp = async (req, res) => {
   }
 };
 
-exports.getAllUsers = async (req, res) => {
-  const temp = await models.User.findAll();
-  if (temp) {
-    res.status(200).json({
-      status: 'success',
-      data: temp,
-    });
-    console.log('Success in retrieving All Users.');
-  } else {
-    res.status(404).json({
-      status: 'Fail',
-    });
-    console.log('Fail to retrieve Users.');
-  }
-};
-
 // function for retrieving feedback
 exports.getFeedback = async (req, res) => {
   const _feedbackId = req.params.id; // Extract the feedback ID from the request URL.
@@ -209,4 +191,41 @@ exports.provideFeedback = async (req, res) => {
 };
 
 // function for posting payment of request
-exports.payForRequest = async (req, res) => {};
+exports.payForRequest = async (req, res) => {
+  try {
+    const _request = await models.Request.create({
+      location: req.session.reqDetails.location,
+      description: req.session.reqDetails.description,
+      startTime: req.session.reqDetails.startTime,
+      service_id: req.session.reqDetails.service_id,
+      completed: false,
+      requesting_user_id: req.session.userDetails.userId,
+    });
+    if (!_request) {
+      console.log('Request Lost.');
+      return res.status(400).json({
+        message: 'Oops, Something went wrong. Try Again Later.',
+      });
+    }
+    const _payment = models.Payment.create({
+      request_id: _request.id,
+      paymentType: req.body.paymentType,
+      amount: req.session.reqDetails.cost,
+    });
+    if (_payment) {
+      delete req.session.reqDetails;
+      res.status(200).json({
+        message: 'Payment Successful! Redirrecting to your Dashboard.',
+      });
+    } else {
+      res.status(400).json({
+        message: 'Oops, Something went wrong. Try Again Later.',
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: 'Oops, Something went wrong. Try Again Later.',
+    });
+  }
+};
