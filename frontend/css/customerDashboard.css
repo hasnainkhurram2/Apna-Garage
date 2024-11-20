@@ -93,5 +93,5 @@ body {
 /* Focused button remains larger */
 .carousel-button.active {
   opacity: 1;
-  transform: scale(1.5); /* Larger for focused button */
+  transform: scale(1.35); /* adjustment for focused buttons */
 }

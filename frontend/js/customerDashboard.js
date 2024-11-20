@@ -74,3 +74,13 @@ function logout() {
     window.location.href = '../pages/landingPage.html'; // Redirect to login page
   }
 }
+
+
+function redirectToViewRequestsStatus() {
+  window.location.href = "../pages/viewRequestsStatus.html";
+}
+
+
+function redirectToCustomerProfile() {
+  window.location.href = "../pages/customerProfile.html";
+}
