@@ -9,7 +9,6 @@ router.route('/:id/requests/:reqId').get(customerController.getRequest);
 
 router
   .route('/:id')
-  .get(customerController.getCustomer)
   .put(customerController.updateCustomer)
   .delete(customerController.deleteCustomer);
 
@@ -18,5 +17,7 @@ router.route('/signup').post(customerController.signUp);
 router.route('/provideFeedback').post(customerController.provideFeedback);
 
 router.route('/payment').post(customerController.payForRequest);
+
+router.route('/reqHistory').get(customerController.getCustomerRequests);
 
 module.exports = router;

@@ -9,5 +9,6 @@ exports.getSessionData = async (req, res) => {
   }
   res.status(200).json({
     userDetails: req.session.userDetails,
+    reqDetails: req.session.reqDetails,
   });
 };

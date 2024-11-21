@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       startTime: {
-        type: DataTypes.TIME,
+        type: DataTypes.DATE,
         allowNull: true,
       },
       completed: {

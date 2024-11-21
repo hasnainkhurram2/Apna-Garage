@@ -37,22 +37,34 @@ exports.getRequest = async (req, res) => {
 };
 
 //get a specific customer by ID:
-exports.getCustomer = async (req, res) => {
+exports.getCustomerRequests = async (req, res) => {
   try {
-    const customer = await models.User.findByPk(req.params.id); // Assuming "User" is the model for customers
-    if (!customer) {
-      return res.status(404).json({
-        error: 'Customer not found.',
-      });
+    // Step 1: Extract userId from session
+    const userId = req.session.userDetails.userId;
+
+    if (!userId) {
+      return res
+        .status(400)
+        .json({ message: 'User not logged in or session invalid.' });
     }
-    res.status(200).json({
-      status: 'successful',
-      data: customer,
+
+    const query =
+      'SELECT r.completed as completed, r.description as description, r."startTime" as "startTime", s.name as name FROM "Request" as r JOIN "Service" as s ON r.service_id = s.id WHERE r.requesting_user_id = :userId ORDER BY r."startTime" DESC;';
+    const data = await models.sequelize.query(query, {
+      replacements: { userId },
+      type: models.Sequelize.QueryTypes.SELECT,
     });
-  } catch (err) {
-    res.status(500).json({
-      error: 'Server error.',
-    });
+    if (!data || data.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No requests found for this user.' });
+    }
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.error('Error fetching requests and services:', error);
+    return res
+      .status(500)
+      .json({ message: 'An error occurred while fetching data.' });
   }
 };
 

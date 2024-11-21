@@ -9,7 +9,6 @@ exports.createRequest = async (req, res) => {
     if (!_service) {
       console.log('Service not found.');
       return res.status(400).json({
-        error: err.message,
       });
     }
     let cost = 0;

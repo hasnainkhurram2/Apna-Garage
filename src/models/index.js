@@ -15,7 +15,7 @@ db.Technician = require('./technician.js')(
   db.sequelize,
   db.Sequelize.DataTypes
 );
-// db.Admin = require('./admin.js')(db.sequelize, db.Sequelize.DataTypes);
+db.Offer = require('./offer.js')(db.sequelize, db.Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

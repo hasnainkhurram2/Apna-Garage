@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Request Status</title>
+    <link rel="stylesheet" href="../css/viewRequestsStatus.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <!-- Log out button with confirmation -->
+        <button class="nav-button" onclick="redirectToDashboard()">
+          RETURN
+        </button>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main>
+      <h1 class="page-title">REQUESTS</h1>
+      <table class="requests-table">
+        <thead>
+          <tr>
+            <th>START TIME</th>
+            <th>REQUESTED</th>
+            <th>DESCRIPTION</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody id="requests-body"></tbody>
+      </table>
+      <p id="no-requests-message" class="'hidden">No Requests Found.</p>
+    </main>
+
+    <script src="../js/viewRequestsStatus.js"></script>
+  </body>
+</html>

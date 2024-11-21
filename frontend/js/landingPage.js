@@ -28,7 +28,7 @@ function redirectToAboutUs() {
   window.location.href = "../pages/aboutUs.html";
 }
 function redirectToContactUs() {
-  window.location.href = "../pages/contact us.html";
+  window.location.href = "../pages/contactUs.html";
 }
 function redirectToFAQs() {
   window.location.href = "../pages/faq.html";
