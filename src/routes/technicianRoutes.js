@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.route('/signup').post(technicianController.signUp);
 
+router.route('/technicianrequests').get(technicianController.requestsMadeByCustomers);
+
 module.exports = router;
