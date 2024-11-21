@@ -1,3 +1,3 @@
 function navigateToDashboard() {
-    window.location.href = "customerDashboard.html";
+    window.location.href = "landingPage.html";
   }

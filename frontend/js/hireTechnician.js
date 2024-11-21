@@ -29,7 +29,7 @@ hireForm.addEventListener('submit', async function (e) {
     content: description,
     service_id: serviceType,
     location,
-    startTime: null,
+    startTime: new Date(),
     completed: false,
   };
   try {

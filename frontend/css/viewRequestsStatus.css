@@ -1,0 +1,58 @@
+/* General Body Styling */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 70px; /* Offset for navbar */
+    text-align: center;
+}
+
+
+
+/* Page Title */
+.page-title {
+    margin-top: 20px;
+    font-size: 3rem;
+    color: white;
+}
+
+/* Table Styling */
+.requests-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 90%; /* Increased table width */
+    max-width: 100%; /* Larger maximum width */
+    background-color: #222; /* Slightly darker background */
+    color: #ddd; /* Lighter grey text */
+    border: 2px solid orange;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Enhanced shadow for emphasis */
+}
+
+.requests-table th,
+.requests-table td {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 1px solid orange;
+    color: #ddd;
+}
+
+.requests-table th {
+    font-size: 1.3rem;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.requests-table tr:hover {
+    background-color: rgba(255, 174, 0, 0.103); /* Highlight row on hover */
+}
+
+.hidden {
+    display: none;
+    margin-top; 20px;
+    color: orange;
+    font-size: 1.5rem;
+}
