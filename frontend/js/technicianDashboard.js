@@ -23,3 +23,8 @@ function logout() {
     window.location.href = '../pages/landingPage.html'; // Redirect to login page
   }
 }
+
+
+function navigateToTechnicianRequests() {
+    window.location.href = 'viewTechnicianRequests.html'; // Redirect to login page
+}

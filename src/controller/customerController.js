@@ -64,7 +64,7 @@ exports.getCustomerRequests = async (req, res) => {
     console.error('Error fetching requests and services:', error);
     return res
       .status(500)
-      .json({ message: 'An error occurred while fetching data.' });
+      .json({ message: 'An error occurred while fetching data.' });
   }
 };
 
