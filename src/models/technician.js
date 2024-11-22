@@ -51,7 +51,7 @@ Technician.init(
       allowNull: true,
     },
     type: {
-      type: DataTypes.ENUM(
+      type: DataTypes.ENUM(     // 1 body tech, 2 electrician, 3 fuelsupplier, 4 mechanic
         'mechanic',
         'electrician',
         'bodyWorker',

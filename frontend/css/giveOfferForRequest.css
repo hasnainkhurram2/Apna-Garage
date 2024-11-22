@@ -1,0 +1,101 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Main container */
+  .container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Dynamic fields */
+  .field-container {
+    margin: 20px 0;
+  }
+  
+  .field-container label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .field-container input,
+  .field-container select {
+    padding: 10px;
+    width: 200px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Buttons styles */
+  .buttons-container {
+    margin-top: 20px;
+  }
+  
+  .buttons-container button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  .accept-button {
+    background-color: green;
+    color: white;
+  }
+  
+  .accept-button:hover {
+    background-color: darkgreen;
+  }
+  
+  .reject-button {
+    background-color: red;
+    color: white;
+  }
+  
+  .reject-button:hover {
+    background-color: darkred;
+  }
+  
+  /* Demand form styles */
+  .demand-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .demand-form input {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .demand-form button {
+    background-color: #ff6600; /* Orange color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .demand-form button:hover {
+    background-color: #e65c00; /* Darker orange */
+  }
+  

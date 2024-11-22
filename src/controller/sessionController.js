@@ -12,3 +12,18 @@ exports.getSessionData = async (req, res) => {
     reqDetails: req.session.reqDetails,
   });
 };
+
+
+exports.setReqId = async (req, res) => {
+     
+  try
+  { 
+    req.session.reqDetails.reqId = req.body.reqId;
+    return res.status(200);
+  }
+  catch(error){
+    console.log(error);
+    return res.status(500);
+  }
+
+}
