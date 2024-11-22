@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Give Offer for Request</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../css/giveOfferForRequest.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <button class="nav-button" onclick="navigateToDashboard()">
+          RETURN
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+      <h2>Give Offer for Request</h2>
+
+      <div class="offer-container">
+        <h2>Offer for Request</h2>
+    
+        <div class="request-info">
+          <p><strong>Service:</strong> <span id="service-name">Loading...</span></p>
+          <p><strong>Description:</strong> <span id="description">Loading...</span></p>
+          <p><strong>Requested by:</strong> <span id="requested-by">Loading...</span></p>
+          <p><strong>Requested at:</strong> <span id="request-time">Loading...</span></p>
+        </div>
+    
+        <div class="buttons-container">
+          <button id="accept-btn" class="accept-btn" onclick ='showDemandForm()'>Accept</button>
+          <button id="reject-btn" class="reject-btn">Reject</button>
+        </div>
+
+      <!-- Demand Form (hidden initially) -->
+      <div class="demand-form" id="demand-form" style="display: none">
+        <h3>Enter Your Demand</h3>
+        <input
+          type="text"
+          id="technician-demand"
+          placeholder="Enter your demand"
+        />
+        <button onclick="submitDemand()">Submit Demand</button>
+      </div>
+    </div>
+
+    <script src="../js/giveOfferForRequest.js"></script>
+  </body>
+</html>

@@ -46,7 +46,8 @@ exports.requestsMadeByCustomers = async (req, res) => {
         r.description AS description, 
         r."startTime" AS "startTime", 
         s.name AS name, 
-        u.name AS requestingUser 
+        u.name AS requestingUser,
+        r.id AS id
       FROM 
         "Request" AS r 
       JOIN 

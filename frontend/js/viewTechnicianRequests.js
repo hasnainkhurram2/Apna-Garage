@@ -1,35 +1,64 @@
 // Function to populate the table dynamically
 function populateTechnicianRequestsTable(requests) {
-    const tableBody = document.getElementById('requests-body');
-    const noRequestsMessage = document.getElementById('no-requests-message');
-    if (requests.length === 0) {
+  const tableBody = document.getElementById('requests-body');
+  const noRequestsMessage = document.getElementById('no-requests-message');
+  if (requests.length === 0) {
       // Show "No Requests Found" message
       noRequestsMessage.style.display = '';
-    } else {
+  } else {
       // Hide "No Requests Found" message
       noRequestsMessage.style.display = 'none';
-  
+
       // Populate table rows
       requests.forEach((request) => {
-        const row = document.createElement('tr');
-        const cell1 = document.createElement('td');
-        const cell2 = document.createElement('td');
-        const cell3 = document.createElement('td');
-        const cell4 = document.createElement('td');
-        const dt = new Date(request.startTime);
-        cell1.textContent = request.name || 'N/A';
-        cell2.textContent =  request.description || 'N/A';
-        cell3.textContent = request.requestinguser || 'N/A';
-        cell4.textContent =
-        `${dt.toLocaleDateString()} \n ${dt.toLocaleTimeString()}` || 'N/A';
-        row.appendChild(cell1);
-        row.appendChild(cell2);
-        row.appendChild(cell3);
-        row.appendChild(cell4);
-        tableBody.appendChild(row);
+          const row = document.createElement('tr');
+          row.style.cursor = 'pointer'; // Change cursor to indicate the row is clickable
+          
+          row.setAttribute('class', 'reqRow');
+          row.setAttribute('value', request.id); // Set the value to requestId
+          row.dataset.requestId = request.id;
+          row.dataset.requestName = request.name;
+          row.dataset.requestDescription = request.description;
+          row.dataset.requestUser = request.requestinguser;
+          row.dataset.requestStartTime = request.startTime;
+          row.addEventListener('click', () => {
+              // Include request details as query parameters
+              const params = new URLSearchParams({
+                requestId: row.dataset.requestId,
+                requestName: row.dataset.requestName,
+                requestDescription: row.dataset.requestDescription,
+                requestUser: row.dataset.requestUser,
+                requestStartTime: row.dataset.requestStartTime
+              });
+              
+              window.location.href = `./giveOfferForRequest.html?${params.toString()}`;  
+          });
+          
+
+          const cell1 = document.createElement('td');
+          const cell2 = document.createElement('td');
+          const cell3 = document.createElement('td');
+          const cell4 = document.createElement('td');
+          const dt = new Date(request.startTime);
+
+          // Fill table cells with data
+          cell1.textContent = request.name || 'N/A';
+          cell2.textContent = request.description || 'N/A';
+          cell3.textContent = request.requestinguser || 'N/A';
+          cell4.textContent = `${dt.toLocaleDateString()} \n ${dt.toLocaleTimeString()}` || 'N/A';
+
+          // Append cells to the row
+          row.appendChild(cell1);
+          row.appendChild(cell2);
+          row.appendChild(cell3);
+          row.appendChild(cell4);
+
+          // Append row to the table body
+          tableBody.appendChild(row);
       });
-    }
   }
+}
+
 
   function backToTechnicianDashboard() {
       window.location.href = './technicianDashboard.html';  
@@ -53,7 +82,5 @@ function populateTechnicianRequestsTable(requests) {
         console.log(error);
       }
     });
-
-
 
 
