@@ -1,101 +1,144 @@
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Main container */
-  .container {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Dynamic fields */
-  .field-container {
-    margin: 20px 0;
-  }
-  
-  .field-container label {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .field-container input,
-  .field-container select {
-    padding: 10px;
-    width: 200px;
-    margin: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  /* Buttons styles */
-  .buttons-container {
-    margin-top: 20px;
-  }
-  
-  .buttons-container button {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 5px;
-  }
-  
-  .accept-button {
-    background-color: green;
-    color: white;
-  }
-  
-  .accept-button:hover {
-    background-color: darkgreen;
-  }
-  
-  .reject-button {
-    background-color: red;
-    color: white;
-  }
-  
-  .reject-button:hover {
-    background-color: darkred;
-  }
-  
-  /* Demand form styles */
-  .demand-form {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #333;
-    border-radius: 5px;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .demand-form input {
-    margin-bottom: 10px;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  .demand-form button {
-    background-color: #ff6600; /* Orange color */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
-  }
-  
-  .demand-form button:hover {
-    background-color: #e65c00; /* Darker orange */
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Main container centered in the middle of the page */
+.container {
+  background-color: #333;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  text-align: center;
+}
+
+/* Request information section */
+.request-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* Single button for Accept */
+#accept-btn {
+  background-color: black; /* Orange color */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+  width: 20%; /* Full width button */
+}
+
+#accept-btn:hover {
+  background-color: green; /* Turns green on hover */
+  transition: background-color 0.3s ease;
+}
+
+/* Close button styles */
+.close-btn {
+  position: absolute;
+  top: 5px; /* Adjust for padding */
+  right: 5px; /* Adjust for padding */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10; /* Ensure the button is above other elements */
+}
+
+.close-btn:hover {
+   /* Change color when hovered */
+  background-color: black;
+}
+
+/* Ensure demand form has relative positioning for proper placement of close button */
+.demand-form {
+  position: relative;
+  display: none;
+  margin-top: 20px;
+  padding: 30px 20px; /* Add padding to prevent cramping */
+  background-color: #333;
+  border-radius: 5px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 5; /* Stack order for proper layering */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for better appearance */
+}
+
+/* Adjust demand form elements to prevent overlap */
+.demand-form h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+/* Input field adjustments */
+.demand-form input {
+  margin-bottom: 20px;
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+/* Submit button styles */
+.demand-form  {
+  background-color: maroon; /* Orange color */
+  color: black;
+  padding: 20px 30px;
+  border: none;
+  cursor: default;
+  border-radius: 5px;
+  width: 70%;
+}
+
+.submit-button{
+  align-items: center;
+  background-color: black;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 1000px;
+  min-height: 50px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.submit-button:hover {
+  background-color: green; /* Darker orange */
+}
+
