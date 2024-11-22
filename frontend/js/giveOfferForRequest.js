@@ -67,3 +67,30 @@ function navigateToDashboard() {
     }
   });
   
+
+  function showDemandForm() {
+    const demandForm = document.getElementById("demand-form"); // Select the demand form
+    demandForm.style.display = "block"; // Make the form visible
+  }
+  
+  // Function to submit the demand
+  function submitDemand() {
+    const demandInput = document.getElementById("technician-demand").value; // Get the input value
+    if (demandInput.trim() === "") {
+      alert("Please enter your demand before submitting!"); // Ensure input is not empty
+      return;
+    }
+  
+    // Perform further actions (e.g., send the demand to the server)
+    console.log("Technician's Demand:", demandInput);
+  
+    // Optionally, hide the form after submission
+    const demandForm = document.getElementById("demand-form");
+    demandForm.style.display = "none"; // Hide the form
+    alert("Demand submitted successfully!");
+  }
+
+  function closeDemandForm() {
+    const demandForm = document.getElementById("demand-form"); // Select the demand form
+    demandForm.style.display = "none"; // Hide the form
+  }
