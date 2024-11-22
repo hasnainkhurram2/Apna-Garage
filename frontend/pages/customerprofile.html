@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile - ApnaGarage</title>
+    <link rel="stylesheet" href="../css/customerprofile.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-left">
+            <h1>APNA GARAGE</h1>
+        </div>
+        <div class="nav-right">
+            <button class="nav-button orange" onclick="redirectToHome()">Return</button>
+            <button class="nav-button orange" onclick="redirectToEdit()">Edit Profile</button>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-container">
+        
+        <table class="profile-table">
+            <tr>
+                <td>Name:</td>
+                <td class="field">
+                    <div class="value-box">John Doe</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td class="field">
+                    <div class="value-box">johndoe@example.com</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td class="field">
+                    <div class="value-box" id="password-field">********</div>
+                    <button class="toggle-button" onclick="togglePassword()">SHOW PASSWORD</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td class="field">
+                    <div class="value-box">1990-01-01</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function redirectToHome() {
+            window.location.href = '../pages/landingPage.html';
+        }
+
+        function redirectToEdit() {
+            window.location.href = '../pages/editprofile.html';
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password-field');
+            const button = document.querySelector('.toggle-button');
+            if (passwordField.textContent === '********') {
+                passwordField.textContent = 'password123';
+                button.textContent = 'HIDE PASSWORD';
+            } else {
+                passwordField.textContent = '********';
+                button.textContent = 'SHOW PASSWORD';
+            }
+        }
+    </script>
+</body>
+</html>
