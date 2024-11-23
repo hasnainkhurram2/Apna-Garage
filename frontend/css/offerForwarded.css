@@ -1,0 +1,24 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+
+  /* Content Styles */
+  .content {
+    text-align: center;
+    margin-top: 250px;
+  }
+  
+  .content h1 {
+    font-size: 36px;
+    color: orange;
+  }
+  
+  .content p {
+    font-size: 18px;
+    color: white;
+  }
+  

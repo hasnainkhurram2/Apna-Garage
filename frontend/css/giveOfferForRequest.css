@@ -20,96 +20,82 @@ body {
   width: 400px;
   text-align: center;
 }
+.container h1 {
+  color: orange;
+  margin-bottom: 40px;
+}
 
 /* Request information section */
 .request-info p {
-  margin: 10px 0;
+  margin: 20px 0;
   font-size: 16px;
 }
 
-/* Single button for Accept */
+/* Accept button */
 #accept-btn {
-  background-color: black; /* Orange color */
+  background-color: black;
   color: white;
   padding: 8px 15px;
   border: none;
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
-  text-align: center;
-  margin-top: 20px;
-  width: 20%; /* Full width button */
 }
 
 #accept-btn:hover {
-  background-color: green; /* Turns green on hover */
+  background-color: green;
   transition: background-color 0.3s ease;
 }
 
 /* Close button styles */
 .close-btn {
   position: absolute;
-  top: 5px; /* Adjust for padding */
-  right: 5px; /* Adjust for padding */
+  top: 5px;
+  right: 5px;
   background: none;
   border: none;
   color: white;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  z-index: 10; /* Ensure the button is above other elements */
 }
 
 .close-btn:hover {
-   /* Change color when hovered */
-  background-color: black;
+  color: black;
 }
 
-/* Ensure demand form has relative positioning for proper placement of close button */
+/* Demand form styling */
 .demand-form {
   position: relative;
   display: none;
-  margin-top: 20px;
-  padding: 30px 20px; /* Add padding to prevent cramping */
-  background-color: #333;
-  border-radius: 5px;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 5; /* Stack order for proper layering */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for better appearance */
+  padding: 40px;
+  background-color: maroon;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
-/* Adjust demand form elements to prevent overlap */
-.demand-form h3 {
+.demand-form h2 {
   margin-top: 0;
-  margin-bottom: 20px;
   color: white;
   text-align: center;
+font-weight: bold;
 }
 
-/* Input field adjustments */
+.demand-form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
 .demand-form input {
-  margin-bottom: 20px;
   width: calc(100% - 20px);
   padding: 10px;
+  margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid #ddd;
-  box-sizing: border-box;
 }
 
-/* Submit button styles */
-.demand-form  {
-  background-color: maroon; /* Orange color */
-  color: black;
-  padding: 20px 30px;
-  border: none;
-  cursor: default;
-  border-radius: 5px;
-  width: 70%;
-}
-
-.submit-button{
+.submit-button {
   align-items: center;
   background-color: black;
   border: 0;
@@ -136,9 +122,16 @@ body {
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
+  margin-left: 70px;
+  margin-bottom: -20px;
 }
 
 .submit-button:hover {
-  background-color: green; /* Darker orange */
+  background-color: green;
 }
 
+span {
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}

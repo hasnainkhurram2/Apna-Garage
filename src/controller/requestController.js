@@ -24,7 +24,6 @@ exports.createRequest = async (req, res) => {
       location: req.body.location,
       description: req.body.content,
       startTime: req.body.startTime,
-      completed: false,
       service_id: req.body.service_id,
       requesting_user_id: req.session.userDetails.userId,
       cost,
@@ -85,5 +84,23 @@ WHERE
       }
   };
   
-    
-  
+  exports.updateOfferForRequest = async (req, res) => {
+   try
+   {
+
+    console.log(req.body);  // demand, description, requestId, techId
+    const _offer = await models.Offer.create({
+      demand: req.body.demand,
+      tech_id: req.body.techId,
+      description: req.body.description,
+      req_id: req.body.requestId,
+    });
+    res.status(200).json({
+      status: 'success',
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+};

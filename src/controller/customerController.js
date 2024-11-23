@@ -210,7 +210,6 @@ exports.payForRequest = async (req, res) => {
       description: req.session.reqDetails.description,
       startTime: req.session.reqDetails.startTime,
       service_id: req.session.reqDetails.service_id,
-      completed: false,
       requesting_user_id: req.session.userDetails.userId,
     });
     if (!_request) {
