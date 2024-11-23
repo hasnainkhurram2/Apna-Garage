@@ -1,60 +1,99 @@
+/* Body styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
 
-  
-  /* Body styling */
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-  }
+/* Heading */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
 
-  
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-  }
-  
-  /* Button container */
-  .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
-  /* Buttons styling */
+/* Button container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Maintain equal spacing between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  margin: 20px 10px; /* Adjust margins for smaller screens */
+}
+
+/* Buttons styling */
+.role-button {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  margin-top: 20px; /* Adjust for more balanced spacing */
+  margin-right: 40px;
+  border: 2px solid white;
+  padding: 0.3rem 1rem;
+}
+
+.customer-button {
+  background-image: url("../img/customerMarble.png");
+}
+
+.technician-button {
+  background-image: url("../img/technicianMarble.png");
+}
+
+.role-button:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
   .role-button {
-    width: 250px;
-    height: 250px;
-    background-size: cover;
-    background-position: center;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    margin-top: 50px;
-    margin-right: 100px;
-    margin-left: 100px;
-    border: 2px solid white;
-    padding: 0.3rem 1rem;
+      width: 200px;
+      height: 200px; /* Reduce button size for smaller screens */
+      margin: 15px; /* Adjust margins for better spacing */
   }
-  
-  .customer-button {
-    background-image: url("../img/customerMarble.png");
+
+  h2 {
+      margin-top: 60px;
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 1.8rem; /* Slightly smaller heading */
+      margin-bottom: 1.5rem;
   }
-  
-  .technician-button {
-    background-image: url("../img/technicianMarble.png");
+
+  .button-container {
+      gap: 1.5rem; /* Reduce gap between buttons */
   }
-  
-  .role-button:hover {
-    transform: scale(1.2);
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+  h2 {
+      font-size: 1.5rem; /* Smaller heading for mobile screens */
+      margin-bottom: 1rem;
   }
-  
+
+  .role-button {
+      width: 150px;
+      height: 150px; /* Further reduce button size */
+      margin: 10px; /* Smaller margins for tighter layouts */
+  }
+
+  .button-container {
+      gap: 1rem; /* Minimize gaps for narrow screens */
+  }
+}
