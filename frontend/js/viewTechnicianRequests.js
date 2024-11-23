@@ -11,15 +11,16 @@ function populateTechnicianRequestsTable(requests) {
 
       // Populate table rows
       requests.forEach((request) => {
+          console.log(request);
           const row = document.createElement('tr');
           row.style.cursor = 'pointer'; // Change cursor to indicate the row is clickable
           
           row.setAttribute('class', 'reqRow');
-          row.setAttribute('value', request.id); // Set the value to requestId
-          row.dataset.requestId = request.id;
-          row.dataset.requestName = request.name;
+          row.setAttribute('value', request.requestId); // Set the value to requestId
+          row.dataset.requestId = request.requestId;
+          row.dataset.requestName = request.serviceName;
           row.dataset.requestDescription = request.description;
-          row.dataset.requestUser = request.requestinguser;
+          row.dataset.requestUser = request.requestingUser;
           row.dataset.requestStartTime = request.startTime;
           row.addEventListener('click', () => {
               // Include request details as query parameters
@@ -42,9 +43,9 @@ function populateTechnicianRequestsTable(requests) {
           const dt = new Date(request.startTime);
 
           // Fill table cells with data
-          cell1.textContent = request.name || 'N/A';
+          cell1.textContent = request.serviceName || 'N/A';   // service name
           cell2.textContent = request.description || 'N/A';
-          cell3.textContent = request.requestinguser || 'N/A';
+          cell3.textContent = request.requestingUser || 'N/A';    // requested by user
           cell4.textContent = `${dt.toLocaleDateString()} \n ${dt.toLocaleTimeString()}` || 'N/A';
 
           // Append cells to the row

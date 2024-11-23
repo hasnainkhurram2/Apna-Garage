@@ -72,27 +72,28 @@ exports.requestsMadeByCustomers = async (req, res) => {
     }
 
     const query = `
-    SELECT 
-    r.completed AS completed, 
-    r.description AS description, 
+   SELECT 
+    r.completed AS "completed", 
+    r.description AS "description", 
     r."startTime" AS "startTime", 
-    s.name AS name, 
-    u.name AS requestingUser,
-    r.id AS id
-  FROM 
-    "Request" AS r 
-  JOIN 
-    "Service" AS s 
-  ON 
-    r.service_id = s.id 
-  JOIN 
-    "User" AS u 
-  ON 
-    r.requesting_user_id = u.id 
-  WHERE 
-    s."providerType" = :technician
-  ORDER BY 
-    r."startTime" DESC;  
+    s.name AS "serviceName", 
+    u.name AS "requestingUser", 
+    r.id AS "requestId"
+FROM 
+    "Request" r
+JOIN 
+    "Service" s 
+ON 
+    r.service_id = s.id
+JOIN 
+    "User" u 
+ON 
+    r.requesting_user_id = u.id
+WHERE 
+    s."providerType" = :technician  
+    AND r.completed IS NULL
+ORDER BY 
+    r."startTime" DESC;
     `;
 
     console.log('Executing query...');

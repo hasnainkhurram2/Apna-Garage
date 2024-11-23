@@ -23,32 +23,51 @@
 
     <!-- Main content -->
     <div class="container">
-      
-
-      <div class="offer-container">
-        <h2>Request Details</h2>
-    
+      <div id="request-details-container" class="offer-container">
+        <h1>Request Details</h1>
         <div class="request-info">
-          <p><strong>Service:</strong> <span id="service-name">Loading...</span></p>
-          <p><strong>Description:</strong> <span id="description">Loading...</span></p>
-          <p><strong>Requested by:</strong> <span id="requested-by">Loading...</span></p>
-          <p><strong>Requested at:</strong> <span id="request-time">Loading...</span></p>
+          <p>
+            <strong>Service:</strong> <span id="service-name">Loading...</span>
+          </p>
+          <p>
+            <strong>Description:</strong>
+            <span id="description">Loading...</span>
+          </p>
+          <p>
+            <strong>Requested by:</strong>
+            <span id="requested-by">Loading...</span>
+          </p>
+          <p>
+            <strong>Requested at:</strong>
+            <span id="request-time">Loading...</span>
+          </p>
         </div>
-    
         <div class="buttons-container">
-          <button id="accept-btn" class="accept-btn" onclick ='showDemandForm()'>Accept</button>
+          <button id="accept-btn" class="accept-btn" onclick="showDemandForm()">
+            Accept
+          </button>
         </div>
+      </div>
 
-        <div class="demand-form" id="demand-form" style="display: none;">
-          <button class="close-btn" onclick="closeDemandForm()">×</button> <!-- Close button -->
-          <h3>Enter Your Demand</h3>
-          <input
-            type="text"
-            id="technician-demand"
-            placeholder="Enter your demand"
-          />
-          <button onclick="submitDemand()" class="submit-button">Submit Demand</button>
-        </div>
+      <div id="demand-form" class="demand-form" style="display: none">
+        <button class="close-btn" onclick="closeDemandForm()">×</button>
+        <h2>Enter Your Offer</h2>
+        <label for="technician-demand"><strong>Demand</strong></label>
+        <input
+          type="text"
+          id="technician-demand"
+          placeholder="Enter your demand"
+        />
+        <label for="description-input"><strong>Description</strong></label>
+        <input
+          type="text"
+          id="description-input"
+          placeholder="Enter description"
+        />
+        <button onclick="submitDemand()" class="submit-button">
+          Submit Demand
+        </button>
+      </div>
     </div>
 
     <script src="../js/giveOfferForRequest.js"></script>
