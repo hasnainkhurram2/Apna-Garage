@@ -2,11 +2,12 @@ const { Model, DataTypes } = require('sequelize');
 
 class Feedback extends Model {
   static associate(models) {
-    Feedback.belongsTo(models.User, {
-      foreignKey: 'user_id',
+    Feedback.belongsTo(models.Request, {
+      foreignKey: 'req_id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
       as: 'feedbacks',
+      unique: true,
     }); // A feedback belongs to a user
   }
 }

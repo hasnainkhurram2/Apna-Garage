@@ -24,7 +24,7 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize
-  .sync({})
+  .sync()
   .then(() => {
     console.log('Database working');
   })

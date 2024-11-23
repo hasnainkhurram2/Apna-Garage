@@ -44,9 +44,11 @@ hireForm.addEventListener('submit', async function (e) {
     const result = await response.json();
     if (response.ok) {
       if (
-        confirm('Request Lodged successfully! Press OK to proceed to Payment.')
+        confirm(
+          'Request Lodged successfully! Press OK to proceed to Your Dashboard.'
+        )
       ) {
-        window.location.href = './paymentPage.html';
+        window.location.href = './customerDashboard.html';
       }
     } else {
       alert(`Oops, Something went wrong. Try Again Later.`);

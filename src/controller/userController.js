@@ -13,7 +13,7 @@ exports.login = async (req, res) => {
           userId: _user.id,
           userType: _user.type,
         };
-        req.session.userDetails = userDetails
+        req.session.userDetails = userDetails;
         res.status(200).json({
           status: 'success',
           message: `Login Successful! Welcome ${_user.name}!`,
@@ -40,5 +40,23 @@ exports.login = async (req, res) => {
       error: 'Server error.',
     });
     console.log(err);
+  }
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    const _user = await models.User.findOne({
+      where: {
+        id: req.session.userDetails.userId,
+      },
+    });
+    res.status(200).json({
+      _user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: `Oops, Something went wrong. Session Expired. Redirecting to Login`,
+    });
   }
 };

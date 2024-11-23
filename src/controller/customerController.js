@@ -205,24 +205,10 @@ exports.provideFeedback = async (req, res) => {
 // function for posting payment of request
 exports.payForRequest = async (req, res) => {
   try {
-    const _request = await models.Request.create({
-      location: req.session.reqDetails.location,
-      description: req.session.reqDetails.description,
-      startTime: req.session.reqDetails.startTime,
-      service_id: req.session.reqDetails.service_id,
-      completed: false,
-      requesting_user_id: req.session.userDetails.userId,
-    });
-    if (!_request) {
-      console.log('Request Lost.');
-      return res.status(400).json({
-        message: 'Oops, Something went wrong. Try Again Later.',
-      });
-    }
+    
     const _payment = models.Payment.create({
-      request_id: _request.id,
+      request_id: req.session.reqDetails.reqId,
       paymentType: req.body.paymentType,
-      amount: req.session.reqDetails.cost,
     });
     if (_payment) {
       delete req.session.reqDetails;
