@@ -1,5 +1,9 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const config = require('../config/config');
+
+let sessionUserId;
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -57,6 +61,87 @@ exports.getUser = async (req, res) => {
     console.log(error);
     res.status(500).json({
       message: `Oops, Something went wrong. Session Expired. Redirecting to Login`,
+    });
+  }
+};
+
+exports.resetPasswordEmail = async (req, res) => {
+  try {
+    const _user = await models.User.findOne({
+      where: { email: req.body.email },
+    });
+    if (!_user) {
+      throw new Error('user doesnt exist');
+    }
+
+    sessionUserId = _user.id;
+    console.log(req.session.userId);
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'apna.garage.2024@gmail.com',
+        pass: config.database.appPassword,
+      },
+    });
+
+    const resetLink = 'http://127.0.0.1:5500/frontend/pages/resetPassword.html';
+    // Email options
+    const mailOptions = {
+      from: 'apna.garage.2024@gmail.com',
+      to: req.body.email,
+      subject: 'Reset Your Password',
+      text: `Click the link to reset your password: ${resetLink}`, // Plain text email
+      html: `<p>Click the link to reset your password: <a href="${resetLink}">${resetLink}</a></p>`, // HTML version
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    console.log('Password reset email sent successfully!');
+    return res.status(200).json({ data: 'temp1' });
+  } catch (error) {
+    res.status(400).json({
+      message: 'Oops, Something went wrong. Try Again Later.',
+    });
+  }
+};
+
+exports.updatePassword = async (req, res) => {
+  try {
+    // Extract data from the request body
+    const { newPassword } = req.body;
+    console.log(sessionUserId);
+
+    // Hash the new password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    // Update the password in the database
+    const [rowsUpdated] = await models.User.update(
+      { password: hashedPassword },
+      { where: { id: sessionUserId } }
+    );
+
+    // Handle cases where no rows were updated
+    if (rowsUpdated === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found or no changes were made.',
+      });
+    }
+
+    // Respond with success
+    return res.status(200).json({
+      success: true,
+      message: 'Password updated successfully.',
+    });
+  } catch (error) {
+    console.error('Error updating password:', error);
+
+    // Handle unexpected errors
+    return res.status(500).json({
+      success: false,
+      message:
+        'An error occurred while updating the password. Please try again later.',
     });
   }
 };
