@@ -1,52 +1,42 @@
-// // Redirect to login page
-// function redirectToLogin() {
-//   window.location.href = '../pages/login.html';
-// }
+// Redirect to login page
+function redirectToLogin() {
+  window.location.href = '../pages/login.html';
+}
 
-// // Reset Password Logic
-// const resetPasswordForm = document.getElementById('resetPasswordForm');
-// // console.log(resetPasswordForm);
-// resetPasswordForm.addEventListener('submit', async function (e) {
-//   console.log('hello');
-//   e.preventDefault(); // Prevent form submission
+// Redirect to login page
+function redirectToLanding() {
+  window.location.href = '../pages/landingPage.html';
+}
+// Ensure DOM is fully loaded
+const resetPasswordForm1 = document.getElementById('resetPasswordForm');
 
-//   const email = document.getElementById('email').value;
-//   console.log(email);
-//   if (email === '') {
-//     alert('email is required');
-//     e.preventDefault();
-//   }
+resetPasswordForm1.addEventListener('submit', async function (e) {
+  e.preventDefault(); // Prevent default form submission
 
-//   //   const requestData = {
-//   //     content: description,
-//   //     service_id: serviceType,
-//   //     location,
-//   //     startTime: null,
-//   //     completed: false,
-//   //   };
-//   try {
-//     const response = await fetch(
-//       `http://127.0.0.1:5500/api/v1/users/resetPasswords/${email}`,
-//       {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         credentials: 'include',
-//         // body: JSON.stringify(requestData),
-//       }
-//     );
-//     const result = await response.json();
-//     if (response.ok) {
-//       if (confirm('Reset Link has been sent to your email address.')) {
-//         window.location.href = './landingPage.html';
-//       }
-//     } else {
-//       alert(`Oops, Something went wrong. Try Again Later. ${result.message}`);
-//       console.log(`Error while trying to Reset password: ${result.message}`);
-//     }
-//   } catch (error) {
-//     alert(`Oops, Something went wrong. Try Again Later. ${result.message}`);
-//     console.log(`Error while trying to reset password: ${result.message}`);
-//   }
-// });
+  const email = document.getElementById('email').value;
+
+  try {
+    const response = await fetch(
+      'http://127.0.0.1:3000/api/v1/users/resetPasswordEmail',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ email }),
+      }
+    );
+    const result = await response.json();
+    if (response.ok) {
+      confirm('Reset Link sent to your email address');
+      redirectToLanding();
+    } else {
+      alert('Account does not exist for this email address');
+      redirectToLanding();
+    }
+  } catch (error) {
+    console.log(error);
+    alert(error);
+  }
+});
