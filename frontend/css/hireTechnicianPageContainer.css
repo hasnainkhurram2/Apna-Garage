@@ -1,0 +1,104 @@
+/* Main container for form */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Adjust to place form higher */
+  height: 100vh;
+  padding: 1rem; /* Adjust padding for smaller screens */
+  background-color: rgba(0, 0, 0, 0.5); /* Optional background for form area */
+  color: white;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.form-container h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase; /* All caps heading */
+  text-align: center; /* Center the heading */
+}
+
+/* Form Elements */
+label {
+  font-weight: bold;
+  margin-top: 1rem;
+  color: white;
+}
+
+select, textarea, .description {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid orange;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent entry bars */
+  color: white;
+}
+
+select option[disabled] {
+  color: gray;
+}
+
+textarea, .description {
+  resize: none;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: orange;
+  color: black;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  background-color: black;
+  color: orange;
+  border: 2px solid orange;
+}
+
+
+@media (max-width: 768px) {
+  .form-container {
+      padding: 0.5rem; /* Reduce padding for tablets */
+  }
+
+  .form-container h2 {
+      font-size: 1.8rem; /* Smaller heading for tablets */
+  }
+
+  select, textarea, .description {
+      font-size: 0.9rem; /* Adjust font size */
+  }
+
+  .submit-button {
+      padding: 0.6rem 1.2rem; /* Adjust button size for tablets */
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+      padding: 0.5rem;
+      justify-content: flex-start; /* Move form higher on smaller screens */
+  }
+
+  .form-container h2 {
+      font-size: 1.5rem; /* Further reduce heading size */
+  }
+
+  select, textarea, .description {
+      font-size: 0.8rem; /* Adjust input font size */
+  }
+
+  .submit-button {
+      padding: 0.5rem 1rem; /* Adjust button size for phones */
+      font-size: 0.8rem;
+  }
+}

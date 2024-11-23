@@ -1,0 +1,16 @@
+/* Body */
+ body {
+    padding-top: 70px; /* Offset to account for fixed navbar height */
+    background: url("../img/banner4.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for opacity */
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  body, html {
+    height: 100%; /* Ensure body takes full height */
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+  }

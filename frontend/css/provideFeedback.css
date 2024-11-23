@@ -15,8 +15,7 @@ body {
     min-height: 100vh;
 }
 
-
-
+/* Buttons */
 .logout-button,
 .return-button {
     background-color: #ff6f00;
@@ -40,24 +39,24 @@ body {
 .feedback-container {
     width: 90%;
     max-width: 600px;
-    background-color: #ff6f00;
+    background-color: rgba(255, 187, 61, 0.445);
     border-radius: 10px;
     padding: 20px;
-    margin: 100px auto; /* Maintains the top margin for positioning */
+    margin: 100px auto;
     text-align: center;
-    color: #000; /* Text color for orange box reverted to black */
+    color: #000;
 }
 
 /* Technician Info */
 .technician-info h2 {
-    color: #000; /* Black text for technician name */
+    color: #fcf9f9;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .technician-info p {
-    color: #000; /* Black text for "Technician Rating" */
+    color: #000;
     font-size: 16px;
     margin-bottom: 20px;
 }
@@ -85,7 +84,7 @@ body {
 
 /* Review Prompt */
 .review-prompt {
-    color: #000; /* Black text for the review prompt */
+    color: #000;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -97,21 +96,21 @@ body {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #fff; /* White background */
-    color: #333; /* Grey text */
+    background-color: #fff;
+    color: #333;
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     resize: none;
 }
 
 .review-box::placeholder {
-    color: #777; /* Light grey placeholder text */
+    color: #777;
 }
 
 /* Submit Button */
 .submit-feedback {
-    background-color: #000; /* Black background for the button */
-    color: #fff; /* White text */
+    background-color: #000;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -123,6 +122,74 @@ body {
 }
 
 .submit-feedback:hover {
-    background-color: #fff; /* Changes to white on hover */
-    color: #000; /* Black text on hover */
+    background-color: #fff;
+    color: #000;
+}
+
+/* Responsive Design */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+    .feedback-container {
+        padding: 15px;
+        margin: 50px auto;
+    }
+
+    .technician-info h2 {
+        font-size: 20px;
+    }
+
+    .technician-info p {
+        font-size: 14px;
+    }
+
+    .star-rating span {
+        font-size: 25px;
+    }
+
+    .review-box {
+        height: 80px;
+        font-size: 14px;
+    }
+
+    .submit-feedback {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    .feedback-container {
+       
+        padding: 10px;
+        margin: 30px auto;
+        margin-top: 80px;
+    }
+
+    .technician-info h2 {
+        font-size: 18px;
+    }
+
+    .technician-info p {
+        font-size: 12px;
+    }
+
+    .star-rating {
+        gap: 5px;
+    }
+
+    .star-rating span {
+        font-size: 20px;
+    }
+
+    .review-box {
+        height: 70px;
+        font-size: 12px;
+    }
+
+    .submit-feedback {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 }
