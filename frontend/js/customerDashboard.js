@@ -71,16 +71,14 @@ buttons.forEach((button, index) => {
 // Log out function with confirmation
 function logout() {
   if (confirm('Are you sure you want to log out?')) {
-    window.location.href = '../pages/landingPage.html'; // Redirect to login page
+    window.location.href = './landingPage.html'; // Redirect to login page
   }
 }
 
-
 function redirectToViewRequestsStatus() {
-  window.location.href = "../pages/viewRequestsStatus.html";
+  window.location.href = './viewRequestsStatus.html';
 }
 
-
-function redirectToCustomerProfile() {
-  window.location.href = "../pages/customerProfile.html";
+function redirectToUserProfile() {
+  window.location.href = './userProfile.html';
 }

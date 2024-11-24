@@ -13,26 +13,26 @@ const resetPasswordForm1 = document.getElementById('resetPasswordForm');
 resetPasswordForm1.addEventListener('submit', async function (e) {
   e.preventDefault(); // Prevent default form submission
 
-  const newPassword = document.getElementById('newPassword').value;
+  const email = document.getElementById('email').value;
 
   try {
     const response = await fetch(
-      'http://127.0.0.1:3000/api/v1/users/resetPassword',
+      'http://127.0.0.1:3000/api/v1/users/resetPasswordEmail',
       {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ newPassword }),
+        body: JSON.stringify({ email }),
       }
     );
-
+    const result = await response.json();
     if (response.ok) {
-      confirm('Password Updated');
+      confirm('Reset Link sent to your email address');
       redirectToLanding();
     } else {
-      alert('Error occurred');
+      alert('Account does not exist for this email address');
       redirectToLanding();
     }
   } catch (error) {

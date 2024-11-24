@@ -7,6 +7,7 @@ const config = {
     password: process.env.DB_PASSWORD,
     dialect: process.env.DB_DIALECT,
     database: process.env.DB_NAME,
+    appPassword: process.env.APP_PASSWORD,
   },
 };
 
