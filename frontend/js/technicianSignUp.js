@@ -23,6 +23,29 @@ form.addEventListener('submit', async function (e) {
     alert('Passwords do not match!');
     return;
   }
+
+  const emailRes = await fetch('http://127.0.0.1:3000/api/v1/users/sendCode', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      email,
+    }),
+  });
+  const emailResult = await emailRes.json();
+  if (!emailRes.ok) {
+    alert(emailResult.message);
+    return;
+  }
+  const code = prompt(
+    'Email Sent, Enter the code in the email to Verify your Email.'
+  );
+  if (code !== emailResult.verCode) {
+    alert('Incorrect Code. Please Retry and Enter the correct Code.');
+    return;
+  }
   const technicianData = {
     name: fullName,
     email,
