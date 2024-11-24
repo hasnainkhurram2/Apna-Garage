@@ -2,6 +2,7 @@ const models = require('../models/index');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const config = require('../config/config');
+const crypto = require('crypto');
 
 let sessionUserId;
 
@@ -142,6 +143,39 @@ exports.updatePassword = async (req, res) => {
       success: false,
       message:
         'An error occurred while updating the password. Please try again later.',
+    });
+  }
+};
+
+exports.sendVerificationCode = async (req, res) => {
+  try {
+    const verCode = crypto.randomBytes(4).toString('hex');
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'apna.garage.2024@gmail.com',
+        pass: config.database.appPassword,
+      },
+    });
+
+    // Email options
+    const mailOptions = {
+      from: 'apna.garage.2024@gmail.com',
+      to: req.body.email,
+      subject: 'Sign Up Verification Code.',
+      text: `Type the following code in the dialogue box to Verify Your Email: ${verCode}`, // HTML version
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({
+      message: `Email Verification Code sent at ${req.body.email}`,
+      verCode,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: 'Error while trying to send Verification Code.',
     });
   }
 };
