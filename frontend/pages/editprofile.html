@@ -1,77 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Profile - ApnaGarage</title>
-    <link rel="stylesheet" href="../css/editprofile.css">
-</head>
-<body>
-    <!-- Navbar -->
+    <link rel="stylesheet" href="../css/editprofile.css" />
+  </head>
+  <body>
     <div class="navbar">
-        <div class="nav-left">
-            <h1>APNA GARAGE</h1>
-        </div>
-        <div class="nav-right">
-            <button class="nav-button orange" onclick="redirectToProfile()">RETURN</button>
-        </div>
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <button class="nav-button orange" onclick="redirectToProfile()">
+          RETURN
+        </button>
+      </div>
     </div>
 
     <!-- Edit Profile Section -->
     <div class="profile-container">
-        <table class="profile-table">
-            <tr>
-                <td>Name:</td>
-                <td class="field">
-                    <input class="value-box" type="text" id="name" value="John Doe">
-                </td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td class="field">
-                    <input class="value-box" type="email" id="email" value="johndoe@example.com">
-                </td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td class="field">
-                    <input class="value-box" type="password" id="password" value="password123">
-                </td>
-            </tr>
-            <tr>
-                <td>Date of Birth:</td>
-                <td class="field">
-                    <input class="value-box" type="date" id="dob" value="1990-01-01">
-                </td>
-            </tr>
-        </table>
+      <table class="profile-table">
+        <tr>
+          <td>Name:</td>
+          <td class="field">
+            <input class="value-box" type="text" id="name" value="John Doe" />
+          </td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td class="field">
+            <input
+              class="value-box"
+              type="email"
+              id="email"
+              value="johndoe@example.com"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td class="field">
+            <input
+              class="value-box"
+              type="password"
+              id="password"
+              value="password123"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Date of Birth:</td>
+          <td class="field">
+            <input class="value-box" type="date" id="dob" value="1990-01-01" />
+          </td>
+        </tr>
+      </table>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button class="nav-button orange" onclick="redirectToProfile()">CANCEL</button>
-            <button class="nav-button orange" onclick="saveChanges()">SAVE</button>
-        </div>
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="nav-button orange" onclick="redirectToProfile()">
+          CANCEL
+        </button>
+        <button class="nav-button orange" onclick="saveChanges()">SAVE</button>
+      </div>
     </div>
 
     <script>
-        function redirectToProfile() {
-            window.location.href = '../pages/customerprofile.html';
-        }
+      function redirectToProfile() {
+        window.location.href = '../pages/customerprofile.html';
+      }
 
-        function saveChanges() {
-            // Simulated save functionality
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const dob = document.getElementById('dob').value;
+      function saveChanges() {
+        // Simulated save functionality
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const dob = document.getElementById('dob').value;
 
-            alert(`Profile updated:
+        alert(`Profile updated:
 Name: ${name}
 Email: ${email}
 Password: ${password}
 Date of Birth: ${dob}`);
-            redirectToProfile();
-        }
+        redirectToProfile();
+      }
     </script>
-</body>
+  </body>
 </html>
