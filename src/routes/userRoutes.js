@@ -13,4 +13,5 @@ router.route('/resetPassword').put(userController.updatePassword);
 
 router.route('/sendCode').post(userController.sendVerificationCode);
 
+router.route('/updateInfo').put(userController.updateUser);
 module.exports = router;

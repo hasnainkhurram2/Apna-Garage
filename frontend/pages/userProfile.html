@@ -17,7 +17,7 @@
         <button class="nav-button orange" onclick="redirectToDashboard()">
           Return
         </button>
-        <button class="nav-button orange" onclick="redirectToEdit()">
+        <button class="nav-button orange" onclick="enableEditMode()">
           Edit Profile
         </button>
       </div>
@@ -29,35 +29,71 @@
         <tr>
           <td>Name:</td>
           <td class="field">
-            <div id="name" class="value-box">Loading</div>
+            <div id="name" class="value-box" contenteditable="false">
+              Loading
+            </div>
+            <span class="edit-icon hidden" onclick="toggleFieldEditable('name')"
+              >✏️</span
+            >
           </td>
         </tr>
         <tr>
           <td>Email:</td>
           <td class="field">
-            <div id="email" class="value-box">Loading</div>
+            <div id="email" class="value-box" contenteditable="false">
+              Loading
+            </div>
+            <span
+              class="edit-icon hidden"
+              onclick="toggleFieldEditable('email')"
+              >✏️</span
+            >
           </td>
         </tr>
-
         <tr>
           <td>Address:</td>
           <td class="field">
-            <div id="address" class="value-box">Loading</div>
+            <div id="address" class="value-box" contenteditable="false">
+              Loading
+            </div>
+            <span
+              class="edit-icon hidden"
+              onclick="toggleFieldEditable('address')"
+              >✏️</span
+            >
           </td>
         </tr>
         <tr>
           <td>Contact Number:</td>
           <td class="field">
-            <div id="contact" class="value-box">Loading</div>
+            <div id="contact" class="value-box" contenteditable="false">
+              Loading
+            </div>
+            <span
+              class="edit-icon hidden"
+              onclick="toggleFieldEditable('contact')"
+              >✏️</span
+            >
           </td>
         </tr>
         <tr>
           <td>Date of Birth:</td>
           <td class="field">
-            <div id="dob" class="value-box">Loading</div>
+            <div id="dob" class="value-box" contenteditable="false">
+              Loading
+            </div>
+            <span class="edit-icon hidden" onclick="toggleFieldEditable('dob')"
+              >✏️</span
+            >
           </td>
         </tr>
       </table>
+    </div>
+
+    <!-- Save/Cancel Buttons -->
+    <div class="profile-buttons hidden">
+      <button class="button orange" onclick="saveChanges()">Save</button>
+      <button class="button gray" onclick="cancelChanges()">Cancel</button>
     </div>
 
     <script src="../js/userProfile.js"></script>
