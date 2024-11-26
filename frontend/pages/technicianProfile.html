@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer Profile - ApnaGarage</title>
-    <link rel="stylesheet" href="../css/userProfile.css" />
+    <link rel="stylesheet" href="../css/technicianProfile.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
   </head>
   <body>
@@ -87,6 +87,47 @@
             >
           </td>
         </tr>
+        <tr>
+          <td>Available:</td>
+          <td class="field">
+            <select id="available" class="value-box dropdown" disabled>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Experience:</td>
+          <td class="field">
+            <div id="experience" class="value-box" contenteditable="false">
+              Loading
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Expertise:</td>
+          <td class="field">
+            <select id="expertise" class="value-box dropdown" disabled>
+              <option value="mechanic">Mechanic</option>
+              <option value="electrician">Electrician</option>
+              <option value="fuelSupplier">Fuel Supplier</option>
+              <option value="bodyTechnician">Body Technician</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Workshop:</td>
+          <td class="field">
+            <div id="workshop" class="value-box" contenteditable="false">
+              Loading
+            </div>
+            <span
+              class="edit-icon hidden"
+              onclick="toggleFieldEditable('workshop')"
+              >✏️</span
+            >
+          </td>
+        </tr>
       </table>
     </div>
 
@@ -96,6 +137,6 @@
       <button class="button gray" onclick="cancelChanges()">Cancel</button>
     </div>
 
-    <script src="../js/userProfile.js"></script>
+    <script src="../js/technicianProfile.js"></script>
   </body>
 </html>

@@ -7,4 +7,8 @@ router.route('/signup').post(technicianController.signUp);
 
 router.route('/technicianrequests').get(technicianController.requestsMadeByCustomers);
 
+router.route('/technicianProfile').get(technicianController.getTechnician);
+
+router.route('/updateTechnicianInfo').put(technicianController.updateTechnician);
+
 module.exports = router;
