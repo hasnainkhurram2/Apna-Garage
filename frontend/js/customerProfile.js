@@ -38,7 +38,9 @@ function redirectToDashboard() {
 
 // Enable edit mode: show pen icons and save/cancel buttons
 function enableEditMode() {
-  document.querySelectorAll('.edit-icon').forEach(pen => pen.classList.remove('hidden'));
+  document
+    .querySelectorAll('.edit-icon')
+    .forEach((pen) => pen.classList.remove('hidden'));
   document.querySelector('.profile-buttons').classList.remove('hidden');
 }
 
@@ -76,11 +78,11 @@ function saveChanges() {
     },
     body: JSON.stringify(updatedValues),
   })
-    .then(response => response.json())
-    .then(result => {
+    .then((response) => response.json())
+    .then((result) => {
       if (result.success) {
         alert('Profile updated successfully!');
-         window.location.href = './customerProfile.html'
+        window.location.href = './customerProfile.html';
       } else {
         alert('Failed to update profile: ' + result.message);
       }
@@ -89,15 +91,35 @@ function saveChanges() {
 
 // Cancel changes: reset fields to initial values
 function cancelChanges() {
-  Object.keys(initialValues).forEach(key => {
+  Object.keys(initialValues).forEach((key) => {
     document.getElementById(key).textContent = initialValues[key];
   });
 
   // Disable edit mode
-  document.querySelectorAll('.value-box').forEach(field => {
+  document.querySelectorAll('.value-box').forEach((field) => {
     field.contentEditable = false;
     field.classList.remove('editable');
   });
-  document.querySelectorAll('.edit-icon').forEach(pen => pen.classList.add('hidden'));
+  document
+    .querySelectorAll('.edit-icon')
+    .forEach((pen) => pen.classList.add('hidden'));
   document.querySelector('.profile-buttons').classList.add('hidden');
+}
+
+async function deleteMyAccount() {
+  if (confirm('Are you sure you want to delete your Account?')) {
+    const response = await fetch('http://127.0.0.1:3000/api/v1/users', {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    const result = response.json();
+    if (response.ok) {
+      alert('Account deleted');
+      window.location.href = './landingPage.html';
+    } else {
+      alert(`Error occurred: ${result.message}`);
+    }
+  } else {
+    window.location.href = './userProfile.html';
+  }
 }

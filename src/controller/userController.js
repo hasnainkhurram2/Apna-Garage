@@ -86,7 +86,8 @@ exports.resetPasswordEmail = async (req, res) => {
       },
     });
 
-    const resetLink = 'http://127.0.0.1:5500/Apna-Garage/frontend/pages/resetPassword.html';
+    const resetLink =
+      'http://127.0.0.1:5500/Apna-Garage/frontend/pages/resetPassword.html';
     // Email options
     const mailOptions = {
       from: 'apna.garage.2024@gmail.com',
@@ -130,7 +131,7 @@ exports.updatePassword = async (req, res) => {
         message: 'User not found or no changes were made.',
       });
     }
-    
+
     // Respond with success
     sessionUserId = undefined;
     return res.status(200).json({
@@ -182,13 +183,34 @@ exports.sendVerificationCode = async (req, res) => {
   }
 };
 
+//function to delete a customer:
+exports.deleteCustomer = async (req, res) => {
+  try {
+    const deleted = await models.User.destroy({
+      where: { id: req.session.userDetails.userId },
+    });
+
+    if (!deleted) {
+      return res.status(404).json({
+        error: 'Customer not found.',
+      });
+    }
+    res.status(204).json({
+      status: 'successful',
+      data: null, // No data to return
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: 'Server error.',
+    });
+  }
+};
 
 exports.updateUser = async (req, res) => {
   // console.log("Printing body data : \n");
   // console.log(req.body);
 
   // body data correctly received, VERIFIED
-
 
   try {
     // Extract data from the request body
@@ -198,28 +220,26 @@ exports.updateUser = async (req, res) => {
     // console.log(data);
 
     // // data => name , email , address , contact, dob
-   
 
     if (data.dob) {
       const formattedDOB = moment(req.body.dob, 'DD/MM/YYYY', true);
       if (!formattedDOB.isValid()) {
         return res.status(400).json({
           success: false,
-          message: 'Invalid date format. Please use DD/MM/YYYY.'
+          message: 'Invalid date format. Please use DD/MM/YYYY.',
         });
       }
       data.dob = formattedDOB.format('YYYY-MM-DD'); // Convert to ISO format
     }
 
-
     // Update the user in the database
     const [rowsUpdated] = await models.User.update(
-      {  
-        name : data.name,
-        email : data.email,
-        address : data.address,
-        contact : data.contact,
-        dob : data.dob,
+      {
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        contact: data.contact,
+        dob: data.dob,
       },
       { where: { id: user } }
     );
@@ -230,14 +250,12 @@ exports.updateUser = async (req, res) => {
         success: false,
         message: 'No changes were made.',
       });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: 'User updated successfully.',
+      });
     }
-    else
-    {
-    return res.status(200).json({
-      success: true,
-      message: 'User updated successfully.',
-    });
-  }
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -245,7 +263,4 @@ exports.updateUser = async (req, res) => {
         'An error occurred while updating the user. Please try again later.',
     });
   }
-
-
-
-}
+};
