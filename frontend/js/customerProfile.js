@@ -80,7 +80,7 @@ function saveChanges() {
     .then(result => {
       if (result.success) {
         alert('Profile updated successfully!');
-         window.location.href = './userProfile.html'
+         window.location.href = './customerProfile.html'
       } else {
         alert('Failed to update profile: ' + result.message);
       }

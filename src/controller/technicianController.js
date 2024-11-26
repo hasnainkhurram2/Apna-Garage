@@ -1,6 +1,7 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const moment = require('moment');
 exports.signUp = async (req, res) => {
   try {
     const salt = 10;
@@ -115,3 +116,92 @@ ORDER BY
   }
 };
 
+exports.getTechnician = async (req, res) => {
+  try {
+    const _user = await models.User.findOne({
+      where: {
+        id: req.session.userDetails.userId,
+      },
+    });
+    const _technician = await models.Technician.findOne(
+      {
+        where : {
+          user_id : req.session.userDetails.userId,
+        },
+      }
+    );
+     res.status(200).json({
+      _user,
+      _technician,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: `Oops, Something went wrong. Session Expired. Redirecting to Login`,
+    });
+  }
+};
+
+
+exports.updateTechnician = async (req, res) => {
+  try {
+    // Extract data from the request body
+    const data = req.body;
+    console.log(data);
+    // Validate and format the date of birth (DOB)
+    if (data.dob) {
+      const formattedDOB = moment(data.dob, 'DD/MM/YYYY', true);
+      if (!formattedDOB.isValid()) {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid date format. Please use DD/MM/YYYY.',
+        });
+      }
+      data.dob = formattedDOB.format('YYYY-MM-DD'); // Convert to ISO format
+    }
+
+    // Update the User table
+    const [userRowsUpdated] = await models.User.update(
+      {
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        contact: data.contact,
+        dob: data.dob,
+      },
+      { where: { id: data.id } }
+    );
+
+    // Update the Technician table
+    const [technicianRowsUpdated] = await models.Technician.update(
+      {
+        availability: data.availability,
+        type: data.expertise,
+        workplace: data.workplace,
+      },
+      { where: { user_id: data.id } }
+    );
+
+    // Check if any rows were updated in either table
+    if (userRowsUpdated === 0 && technicianRowsUpdated === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No changes were made.',
+      });
+    }
+
+    // Success response
+    return res.status(200).json({
+      success: true,
+      message: 'User and technician information updated successfully.',
+    });
+  } catch (error) {
+    // Handle errors
+    console.error('Error updating technician:', error);
+    return res.status(500).json({
+      success: false,
+      message:
+        'An error occurred while updating the user. Please try again later.',
+    });
+  }
+};
