@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const reqId = urlParams.get('reqId');
+console.log(reqId);
 // Function to redirect to the homepage
 function returnToHome() {
   alert('Returning to homepage...');
@@ -30,7 +33,7 @@ stars.forEach((star) => {
     }
 
     // Set the selected rating value
-    selectedRating = star.getAttribute('data-value');
+    selectedRating = star.dataset.value;
   });
 });
 
@@ -50,9 +53,11 @@ submitButton.addEventListener('click', async () => {
 
   // Construct feedback object
   const feedback = {
+    reqId,
     content: reviewContent,
     rating: selectedRating,
   };
+  console.log(selectedRating);
 
   try {
     // Send feedback to the server
