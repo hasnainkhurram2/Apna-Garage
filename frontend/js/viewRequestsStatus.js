@@ -1,6 +1,6 @@
+const tableBody = document.getElementById('requests-body');
 // Function to populate the table dynamically
 function populateRequestsTable(requests) {
-  const tableBody = document.getElementById('requests-body');
   const noRequestsMessage = document.getElementById('no-requests-message');
   if (requests.length === 0) {
     // Show "No Requests Found" message
@@ -16,6 +16,7 @@ function populateRequestsTable(requests) {
       const cell2 = document.createElement('td');
       const cell3 = document.createElement('td');
       const cell4 = document.createElement('td');
+      const cell5 = document.createElement('td');
       const dt = new Date(request.startTime);
       cell1.textContent =
         `${dt.toLocaleDateString()} \n ${dt.toLocaleTimeString()}` || 'N/A';
@@ -24,16 +25,29 @@ function populateRequestsTable(requests) {
       if (request.completed !== null) {
         if (request.completed) {
           cell4.textContent = 'Completed';
+          if (request.feedId !== null && request.feedId !== undefined) {
+            cell5.classList.add('done-button');
+            cell5.textContent = 'Submitted';
+          } else {
+            cell5.classList.add('active-button');
+            cell5.textContent = 'Give Feedback';
+          }
         } else {
           cell4.textContent = 'In Progress';
+          cell5.classList.add('inactive-button');
+          cell5.textContent = 'Not Available';
         }
       } else {
         cell4.textContent = 'Not Accepted';
+        cell5.textContent = 'Not Available';
+        cell5.classList.add('inactive-button');
       }
+      cell5.value = request.reqId;
       row.appendChild(cell1);
       row.appendChild(cell2);
       row.appendChild(cell3);
       row.appendChild(cell4);
+      row.appendChild(cell5);
       tableBody.appendChild(row);
     });
   }
@@ -60,5 +74,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   } catch (error) {
     console.log(error);
+  }
+});
+tableBody.addEventListener('click', async (e) => {
+  e.preventDefault();
+  if (event.target.classList.contains('active-button')) {
+    const activeButton = document.querySelector('.active-button');
+    const params = new URLSearchParams({
+      reqId: activeButton.value,
+    });
+    window.location.href = `./provideFeedback.html?${params.toString()}`;
+  } else {
+    console.log('Did not recieve the event properly.', event.target.classList);
   }
 });

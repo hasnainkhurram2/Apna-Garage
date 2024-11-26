@@ -67,10 +67,11 @@ exports.resetPasswordEmail = async (req, res) => {
       },
     });
 
-    const resetLink = 'http://127.0.0.1:5500/frontend/pages/resetPassword.html';
+    const resetLink =
+      'http://127.0.0.1:5500/Apna-Garage/frontend/pages/resetPassword.html';
     // Email options
     const mailOptions = {
-      from: 'apna.garage.2024@gmail.com',
+      from: 'Apna Garage Team <apna.garage.2024@gmail.com>',
       to: req.body.email,
       subject: 'Reset Your Password',
       text: `Click the link to reset your password: ${resetLink}`, // Plain text email
@@ -142,7 +143,7 @@ exports.sendVerificationCode = async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: 'apna.garage.2024@gmail.com',
+      from: 'Apna Garage Team <apna.garage.2024@gmail.com>',
       to: req.body.email,
       subject: 'Sign Up Verification Code.',
       text: `Type the following code in the dialogue box to Verify Your Email: ${verCode}`, // HTML version
