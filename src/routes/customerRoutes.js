@@ -7,10 +7,8 @@ router.route('/:id/requests').get(customerController.getRequestHistory);
 
 router.route('/:id/requests/:reqId').get(customerController.getRequest);
 
-router
-  .route('/:id')
-  .put(customerController.updateCustomer)
-  .delete(customerController.deleteCustomer);
+router.route('/:id').put(customerController.updateCustomer);
+// .delete(customerController.deleteCustomer);
 
 router.route('/signup').post(customerController.signUp);
 

@@ -30,7 +30,7 @@ hireForm.addEventListener('submit', async function (e) {
     service_id: serviceType,
     location,
     startTime: new Date(),
-    completed: null,
+    completed: false,
   };
   try {
     const response = await fetch('http://127.0.0.1:3000/api/v1/requests/', {
@@ -51,11 +51,11 @@ hireForm.addEventListener('submit', async function (e) {
         window.location.href = './customerDashboard.html';
       }
     } else {
-      alert(`Oops, Something went wrong. Try Again Later.`);
+      alert(`Oops, Something went wrong. Try Again Later. ${result.message}`);
       console.log(`Error while trying to Lodge a Request: ${result.message}`);
     }
   } catch (error) {
-    alert(`Oops, Something went wrong. Try Again Later.`);
+    alert(`Oops, Something went wrong. Try Again Later. ${error.message}`);
     console.log(`Error while trying to Lodge a Request: ${result.message}`);
   }
 });
