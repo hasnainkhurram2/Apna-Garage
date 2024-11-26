@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log(`Failed inside the try block: ${response.message}.`);
     }
     const welcomeElement = document.querySelector('.services-title h1');
-    welcomeElement.textContent = `WELCOME ${result.userDetails.userName}`;
+    const userName = result.userDetails.userName.toUpperCase();
+    welcomeElement.textContent = `WELCOME ${userName}`;
   } catch (error) {
     console.log(`Error while fetching Session data: ${error}`);
   }
@@ -75,12 +76,10 @@ function logout() {
   }
 }
 
-
 function redirectToViewRequestsStatus() {
-  window.location.href = "../pages/viewRequestsStatus.html";
+  window.location.href = '../pages/viewRequestsStatus.html';
 }
 
-
-function redirectToCustomerProfile() {
-  window.location.href = "../pages/customerProfile.html";
+function redirectToUserProfile() {
+  window.location.href = './customerProfile.html';
 }
