@@ -1,80 +1,117 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 70px; /* Offset for navbar */
+  line-height: 1.6; /* Improves readability on smaller screens */
+}
 
-  /* Body */
-  body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding-top: 70px; /* Offset for navbar */
-  }
-  
-  /* Form Container */
-  .form-container {
-    max-width: 550px;
-    margin: 50px auto;
-    padding: 2rem;
-    padding-right: 3rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adds some depth */
-  }
-  
-  .form-container h2 {
-    color: orange;
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    display: block;
-    text-align: left;
-    margin: 1rem 0 0.5rem;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 0.25rem;
-    border: 1px solid orange;
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-  }
-  
-  textarea {
-    resize: none;
-    height: 80px;
-  }
-  
-  .submit-button {
-    margin-top: 20px;
-    background-color: orange;
-    color: black;
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .submit-button:hover {
-    background-color: black;
-    color: orange;
-    border: 2px solid orange;
-  }
-  
-  /* Login Link */
+/* Form Container */
+.form-container {
+  max-width: 80%; /* Adjusts to smaller screens */
+  margin: 50px auto;
+  padding: 2rem;
+  padding-right: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adds some depth */
+}
+
+.form-container h2 {
+  color: orange;
+  margin-bottom: 1rem;
+  font-size: 1.8rem; /* Scales down text for smaller screens */
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 1rem 0.5rem 0.5rem;
+  font-size: 1rem; /* Ensures label readability */
+}
+
+input, textarea {
+  width: 95%;
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid orange;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 1rem; /* Scales input text for readability */
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+.submit-button {
+  margin-top: 20px;
+  background-color: orange;
+  color: black;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem; /* Ensures button text is scalable */
+}
+
+.submit-button:hover {
+  background-color: black;
+  color: orange;
+  border: 2px solid orange;
+}
+
+/* Login Link */
 .login-link {
-    margin-top: 1rem;
-    color: orange;
+  margin-top: 1rem;
+  color: orange;
+  font-size: 0.9rem; /* Adjust for readability on smaller screens */
+}
+
+.login-link a {
+  color: orange;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem; /* Reduce padding for smaller screens */
   }
-  
-  .login-link a {
-    color: orange;
-    text-decoration: underline;
-    font-weight: bold;
+
+  .form-container h2 {
+    font-size: 1.5rem; /* Smaller heading for mobile */
   }
-  
+ 
+  .login-link a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  label {
+    font-size: 0.9rem; /* Adjust label size */
+  }
+
+  input, textarea {
+    font-size: 0.9rem; /* Adjust input font size */
+  }
+
+  .submit-button {
+    padding: 0.6rem 1.2rem; /* Smaller buttons on smaller screens */
+    font-size: 0.9rem;
+  }
+} 
   /* Modal styling */
 .modal {
   display: none;
@@ -116,10 +153,28 @@
 
 .cancel-button:hover {
   background-color: black;
-  color: white;
+  color:white;
 }
 
-  .login-link a:hover {
-    color: white;
-    text-decoration: none;
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1rem; /* Further reduce padding for very small screens */
   }
+
+  .form-container h2 {
+    font-size: 1.3rem;
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
+
+  input, textarea {
+    font-size: 0.8rem;
+  }
+
+  .submit-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}

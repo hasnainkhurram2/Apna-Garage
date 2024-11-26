@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log(`Failed inside the try block: ${response.message}.`);
     }
     const welcomeElement = document.querySelector('.services-title h1');
-    welcomeElement.textContent = `WELCOME ${result.userDetails.userName}`;
+    const userName = result.userDetails.userName.toUpperCase();
+    welcomeElement.textContent = `WELCOME ${userName}`;
   } catch (error) {
     console.log(`Error while fetching Session data: ${error}`);
   }
@@ -80,5 +81,5 @@ function redirectToViewRequestsStatus() {
 }
 
 function redirectToUserProfile() {
-  window.location.href = './userProfile.html';
+  window.location.href = './customerProfile.html';
 }

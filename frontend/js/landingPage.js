@@ -35,3 +35,11 @@ function redirectToFAQs() {
 function redirectToTermsAndConditions() {
   window.location.href = '../pages/termsAndConditions.html';
 }
+function redirectToTeamMembers() {
+  window.location.href = '../pages/teamMembers.html';
+}
+
+function toggleMenu() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+}

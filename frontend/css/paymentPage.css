@@ -2,37 +2,36 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #000; 
-    color: #fff; 
+    background-color: #000;
+    color: #fff;
     display: flex;
-    flex-direction: column; 
-    height: 100vh; 
+    flex-direction: column;
+    height: 100vh;
     overflow: hidden;
 }
 
 /* Content container */
 .payment-container {
-    background-color: #121212; 
+    background-color: #121212;
     padding: 2rem;
-    border-radius: 15px; 
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.7); 
-    width: 90%; 
-    max-width: 500px; 
-    height: auto; 
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
+    width: 90%;
+    max-width: 500px;
+    height: auto;
     text-align: center;
-    margin: 0 auto; 
-    position: absolute; 
-    top: 10%; 
-    left: 27%; 
-    transform: scale(0.8);
-    
+    margin: 0 auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
 }
 
 /* Label styles */
 label {
-    display: block; /* Ensure the label takes up a full line */
-    margin-bottom: 10px; /* Space between label and input */
-    text-align: left; /* Ensure label is aligned to the left */
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 /* Form heading */
@@ -40,16 +39,16 @@ label {
     margin-bottom: 1.5rem;
     margin-top: -10px;
     color: orange;
-    font-size: 1.8rem; /* Slightly bigger for emphasis */
+    font-size: 1.8rem;
 }
 
 /* Payment Summary Section */
 .payment-summary {
     margin-bottom: 2rem;
-    background-color: #1e1e1e; /* Darker contrast for section */
+    background-color: #1e1e1e;
     padding: 1rem;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3); /* Subtle glow */
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
 }
 
 .payment-summary h2 {
@@ -67,7 +66,7 @@ label {
 
 /* Input field styles */
 .payment-container input {
-    width: 80%; /* Make input take full width */
+    width: 90%; /* Full width on smaller screens */
     padding: 0.7rem;
     margin-bottom: 1rem;
     border: 0.5px solid orange;
@@ -78,13 +77,13 @@ label {
 }
 
 .payment-container input::placeholder {
-    color: #aaa; /* Light gray placeholder */
+    color: #aaa;
 }
 
 /* Pay button styles */
 .payment-container button {
-    width: 20%;
-    padding: 0.5rem;
+    width: 40%; /* Adjust for smaller screens */
+    padding: 0.7rem;
     background-color: orange;
     color: black;
     font-size: 1rem;
@@ -95,7 +94,63 @@ label {
 }
 
 .payment-container button:hover {
-    background-color: red; /* Lighter orange on hover */
+    background-color: red;
     color: white;
 }
 
+/* Responsive Design */
+
+/* Adjustments for tablets */
+@media (max-width: 768px) {
+    .payment-container {
+        width: 95%; /* Reduce width for smaller screens */
+        padding: 1.5rem;
+        top: 12%; /* Adjust positioning */
+        transform: translateX(-50%);
+    }
+
+    .payment-container h1 {
+        font-size: 1.5rem; /* Slightly smaller heading */
+    }
+
+    input {
+        width: 100%; /* Full width inputs */
+        font-size: 0.9rem;
+    }
+
+    button {
+        width: 50%; /* Larger button for easier clicking */
+    }
+}
+
+/* Adjustments for mobile phones */
+@media (max-width: 480px) {
+    .payment-container {
+        width: 85%;
+        margin-top: -50px;
+        padding: 1rem;
+        top: 15%; /* Further adjust positioning */
+    }
+
+    .payment-container h1 {
+        font-size: 1.3rem;
+    }
+
+    .payment-summary h2 {
+        font-size: 1.3rem;
+    }
+
+    .payment-summary p {
+        font-size: 1rem;
+    }
+
+    input {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    button {
+        width: 70%; /* Larger buttons for touch screens */
+        font-size: 0.9rem;
+    }
+}

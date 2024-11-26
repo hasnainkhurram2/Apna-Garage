@@ -1,4 +1,3 @@
-/* General Body Styling */
 body {
     background-color: black;
     color: white;
@@ -7,8 +6,6 @@ body {
     padding-top: 70px; /* Offset for navbar */
     text-align: center;
 }
-
-
 
 /* Page Title */
 .page-title {
@@ -74,4 +71,47 @@ body {
 .done-button {
     color: white;
     background-color: green;
+/* Responsive Styling */
+@media (max-width: 1200px) {
+    .requests-table th,
+    .requests-table td {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .requests-table {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .requests-table th,
+    .requests-table td {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .requests-table th,
+    .requests-table td {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    body {
+        padding-top: 50px; /* Adjust navbar offset for smaller screens */
+    }
 }

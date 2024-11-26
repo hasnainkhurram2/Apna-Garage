@@ -1,43 +1,135 @@
 /* Navigation Bar Styling */
 .navbar {
-    width: 100%;
-    background-color: #000000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+  width: 100%;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  box-sizing: border-box; /* Ensures padding does not increase width */
+}
+
+/* Left side: "APNA GARAGE" Styling */
+.nav-left h1 {
+  font-size: 24px;
+  margin: 0;
+  color: orange;
+  white-space: nowrap; /* Prevent text from breaking into multiple lines */
+}
+
+/* Right side: Buttons Styling */
+.nav-right {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.nav-button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: orange;
+  color: black;
+}
+
+
+/* Sidebar Styling */
+.sidebar {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: rgb(33, 33, 33);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1100;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.sidebar .nav-button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.close-button {
+  background-color: transparent;
+  color: orange;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-align: right; /* Align close button to the right */
+  padding: 0;
+}
+
+/* Adjustments for Three-Dot Menu Button */
+.menu-button {
+  font-size: 20px;
+  padding: 5px 15px;
+  background-color: rgb(0, 0, 0); /* Distinguish the menu button */
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.menu-button:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px; /* Reduce padding for smaller screens */
   }
-  
-  /* Left side: "APNA GARAGE" Styling */
+
   .nav-left h1 {
-    font-size: 24px;
-    margin: 0;
-    color: orange;
+    font-size: 20px; /* Reduce font size for smaller screens */
   }
-  
-  /* Right side: Buttons Styling */
+
   .nav-right {
-    display: flex;
-    gap: 10px;
-    margin-right: 20px; /* This shifts the buttons a little to the left */
+    gap: 5px; /* Reduce gap between buttons */
+    margin-right: 10px; /* Reduce margin for smaller screens */
   }
-  
+
   .nav-button {
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 8px 15px; /* Reduce button size for smaller screens */
+    font-size: 12px; /* Adjust font size for better fit */
   }
-  
-  .nav-button:hover {
-    background-color: orange;
-    color: black;
+}
+
+
+
+@media (max-width: 480px) {
+  .nav-left h1 {
+    font-size: 18px; /* Further reduce font size for very small screens */
   }
+
+  .nav-right {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons */
+  }
+
+  .nav-button {
+    width: 100%; /* Make buttons full width */
+    text-align: center;
+  }
+}
+

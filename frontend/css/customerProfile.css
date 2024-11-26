@@ -75,3 +75,66 @@ body {
     background-color: #ffb84d;
     transform: scale(1.05);
 }
+
+
+/* Editable Fields */
+.value-box.editable {
+    border: 2px dashed orange;
+    background-color: #222; /* Slightly lighter background for editing */
+    color: white;
+    outline: none;
+  }
+  
+  /* Hidden Elements */
+  .hidden {
+    display: none;
+  }
+  
+  /* Pen Icon */
+  .edit-icon {
+    font-size: 1.2rem;
+    color: orange;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .edit-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Buttons at the Bottom */
+  .profile-buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .button.orange {
+    background-color: orange;
+    color: black;
+  }
+
+  .button.orange:hover {
+    background-color: green;
+    color: white;
+  }
+  
+  .button.gray {
+    background-color: gray;
+    color: white;
+  }
+
+  .button.gray:hover {
+    background-color: red;
+    color: black;
+  }
+  
