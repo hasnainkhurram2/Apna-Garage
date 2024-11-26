@@ -19,14 +19,22 @@
       <h1>APNA GARAGE</h1>
     </div>
     <div class="nav-right">
-      <button class="nav-button" onclick="redirectToSignUpSegregation()">Sign Up </button>
+      <button class="nav-button" onclick="redirectToSignUpSegregation()">Sign Up</button>
       <button class="nav-button" onclick="redirectToLogInPage()">Log In</button>
-      <button class="nav-button" onclick="redirectToAboutUs()">About Us</button>
-      <button class="nav-button" onclick="redirectToContactUs()">Contact Us</button>
-      <button class="nav-button" onclick="redirectToFAQs()">FAQs</button>
-      <button class="nav-button" onclick="redirectToTermsAndConditions()">Terms & Conditions</button>
+      <button class="nav-button menu-button" onclick="toggleMenu()">☰</button>
     </div>
   </nav>
+
+  <!-- Sidebar Menu -->
+  <div id="sidebar" class="sidebar">
+    redirectToTeamMembers
+    <button class="close-button" onclick="toggleMenu()">✖</button>
+    <button class="nav-button" onclick="redirectToAboutUs()">About Us</button>
+    <button class="nav-button" onclick="redirectToContactUs()">Contact Us</button>
+    <button class="nav-button" onclick="redirectToFAQs()">FAQs</button>
+    <button class="nav-button" onclick="redirectToTeamMembers()">Team Members</button>
+    <button class="nav-button" onclick="redirectToTermsAndConditions()">Terms & Conditions</button>
+  </div>
 
   <!-- Banner Section -->
   <div class="banner-container">
