@@ -1,37 +1,67 @@
-
+/* Body */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  /* Terms Container */
-  .terms-container {
-    max-width: 800px;
-    padding: 20px;
-    text-align: center;
-    background-color: #000; /* Matches theme */
-  }
-  
-  /* Heading Styles */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Terms Container */
+.terms-container {
+  max-width: 800px;
+  width: 90%; /* Responsive width for smaller screens */
+  padding: 20px;
+  text-align: center;
+  background-color: #000; /* Matches theme */
+}
+
+/* Heading Styles */
+.terms-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Paragraph Styles */
+.terms-container p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 15px 0;
+  text-align: left;
+}
+
+/* Responsive Design */
+
+/* Adjustments for tablets */
+@media (max-width: 768px) {
   .terms-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+      font-size: 2rem; /* Smaller heading for tablets */
   }
-  
-  /* Paragraph Styles */
+
   .terms-container p {
-    font-size: 1rem;
-    line-height: 1.8;
-    margin: 15px 0;
-    text-align: left;
+      font-size: 0.9rem; /* Adjust paragraph font size */
+      line-height: 1.6; /* Slightly tighter line height */
   }
-  
+}
+
+/* Adjustments for mobile devices */
+@media (max-width: 480px) {
+  .terms-container {
+      padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .terms-container h1 {
+      font-size: 1.8rem; /* Further reduce heading size for mobile */
+  }
+
+  .terms-container p {
+      font-size: 0.8rem; /* Smaller font size for paragraphs */
+      line-height: 1.5; /* Tighter line height */
+  }
+}

@@ -41,3 +41,41 @@ body {
 .banner img.active {
   opacity: 1;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .banner-container {
+    height: 500px; /* Reduce banner height */
+  }
+
+  body {
+    font-size: 16px; /* Adjust font size for better readability */
+  }
+}
+
+/* Adjust for mobile devices */
+@media (max-width: 768px) {
+  .banner-container {
+    height: 300px; /* Further reduce banner height */
+  }
+
+  .banner img {
+    object-fit: cover; /* Ensure images fit well in smaller screens */
+  }
+
+  body {
+    padding: 10px; /* Add padding for better spacing */
+    justify-content: center; /* Adjust alignment */
+  }
+}
+
+/* Adjust for very small mobile screens */
+@media (max-width: 480px) {
+  .banner-container {
+    height: 200px; /* Smallest banner height */
+  }
+
+  body {
+    font-size: 14px; /* Smaller font size for narrow screens */
+  }
+}
