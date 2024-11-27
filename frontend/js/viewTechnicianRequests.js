@@ -1,4 +1,34 @@
-// Function to populate the table dynamically
+// Create a tooltip element
+const tooltip = document.createElement("div");
+tooltip.classList.add("tooltip");
+tooltip.style.position = "absolute";
+tooltip.style.background = "#000";
+tooltip.style.color = "orange";
+tooltip.style.padding = "5px 10px";
+tooltip.style.borderRadius = "4px";
+tooltip.style.fontSize = "12px";
+tooltip.style.display = "none";
+document.body.appendChild(tooltip);
+
+// Function to initialize tooltip functionality for rows
+function initializeTooltips() {
+    const rows = document.querySelectorAll(".requests-table tbody tr");
+    rows.forEach((row) => {
+        row.addEventListener("mousemove", (e) => {
+            // Update tooltip position and display
+            tooltip.textContent = "View Request"; // Set the tooltip text
+            tooltip.style.left = `${e.pageX + 10}px`;
+            tooltip.style.top = `${e.pageY + 10}px`;
+            tooltip.style.display = "block";
+        });
+
+        row.addEventListener("mouseleave", () => {
+            tooltip.style.display = "none"; // Hide tooltip when leaving row
+        });
+    });
+}
+
+
 function populateTechnicianRequestsTable(requests) {
   const tableBody = document.getElementById('requests-body');
   const noRequestsMessage = document.getElementById('no-requests-message');
@@ -57,6 +87,8 @@ function populateTechnicianRequestsTable(requests) {
           // Append row to the table body
           tableBody.appendChild(row);
       });
+
+      initializeTooltips();
   }
 }
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technician Offers</title>
+    <link rel="stylesheet" href="../css/offer.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <button class="nav-button" onclick="redirectToDashboard()">
+          RETURN
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <h1 class="page-title">OFFERS</h1>
+      <table class="offers-table">
+        <thead>
+          <tr>
+            <th>TECHNICIAN NAME</th>
+            <th>SERVICE</th>
+            <th>DESCRIPTION</th>
+          </tr>
+        </thead>
+        <tbody id="offers-body"></tbody>
+      </table>
+      <p id="no-offers-message" class="hidden">No Offers Found.</p>
+    </main>
+
+    <script src="../js/offer.js"></script>
+  </body>
+</html>
