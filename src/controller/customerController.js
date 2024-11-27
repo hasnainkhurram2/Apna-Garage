@@ -228,3 +228,54 @@ exports.payForRequest = async (req, res) => {
     });
   }
 };
+
+
+exports.getOffersForRequests = async (req, res) => {
+ 
+    const customerId = req.query.userId;
+   // // console.log(customerId);    correctly received
+   try {
+    
+    const customerId = req.query.userId;
+    // // console.log(customerId);    correctly received
+    const query = `
+    SELECT 
+    r.id AS request_id,
+    r.description AS request_description,
+    u.id AS technician_id,
+    u.name AS technician_name,
+	s.name AS service_name
+FROM 
+    "Request" r
+JOIN 
+    "Offer" o ON r.id = o.req_id
+JOIN 
+    "User" u ON o.tech_id = u.id
+JOIN 
+	"Service" s ON r.service_id = s.id
+WHERE 
+    r.requesting_user_id = :customerId;
+
+    `;
+  
+    console.log('Executing query...');
+    const data = await models.sequelize.query(query, {
+      type: models.Sequelize.QueryTypes.SELECT,
+      replacements: { customerId }, // Parameter binding
+    });
+  
+  
+
+    if (!data || data.length === 0) {
+      console.log('No offers found');
+      return res.status(404).json({ message: 'No offers found.' });
+    }
+
+    console.log('Data retrieved successfully:', data);
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.error('Error in getOffersForRequests:', error);
+    return res.status(500).json({ message: 'An internal server error occurred.' });
+  }
+
+};

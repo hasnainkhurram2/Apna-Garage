@@ -83,3 +83,9 @@ function redirectToViewRequestsStatus() {
 function redirectToUserProfile() {
   window.location.href = './customerProfile.html';
 }
+
+
+function redirectToOffersPage()
+{
+  window.location.href = './offer.html';
+}

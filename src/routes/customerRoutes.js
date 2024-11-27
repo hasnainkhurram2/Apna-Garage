@@ -20,4 +20,6 @@ router.route('/payment').post(customerController.payForRequest);
 
 router.route('/reqHistory').get(customerController.getCustomerRequests);
 
+router.route('/offer').get(customerController.getOffersForRequests);
+
 module.exports = router;
