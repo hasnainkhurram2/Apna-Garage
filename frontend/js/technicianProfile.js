@@ -4,10 +4,13 @@ let userId = 0;
 // Fetch technician data and display on page load
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const response = await fetch('http://127.0.0.1:3000/api/v1/technicians/technicianProfile', {
-      method: 'GET',
-      credentials: 'include',
-    });
+    const response = await fetch(
+      'http://127.0.0.1:3000/api/v1/technicians/technicianProfile',
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    );
     const result = await response.json();
 
     if (!response.ok) {
@@ -30,14 +33,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('contact').textContent = user.contact;
     const dob = new Date(user.dob).toLocaleDateString();
     document.getElementById('dob').textContent = dob;
-    document.getElementById('available').value = technician.availability ? 'true' : 'false';
+    document.getElementById('available').value = technician.availability
+      ? 'true'
+      : 'false';
     document.getElementById('experience').textContent = technician.experience;
     document.getElementById('expertise').value = technician.type;
     document.getElementById('workshop').textContent = technician.workplace;
 
     // console.log('Available:', document.getElementById('available').value);
     // console.log('Expertise:', document.getElementById('expertise').value);
-    
+
     // Save initial values for cancel functionality
     initialValues = {
       name: user.name,
@@ -62,11 +67,13 @@ function redirectToDashboard() {
 
 // Enable edit mode: show edit icons, save/cancel buttons, and enable dropdowns
 function enableEditMode() {
-  document.querySelectorAll('.edit-icon').forEach(pen => pen.classList.remove('hidden'));
+  document
+    .querySelectorAll('.edit-icon')
+    .forEach((pen) => pen.classList.remove('hidden'));
   document.querySelector('.profile-buttons').classList.remove('hidden');
 
   // Enable dropdowns
-  document.querySelectorAll('.dropdown').forEach(select => {
+  document.querySelectorAll('.dropdown').forEach((select) => {
     select.disabled = false;
   });
 }
@@ -88,10 +95,9 @@ function toggleFieldEditable(id) {
 
 // Save changes: gather all field values, including dropdown selections
 function saveChanges() {
-
-    console.log("Here in save changes");
+  console.log('Here in save changes');
   const updatedValues = {
-    id : userId,
+    id: userId,
     name: document.getElementById('name').textContent,
     email: document.getElementById('email').textContent,
     address: document.getElementById('address').textContent,
@@ -102,8 +108,8 @@ function saveChanges() {
     workplace: document.getElementById('workshop').textContent,
   };
 
-//   console.log(document.getElementById('available').value);
-//   console.log(document.getElementById('expertise').value);
+  //   console.log(document.getElementById('available').value);
+  //   console.log(document.getElementById('expertise').value);
 
   // Submit updated values to the server
   fetch('http://127.0.0.1:3000/api/v1/technicians/updateTechnicianInfo', {
@@ -114,8 +120,8 @@ function saveChanges() {
     },
     body: JSON.stringify(updatedValues),
   })
-    .then(response => response.json())
-    .then(result => {
+    .then((response) => response.json())
+    .then((result) => {
       if (result.success) {
         alert('Profile updated successfully!');
         window.location.href = './technicianProfile.html';
@@ -123,7 +129,7 @@ function saveChanges() {
         alert('Failed to update profile: ' + result.message);
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error saving profile:', error);
       alert('An error occurred while saving the profile.');
     });
@@ -131,7 +137,7 @@ function saveChanges() {
 
 // Cancel changes: reset fields to initial values and disable dropdowns
 function cancelChanges() {
-  Object.keys(initialValues).forEach(key => {
+  Object.keys(initialValues).forEach((key) => {
     if (key === 'available' || key === 'expertise') {
       document.getElementById(key).value = initialValues[key];
     } else {
@@ -140,15 +146,35 @@ function cancelChanges() {
   });
 
   // Disable dropdowns
-  document.querySelectorAll('.dropdown').forEach(select => {
+  document.querySelectorAll('.dropdown').forEach((select) => {
     select.disabled = true;
   });
 
   // Disable edit mode
-  document.querySelectorAll('.value-box').forEach(field => {
+  document.querySelectorAll('.value-box').forEach((field) => {
     field.contentEditable = false;
     field.classList.remove('editable');
   });
-  document.querySelectorAll('.edit-icon').forEach(pen => pen.classList.add('hidden'));
+  document
+    .querySelectorAll('.edit-icon')
+    .forEach((pen) => pen.classList.add('hidden'));
   document.querySelector('.profile-buttons').classList.add('hidden');
+}
+
+async function deleteMyAccount() {
+  if (confirm('Are you sure you want to delete your Account?')) {
+    const response = await fetch('http://127.0.0.1:3000/api/v1/users', {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    const result = response.json();
+    if (response.ok) {
+      alert('Account deleted');
+      window.location.href = './landingPage.html';
+    } else {
+      alert(`Error occurred: ${result.message}`);
+    }
+  } else {
+    window.location.href = './technicianProfile.html';
+  }
 }
