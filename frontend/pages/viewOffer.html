@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Offer - Apna Garage</title>
+    <link rel="stylesheet" href="../css/viewOffer.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>APNA GARAGE</h1>
+      </div>
+      <div class="nav-right">
+        <button class="nav-button" onclick="redirectToOffersPage()">
+          RETURN
+        </button>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="offer-container">
+      <h2 class="page-title">Offer Details</h2>
+
+      <!-- Request Details Section -->
+      <section class="request-details">
+        <h3>Initial Request Information</h3>
+        <p>
+          <strong>Request Name:</strong>
+          <span id="request-name">Loading...</span>
+        </p>
+        <p>
+          <strong>Description:</strong>
+          <span id="request-description">Loading...</span>
+        </p>
+      </section>
+
+      <!-- Offer Details Section -->
+      <section class="offer-details">
+        <h3>Offer Given by Technician</h3>
+        <p>
+          <strong>Technician Name:</strong>
+          <a href="#" id="technician-name" class="technician-link"
+            >Loading...</a
+          >
+        </p>
+        <p>
+          <strong>Demand:</strong> <span id="offer-demand">Loading...</span>
+        </p>
+        <p>
+          <strong>Description:</strong>
+          <span id="offer-description">Loading...</span>
+        </p>
+      </section>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="accept-button" onclick="confirmAction('ACCEPT')">ACCEPT</button>
+        <button class="reject-button" onclick="confirmAction('REJECT')">REJECT</button>
+      </div>
+    </main>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmation-popup" class="confirmation-popup">
+      <div class="popup-content">
+        <p id="popup-message">Are you sure you want to proceed?</p>
+        <div class="popup-actions">
+          <button id="popup-confirm" onclick="handlePopupConfirm()">Yes</button>
+          <button id="popup-cancel" onclick="handlePopupCancel()">No</button>
+        </div>
+      </div>
+    </div>
+    </main>
+
+    <!-- JavaScript File -->
+    <script src="../js/viewOffer.js"></script>
+  </body>
+</html>

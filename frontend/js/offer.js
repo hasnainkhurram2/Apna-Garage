@@ -58,6 +58,8 @@ function redirectToDashboard() {
                 row.dataset.technicianId = offer.technician_id;
                 row.dataset.technicianName = offer.technician_name;
                 row.dataset.serviceName = offer.service_name;
+                row.dataset.offerDemand = offer.offer_demand;
+                row.dataset.offerDescription = offer.offer_description;
     
                 row.addEventListener('click', () => {
                     // Include offer details as query parameters
@@ -67,8 +69,9 @@ function redirectToDashboard() {
                         technicianId: row.dataset.technicianId,
                         technicianName: row.dataset.technicianName,
                         serviceName: row.dataset.serviceName,
+                        offerDemand: row.dataset.offerDemand,
+                        offerDescription: row.dataset.offerDescription,
                     });
-    
                     window.location.href = `./viewOffer.html?${params.toString()}`;
                 });
     

@@ -239,9 +239,11 @@ exports.getOffersForRequests = async (req, res) => {
     const customerId = req.query.userId;
     // // console.log(customerId);    correctly received
     const query = `
-    SELECT 
+  SELECT 
     r.id AS request_id,
     r.description AS request_description,
+    o.description AS offer_description,
+    o.demand AS offer_demand,
     u.id AS technician_id,
     u.name AS technician_name,
 	s.name AS service_name
@@ -279,3 +281,37 @@ WHERE
   }
 
 };
+
+
+
+
+exports.viewTechnician = async (req, res) => {
+  
+  const technicianId = req.query.techId;
+  try {
+    const _user = await models.User.findOne({
+      where: {
+        id: technicianId,
+      },
+    });
+    const _technician = await models.Technician.findOne(
+      {
+        where : {
+          user_id : technicianId,
+        },
+      }
+    );
+     res.status(200).json({
+      _user,
+      _technician,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: `Oops, Something went wrong. Session Expired. Redirecting to Login`,
+    });
+  }
+
+};
+
+

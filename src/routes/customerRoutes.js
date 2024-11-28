@@ -22,4 +22,5 @@ router.route('/reqHistory').get(customerController.getCustomerRequests);
 
 router.route('/offer').get(customerController.getOffersForRequests);
 
+router.route('/technician').get(customerController.viewTechnician);
 module.exports = router;
