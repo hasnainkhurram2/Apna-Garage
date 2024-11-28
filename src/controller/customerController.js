@@ -112,7 +112,7 @@ exports.signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     console.log(req.body);
-
+    
     const _user = await models.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -135,26 +135,9 @@ exports.signUp = async (req, res) => {
     console.log('Success');
   } catch (err) {
     res.status(500).json({
-      error: err.message,
+      message: err.message,
     });
     console.log(err);
-  }
-};
-
-// function for retrieving feedback
-exports.getFeedback = async (req, res) => {
-  const _feedbackId = req.params.id; // Extract the feedback ID from the request URL.
-  const feedback = await models.feedback.findByPk(_feedbackId);
-
-  // If feedback with the given ID doesn't exist.
-  if (!feedback) {
-    res.status(404).json({
-      error: 'Feedback not found with that ID',
-    });
-  } else {
-    res.status(200).json({
-      data: feedback,
-    });
   }
 };
 
@@ -162,20 +145,23 @@ exports.getFeedback = async (req, res) => {
 exports.provideFeedback = async (req, res) => {
   try {
     const content = req.body.content;
+    const rating = req.body.rating;
     // Validate input
     console.log(
       `Content: ${content}, Session: ${req.session.userDetails.userName}`
     );
     if (!content) {
-      return res
-        .status(400)
-        .json({ message: 'User ID and content are required.' });
+      return res.status(400).json({ message: 'Feedback Content is required.' });
+    }
+    if (!rating) {
+      return res.status(400).json({ message: 'Rating is required.' });
     }
 
     // Create feedback
     const feedback = await models.Feedback.create({
       req_id: req.body.reqId,
       content,
+      rating,
     });
     if (!feedback) {
       return res.status(500).json({

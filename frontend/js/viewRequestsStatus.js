@@ -18,6 +18,9 @@ function populateRequestsTable(requests) {
       const cell4 = document.createElement('td');
       const cell5 = document.createElement('td');
       const dt = new Date(request.startTime);
+      const button = document.createElement('button');
+      cell5.appendChild(button);
+
       cell1.textContent =
         `${dt.toLocaleDateString()} \n ${dt.toLocaleTimeString()}` || 'N/A';
       cell2.textContent = request.name || 'N/A';
@@ -27,22 +30,24 @@ function populateRequestsTable(requests) {
           cell4.textContent = 'Completed';
           if (request.feedId !== null && request.feedId !== undefined) {
             cell5.classList.add('done-button');
-            cell5.textContent = 'Submitted';
+            button.textContent = 'Submitted';
           } else {
             cell5.classList.add('active-button');
-            cell5.textContent = 'Give Feedback';
+            button.textContent = 'Give Feedback';
+            button.classList.add('active');
           }
         } else {
           cell4.textContent = 'In Progress';
           cell5.classList.add('inactive-button');
-          cell5.textContent = 'Not Available';
+          button.textContent = 'Not Available';
         }
       } else {
         cell4.textContent = 'Not Accepted';
-        cell5.textContent = 'Not Available';
+        button.textContent = 'Not Available';
         cell5.classList.add('inactive-button');
       }
-      cell5.value = request.reqId;
+      button.classList.add('table-button');
+      button.value = request.reqId;
       row.appendChild(cell1);
       row.appendChild(cell2);
       row.appendChild(cell3);
@@ -78,8 +83,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 tableBody.addEventListener('click', async (e) => {
   e.preventDefault();
-  if (event.target.classList.contains('active-button')) {
-    const activeButton = document.querySelector('.active-button');
+  if (event.target.classList.contains('active')) {
+    const activeButton = document.querySelector('.active');
     const params = new URLSearchParams({
       reqId: activeButton.value,
     });

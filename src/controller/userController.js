@@ -152,6 +152,14 @@ exports.updatePassword = async (req, res) => {
 
 exports.sendVerificationCode = async (req, res) => {
   try {
+    const presence = await models.User.findOne({
+      where: { email: req.body.email },
+    });
+    if(presence) {
+      return res.status(500).json({
+        message: 'An Account with this Email Already Exists. Use a Different Email to Sign Up.'
+      });
+    }
     const verCode = crypto.randomBytes(4).toString('hex');
     const transporter = nodemailer.createTransport({
       service: 'gmail',

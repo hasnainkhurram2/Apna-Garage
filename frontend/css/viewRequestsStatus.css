@@ -54,24 +54,31 @@ body {
     font-size: 1.5rem;
 }
 
-.active-button {
+.table-button {
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;}
+
+.active-button button {
     color: white;
     background-color: orange;
 }
-.active-button:hover {
+.active-button button:hover {
     color: white;
     background-color: black;
     font-weight: bold;
     cursor: pointer;
 }
-.inactive-button {
+.inactive-button button {
     color: white;
     background-color: red;
 }
-.done-button {
+.done-button button {
     color: white;
     background-color: green;
-/* Responsive Styling */
+}
+    /* Responsive Styling */
 @media (max-width: 1200px) {
     .requests-table th,
     .requests-table td {
