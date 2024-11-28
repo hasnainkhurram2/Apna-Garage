@@ -7,7 +7,8 @@ class Feedback extends Model {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
       as: 'feedbacks',
-    }); // A feedback belongs to a user
+      unique: true,
+    });
   }
 }
 
@@ -22,6 +23,9 @@ module.exports = (sequelize) => {
       content: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      rating: {
+        type: DataTypes.FLOAT,
       },
     },
     {

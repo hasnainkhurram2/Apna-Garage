@@ -8,7 +8,7 @@ exports.signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     console.log(req.body);
-
+    
     const _user = await models.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -31,7 +31,7 @@ exports.signUp = async (req, res) => {
     console.log('Success');
   } catch (err) {
     res.status(500).json({
-      error: err.message,
+      message: err.message,
     });
     console.log(err);
   }
@@ -47,28 +47,24 @@ exports.requestsMadeByCustomers = async (req, res) => {
       JOIN "User" u ON u.id = t.user_id
       WHERE t.user_id = :technicianId
     `;
-  
+
     const result = await models.sequelize.query(query1, {
       type: models.Sequelize.QueryTypes.SELECT,
       replacements: { technicianId }, // Parameter binding
     });
-  
+
     const technicianType = result[0]?.type; // Access the first row's 'type'
     let technician = '';
-    if (technicianType === 'mechanic')
-    {
+    if (technicianType === 'mechanic') {
       technician = '4';
     }
-    if (technicianType === 'fuelSupplier')
-    {
+    if (technicianType === 'fuelSupplier') {
       technician = '3';
     }
-    if (technicianType === 'electrician')
-    {
+    if (technicianType === 'electrician') {
       technician = '2';
     }
-    if (technicianType === 'bodyWorker')
-    {
+    if (technicianType === 'bodyWorker') {
       technician = '1';
     }
 
@@ -100,7 +96,7 @@ ORDER BY
     console.log('Executing query...');
     const data = await models.sequelize.query(query, {
       type: models.Sequelize.QueryTypes.SELECT,
-      replacements : {technician},
+      replacements: { technician },
     });
 
     if (!data || data.length === 0) {
@@ -112,7 +108,9 @@ ORDER BY
     return res.status(200).json({ data });
   } catch (error) {
     console.error('Error in requestsMadeByCustomers:', error);
-    return res.status(500).json({ message: 'An internal server error occurred.' });
+    return res
+      .status(500)
+      .json({ message: 'An internal server error occurred.' });
   }
 };
 
@@ -123,14 +121,12 @@ exports.getTechnician = async (req, res) => {
         id: req.session.userDetails.userId,
       },
     });
-    const _technician = await models.Technician.findOne(
-      {
-        where : {
-          user_id : req.session.userDetails.userId,
-        },
-      }
-    );
-     res.status(200).json({
+    const _technician = await models.Technician.findOne({
+      where: {
+        user_id: req.session.userDetails.userId,
+      },
+    });
+    res.status(200).json({
       _user,
       _technician,
     });
@@ -141,7 +137,6 @@ exports.getTechnician = async (req, res) => {
     });
   }
 };
-
 
 exports.updateTechnician = async (req, res) => {
   try {
@@ -203,5 +198,43 @@ exports.updateTechnician = async (req, res) => {
       message:
         'An error occurred while updating the user. Please try again later.',
     });
+  }
+};
+
+exports.getFeedbacks = async (req, res) => {
+  try {
+    const techId = req.session.userDetails.userId;
+    const reqs = await models.Request.findAll({
+      where: { providing_user_id: techId },
+      attributes: ['id', 'requesting_user_id', 'startTime', 'service_id'],
+    });
+    let feedbacks = [];
+    for (let i = 0; i < reqs.length; i++) {
+      const feedback = await models.Feedback.findOne({
+        where: { req_id: reqs[i].id },
+        attributes: ['content', 'rating'],
+      });
+      if (feedback) {
+        const service = await models.Service.findOne({
+          where: { id: reqs[i].service_id },
+          attributes: ['name'],
+        });
+        const custName = await models.User.findOne({
+          where: { id: reqs[i].requesting_user_id },
+          attributes: ['name'],
+        });
+        feedback.dataValues.serviceName = service.name;
+        feedback.dataValues.name = custName.name;
+        console.log(feedback.name, feedback.serviceName);
+        feedbacks.push(feedback);
+      }
+    }
+    console.log(feedbacks);
+
+    return res.status(200).json({
+      data: feedbacks,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
