@@ -1,21 +1,13 @@
+const params = new URLSearchParams(window.location.search);
+const data =
+{
+  requestId : params.get('requestId'),
+  demand : params.get('demand'),
+}
+console.log(data);
 document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:3000/api/v1/session/', {
-      method: 'GET',
-      credentials: 'include',
-    });
-    const result = await response.json();
-    if (!response.ok || result.message === 'Unauthorized.') {
-      if (confirm('Session Expired or Unauthorized Access. Please Login.')) {
-        window.location.href = './login.html';
-      }
-      console.log(`Failed inside the try block: ${response.message}.`);
-    }
-    const costText = document.getElementById('payment-cost');
-    costText.textContent = `PKR ${result.reqDetails.cost}`;
-  } catch (error) {
-    console.log(`Error while fetching Session data: ${error}`);
-  }
+  const costText = document.getElementById('payment-cost');
+    costText.textContent = `PKR ${data.demand}`;
 });
 document
   .querySelector('.payment-form')
@@ -37,13 +29,12 @@ document
       // Prepare the request payload
       const payload = {
         paymentType: 'card', // Hardcoded to card payment
-        amount: 1000.0, // Replace with dynamic amount if needed
+        amount: data.demand
       };
 
       // Send POST request to the API
       const response = await fetch(
-        'http://127.0.0.1:3000/api/v1/customers/payment',
-        {
+`http://127.0.0.1:3000/api/v1/customers/payment?requestId=${data.requestId}`,        {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -55,11 +46,22 @@ document
 
       // Handle response
       if (response.ok) {
-        const result = await response.json();
-        // Show confirmation and redirect to dashboard
-        if (confirm('Payment successful! Redirecting to your dashboard.')) {
-          window.location.href = './customerDashboard.html';
+        try {
+          const result = await fetch(`http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`, {
+          method: 'POST',
+          credentials: 'include',
+        });
+        
+        // Check if the response is okay
+        if (!result.ok) {
+          throw new Error('There was an error');
         }
+    
+      } catch (error) {
+        console.error(error);
+        alert('An error occurred while processing payment');
+      }
+          window.location.href = `./paymentSuccessful.html`;
       } else {
         // Handle errors returned by the API
         const errorData = await response.json();

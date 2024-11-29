@@ -1,3 +1,4 @@
+/* General Page Styling */
 body {
     background-color: black;
     color: white;
@@ -15,7 +16,7 @@ body {
 }
 
 /* Table Styling */
-.requests-table {
+.offers-table {
     margin: 20px auto;
     border-collapse: collapse;
     width: 80%;
@@ -27,27 +28,27 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
-.requests-table th,
-.requests-table td {
+.offers-table th,
+.offers-table td {
     padding: 1.5rem;
     font-size: 1.2rem;
     text-align: center;
     border: 1px solid orange;
 }
 
-.requests-table th {
+.offers-table th {
     background-color: black;
     color: orange;
     font-weight: bold;
     cursor: default; /* Default cursor for headers */
 }
 
-.requests-table tr {
+.offers-table tr {
     transition: background-color 0.3s ease;
     cursor: pointer; /* Pointer cursor for rows */
 }
 
-.requests-table tr:hover {
+.offers-table tr:hover {
     background-color: rgba(255, 174, 0, 0.2);
 }
 
@@ -66,7 +67,7 @@ body {
     white-space: nowrap; /* Prevent text wrapping */
 }
 
-/* No Requests Message Styling */
+/* No Offers Message Styling */
 .hidden {
     display: none;
     margin-top: 20px;
@@ -76,8 +77,8 @@ body {
 
 /* Responsive Styling */
 @media (max-width: 768px) {
-    .requests-table th,
-    .requests-table td {
+    .offers-table th,
+    .offers-table td {
         font-size: 1rem;
         padding: 1rem;
     }
@@ -88,8 +89,8 @@ body {
 }
 
 @media (max-width: 480px) {
-    .requests-table th,
-    .requests-table td {
+    .offers-table th,
+    .offers-table td {
         font-size: 0.9rem;
         padding: 0.8rem;
     }

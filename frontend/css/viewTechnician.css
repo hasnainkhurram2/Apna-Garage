@@ -1,0 +1,156 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 70px; /* Offset for navbar */
+    text-align: center;
+}
+
+h2 {
+   
+    text-transform: uppercase; /* Transform text to uppercase (optional) */
+    color: orange;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+/* Profile Container */
+.profile-container {
+    margin-top: 50px;
+}
+
+/* Profile Table */
+.profile-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 95%; /* Wider table */
+    max-width: 1000px; /* Increased horizontal width */
+    background-color: #333;
+    color: white;
+    border: 2px solid orange;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.profile-table td {
+    padding: 1rem; /* Reduced vertical padding for a shorter table */
+    font-size: 1.2rem; /* Larger font size for readability */
+    text-align: left;
+    border: 1px solid orange;
+    vertical-align: middle;
+}
+
+.field {
+    position: relative;
+}
+
+.value-box {
+    display: inline-block;
+    background-color: #000; /* Black rectangle for values */
+    border: 1px solid orange; /* Orange outline */
+    padding: 0.5rem 1rem;
+    color: white; /* White text inside the value box */
+    border-radius: 5px; /* Slightly rounded edges */
+    font-size: 1rem;
+    width: 85%; /* Values fill most of the right area */
+}
+
+/* Toggle Button */
+.toggle-button {
+    display: block;
+    background-color: orange;
+    color: white;
+    padding: 0.3rem 1rem; /* Adjusted size to fit beneath the password */
+    margin-top: 0.5rem; /* Proper spacing from the password field */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem; /* Slightly smaller font size */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle-button:hover {
+    background-color: #ffb84d;
+    transform: scale(1.05);
+}
+
+
+/* Editable Fields */
+.value-box.editable {
+    border: 2px dashed orange;
+    background-color: #222; /* Slightly lighter background for editing */
+    color: white;
+    outline: none;
+  }
+  
+  /* Hidden Elements */
+  .hidden {
+    display: none;
+  }
+  
+  /* Pen Icon */
+  .edit-icon {
+    font-size: 1.2rem;
+    color: orange;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .edit-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Buttons at the Bottom */
+  .profile-buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .button.orange {
+    background-color: orange;
+    color: black;
+  }
+
+  .button.orange:hover {
+    background-color: green;
+    color: white;
+  }
+  
+  .button.gray {
+    background-color: gray;
+    color: white;
+  }
+
+  .button.gray:hover {
+    background-color: red;
+    color: black;
+  }
+  
+/* Dropdown Styles */
+.dropdown {
+    background-color: #000;
+    color: white;
+    border: 1px solid orange;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 91%;
+    font-size: 1rem;
+    outline: none;
+}
+
+.dropdown:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -22,6 +22,7 @@ exports.signUp = async (req, res) => {
       user_id: _user.id,
       experience: req.body.experience,
       type: req.body.expertise,
+      availability: true,
       workplace: req.body.workplace,
     });
     res.status(200).json({
@@ -176,7 +177,7 @@ exports.updateTechnician = async (req, res) => {
       },
       { where: { user_id: data.id } }
     );
-
+    req.session.userDetails.userName = data.name;
     // Check if any rows were updated in either table
     if (userRowsUpdated === 0 && technicianRowsUpdated === 0) {
       return res.status(404).json({
