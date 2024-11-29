@@ -24,4 +24,6 @@ router.route('/offer').get(customerController.getOffersForRequests);
 router.route('/technician').get(customerController.viewTechnician);
 
 router.route('/requestAccepted').post(customerController.updateProvidingUserId);
+
+router.route('/invoice').post(customerController.sendInvoiceToCustomer)
 module.exports = router;

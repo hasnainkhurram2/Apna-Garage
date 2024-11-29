@@ -60,12 +60,16 @@ async function handlePopupConfirm() {
             credentials: 'include',
             body: JSON.stringify({technicianId, requestId}),
         });
+        if(!response.ok)
+        {
+            alert("There was an error accepting requesting");
+        }
     }
     catch(error)
     {
         console.log(error);
     }
-    window.location.href = "invoiceForwarded.html";
+    window.location.href = `invoiceForwarded.html?${params.toString()}`;
 }
 
 // Handle cancellation (No button)
