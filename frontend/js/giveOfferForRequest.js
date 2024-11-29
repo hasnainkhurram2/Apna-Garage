@@ -97,9 +97,6 @@ function navigateToDashboard() {
       techId,
     };
 
-
-
-
     try {
       const response = await fetch(
         'http://127.0.0.1:3000/api/v1/requests/saveOffer',
@@ -113,12 +110,6 @@ function navigateToDashboard() {
         }
       );
       const result = await response.json();
-  
-    
-    alert("Form successfully submitted!");
-  
-  //   Hide the demand form
-    closeDemandForm();
     window.location.href = './offerForwarded.html';
      }
   

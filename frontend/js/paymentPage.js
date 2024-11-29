@@ -46,11 +46,22 @@ document
 
       // Handle response
       if (response.ok) {
-        const result = await response.json();
-        // Show confirmation and redirect to dashboard
-        if (confirm('Payment successful! Redirecting to your dashboard.')) {
-          window.location.href = './customerDashboard.html';
+        try {
+          const result = await fetch(`http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`, {
+          method: 'POST',
+          credentials: 'include',
+        });
+        
+        // Check if the response is okay
+        if (!result.ok) {
+          throw new Error('There was an error');
         }
+    
+      } catch (error) {
+        console.error(error);
+        alert('An error occurred while processing payment');
+      }
+          window.location.href = `./paymentSuccessful.html`;
       } else {
         // Handle errors returned by the API
         const errorData = await response.json();
