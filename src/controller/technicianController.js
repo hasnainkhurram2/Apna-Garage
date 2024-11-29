@@ -22,6 +22,7 @@ exports.signUp = async (req, res) => {
       user_id: _user.id,
       experience: req.body.experience,
       type: req.body.expertise,
+      availability: true,
       workplace: req.body.workplace,
     });
     res.status(200).json({

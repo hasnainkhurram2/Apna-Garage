@@ -254,7 +254,7 @@ JOIN
 JOIN 
 	"Service" s ON r.service_id = s.id
 WHERE 
-    r.requesting_user_id = :customerId;
+    r.requesting_user_id = :customerId AND r.providing_user_id IS NULL
 
     `;
   
@@ -374,10 +374,14 @@ exports.sendInvoiceToCustomer = async (req, res) => {
       if (!requestId || !serviceName || !technicianId || !technicianName || !offerDemand) {
           return res.status(400).json({ error: "Missing required fields in the request body" });
       }
-
+      const user1 = await models.User.findOne({
+        where: { id: technicianId },
+        attributes: ['email', 'contact'], 
+      });
       // Construct the payment page URL
       const paymentPageUrl = `http://127.0.0.1:5500/Apna-Garage/frontend/pages/paymentPage.html?requestId=${requestId}&demand=${encodeURIComponent(offerDemand)}`;
-
+      const technicianContact = user1.contact;
+      const technicianEmail = user1.email;
       // Create email content
       const emailHtml = `
           <h1>Apna Garage - Service Invoice</h1>
@@ -403,6 +407,14 @@ exports.sendInvoiceToCustomer = async (req, res) => {
               <tr>
                   <th>Technician Name</th>
                   <td>${technicianName}</td>
+              </tr>
+               <tr>
+                  <th>Technician Contact Number</th>
+                  <td>${technicianContact}</td>
+              </tr>
+                <tr>
+                  <th>Technician Email</th>
+                  <td>${technicianEmail}</td>
               </tr>
               <tr>
                   <th>Offer Demand</th>
@@ -433,7 +445,7 @@ exports.sendInvoiceToCustomer = async (req, res) => {
       const mailOptions = {
           from: '"Apna Garage" <apna.garage.2024@gmail.com>',
           to: customerEmail,
-          subject: `Invoice for Service Request ID: ${requestId}`,
+          subject: `Invoice ID: ${requestId}`,
           html: emailHtml,
       };
 
