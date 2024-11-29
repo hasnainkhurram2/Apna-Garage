@@ -1,21 +1,13 @@
+const params = new URLSearchParams(window.location.search);
+const data =
+{
+  requestId : params.get('requestId'),
+  demand : params.get('demand'),
+}
+console.log(data);
 document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:3000/api/v1/session/', {
-      method: 'GET',
-      credentials: 'include',
-    });
-    const result = await response.json();
-    if (!response.ok || result.message === 'Unauthorized.') {
-      if (confirm('Session Expired or Unauthorized Access. Please Login.')) {
-        window.location.href = './login.html';
-      }
-      console.log(`Failed inside the try block: ${response.message}.`);
-    }
-    const costText = document.getElementById('payment-cost');
-    costText.textContent = `PKR ${result.reqDetails.cost}`;
-  } catch (error) {
-    console.log(`Error while fetching Session data: ${error}`);
-  }
+  const costText = document.getElementById('payment-cost');
+    costText.textContent = `PKR ${data.demand}`;
 });
 document
   .querySelector('.payment-form')
@@ -37,13 +29,12 @@ document
       // Prepare the request payload
       const payload = {
         paymentType: 'card', // Hardcoded to card payment
-        amount: 1000.0, // Replace with dynamic amount if needed
+        amount: data.demand
       };
 
       // Send POST request to the API
       const response = await fetch(
-        'http://127.0.0.1:3000/api/v1/customers/payment',
-        {
+`http://127.0.0.1:3000/api/v1/customers/payment?requestId=${data.requestId}`,        {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
 const config = require('../config/config');
-
+const nodemailer = require('nodemailer');
 exports.getRequestHistory = async (req, res) => {
   const temp = await models.Request_Service.findAll({
     where: {
@@ -208,8 +208,9 @@ exports.payForRequest = async (req, res) => {
   try {
     
     const _payment = models.Payment.create({
-      request_id: req.session.reqDetails.reqId,
+      request_id: req.query.requestId,
       paymentType: req.body.paymentType,
+      amount: req.body.amount,
     });
     if (_payment) {
       delete req.session.reqDetails;
@@ -340,6 +341,112 @@ exports.updateProvidingUserId = async (req, res) => {
 };
 
 
+exports.sendInvoiceToCustomer = async (req, res) => {
+  try {
+      // Retrieve userId from session
+      const userId = req.session.userDetails.userId;
+
+      if (!userId) {
+          return res.status(400).json({ error: "User is not logged in" });
+      }
+
+      // Fetch the user's email
+      const user = await models.User.findOne({ where: { id: userId } });
+
+      if (!user || !user.email) {
+          return res.status(404).json({ error: "User not found or email is missing" });
+      }
+
+      const customerEmail = user.email;
+
+      // Extract invoice details from request body
+      const {
+          requestId,
+          serviceName,
+          requestDescription,
+          technicianId,
+          technicianName,
+          offerDemand,
+          offerDescription,
+      } = req.body;
+
+      // Validate that required fields are provided
+      if (!requestId || !serviceName || !technicianId || !technicianName || !offerDemand) {
+          return res.status(400).json({ error: "Missing required fields in the request body" });
+      }
+
+      // Construct the payment page URL
+      const paymentPageUrl = `http://127.0.0.1:5500/Apna-Garage/frontend/pages/paymentPage.html?requestId=${requestId}&demand=${encodeURIComponent(offerDemand)}`;
+
+      // Create email content
+      const emailHtml = `
+          <h1>Apna Garage - Service Invoice</h1>
+          <p>Dear ${user.name},</p>
+          <p>Thank you for using Apna Garage! Below are the details of your recent service request:</p>
+          <table border="1" cellspacing="0" cellpadding="8">
+              <tr>
+                  <th>Request ID</th>
+                  <td>${requestId}</td>
+              </tr>
+              <tr>
+                  <th>Service Name</th>
+                  <td>${serviceName}</td>
+              </tr>
+              <tr>
+                  <th>Request Description</th>
+                  <td>${requestDescription || "Not Provided"}</td>
+              </tr>
+              <tr>
+                  <th>Technician ID</th>
+                  <td>${technicianId}</td>
+              </tr>
+              <tr>
+                  <th>Technician Name</th>
+                  <td>${technicianName}</td>
+              </tr>
+              <tr>
+                  <th>Offer Demand</th>
+                  <td>${offerDemand}</td>
+              </tr>
+              <tr>
+                  <th>Offer Description</th>
+                  <td>${offerDescription}</td>
+              </tr>
+          </table>
+          <p>To proceed with the payment for this service, please click the link below:</p>
+          <p><a href="${paymentPageUrl}" target="_blank">Pay Now</a></p>
+          <p>We hope the service met your expectations. If you have any feedback or concerns, please don't hesitate to reach out.</p>
+          <p>Best regards,</p>
+          <p><b>Apna Garage Team</b></p>
+      `;
+
+      // Create the transporter
+      const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+              user: 'apna.garage.2024@gmail.com',
+              pass: config.database.appPassword,
+          },
+      });
+
+      // Define mail options
+      const mailOptions = {
+          from: '"Apna Garage" <apna.garage.2024@gmail.com>',
+          to: customerEmail,
+          subject: `Invoice for Service Request ID: ${requestId}`,
+          html: emailHtml,
+      };
+
+      // Send the email
+      const info = await transporter.sendMail(mailOptions);
+
+      console.log('Email sent: %s', info.messageId);
+      res.status(200).json({ message: "Invoice sent successfully!" });
+  } catch (error) {
+      console.error('Error sending invoice email:', error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 
 
