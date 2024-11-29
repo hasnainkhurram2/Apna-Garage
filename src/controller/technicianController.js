@@ -181,7 +181,7 @@ exports.updateTechnician = async (req, res) => {
       },
       { where: { user_id: data.id } }
     );
-
+    req.session.userDetails.userName = data.name;
     // Check if any rows were updated in either table
     if (userRowsUpdated === 0 && technicianRowsUpdated === 0) {
       return res.status(404).json({

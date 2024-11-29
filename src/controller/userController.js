@@ -223,7 +223,7 @@ exports.updateUser = async (req, res) => {
       },
       { where: { id: user } }
     );
-
+    req.session.userDetails.userName = data.name;
     // Handle cases where no rows were updated
     if (rowsUpdated === 0) {
       return res.status(404).json({

@@ -1,6 +1,9 @@
+ // Get URL parameters
+ const params = new URLSearchParams(window.location.search);
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Get URL parameters
-    const params = new URLSearchParams(window.location.search);
+   
     // Extract data from URL parameters
     const offerData = {
         requestId: params.get("requestId"),
@@ -44,12 +47,25 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 // Handle confirmation (Yes button)
-function handlePopupConfirm() {
-    // Here you can handle the action (e.g., update the offer status, redirect, etc.)
-    alert("Action confirmed!");
+async function handlePopupConfirm() {
+    const technicianId = params.get("technicianId");
+    const requestId = params.get("requestId"); // Get requestId from params
 
-    // Close the popup
-    document.getElementById("confirmation-popup").style.display = "none";
+    try {
+        const response = await fetch(`http://127.0.0.1:3000/api/v1/customers/requestAccepted`,  {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({technicianId, requestId}),
+        });
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+    window.location.href = "invoiceForwarded.html";
 }
 
 // Handle cancellation (No button)

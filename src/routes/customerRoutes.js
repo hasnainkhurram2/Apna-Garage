@@ -1,5 +1,6 @@
 const express = require('express');
 const customerController = require('./../controller/customerController.js');
+const customer = require('../models/customer.js');
 
 const router = express.Router();
 
@@ -23,4 +24,6 @@ router.route('/reqHistory').get(customerController.getCustomerRequests);
 router.route('/offer').get(customerController.getOffersForRequests);
 
 router.route('/technician').get(customerController.viewTechnician);
+
+router.route('/requestAccepted').post(customerController.updateProvidingUserId);
 module.exports = router;

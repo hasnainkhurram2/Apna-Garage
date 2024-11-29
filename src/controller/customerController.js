@@ -231,9 +231,6 @@ exports.payForRequest = async (req, res) => {
 
 
 exports.getOffersForRequests = async (req, res) => {
- 
-    const customerId = req.query.userId;
-   // // console.log(customerId);    correctly received
    try {
     
     const customerId = req.query.userId;
@@ -282,9 +279,6 @@ WHERE
 
 };
 
-
-
-
 exports.viewTechnician = async (req, res) => {
   
   const technicianId = req.query.techId;
@@ -313,5 +307,40 @@ exports.viewTechnician = async (req, res) => {
   }
 
 };
+
+exports.updateProvidingUserId = async (req, res) => {
+    try {
+        const { technicianId, requestId } = req.body;
+
+        if (!technicianId || !requestId) {
+            return res.status(400).json({ error: "An error occurred" });
+        }
+
+        // Update the providing_user_id in the Request table
+        const updatedRequest = await models.Request.update(
+            { providing_user_id: technicianId },
+            {
+                where: {
+                    id: requestId
+                }
+            }
+        );
+
+        if (updatedRequest[0] === 0) { // Check if any rows were updated
+            return res.status(404).json({ error: "Request not found or no changes made" });
+        }
+        else
+        {
+          res.status(200).json({ message: "Request updated successfully" });
+        }
+    } catch (error) {
+        console.error("Error updating providing_user_id:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
+
+
 
 

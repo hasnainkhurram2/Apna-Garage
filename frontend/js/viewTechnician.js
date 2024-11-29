@@ -36,12 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('expertise').textContent = technician.type.charAt(0).toUpperCase() + technician.type.slice(1);
     document.getElementById('workshop').textContent = technician.workplace;
 
-    // console.log('Available:', document.getElementById('available').value);
-    // console.log('Expertise:', document.getElementById('expertise').value);
-
-    
-    
-  
   } catch (error) {
     console.error('Error fetching profile:', error);
   }
