@@ -32,7 +32,7 @@ function populatefeedbacksdbacksTable(feedbacks) {
 }
 // Function to redirect to dashboard
 function redirectToDashboard() {
-  window.location.href = './customerDashboard.html';
+  window.location.href = './technicianDashboard.html';
 }
 
 // On page load, populate the feedbacks table
