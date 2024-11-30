@@ -54,15 +54,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(error);
   }
 });
-tableBody.addEventListener('click', async (e) => {
-  e.preventDefault();
-  if (event.target.classList.contains('active-button')) {
-    const activeButton = document.querySelector('.active-button');
-    const params = new URLSearchParams({
-      reqId: activeButton.value,
-    });
-    window.location.href = `./providefeedbacksdback.html?${params.toString()}`;
-  } else {
-    console.log('Did not recieve the event properly.', event.target.classList);
-  }
-});

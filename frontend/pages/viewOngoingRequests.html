@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Request Status</title>
-    <link rel="stylesheet" href="../css/viewTechnicianRequests.css" />
+    <link rel="stylesheet" href="../css/viewRequestsStatus.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
   </head>
   <body>
@@ -14,7 +14,7 @@
       </div>
       <div class="nav-right">
         <!-- Log out button with confirmation -->
-        <button class="nav-button" onclick="backToTechnicianDashboard()">
+        <button class="nav-button" onclick="redirectToDashboard()">
           RETURN
         </button>
       </div>
@@ -22,22 +22,25 @@
 
     <!-- Page Content -->
     <main>
-      <h1 class="page-title">REQUESTS</h1>
+      <h1 class="page-title">ONGOING REQUESTS</h1>
       <table class="requests-table">
         <thead>
           <tr>
-            <th>SERVICE</th>
-            <th>DESCRIPTION</th>
             <th>REQUESTED BY</th>
-            <th>LOCATION</th>
+            <th>REQUESTED SERVICE</th>
+            <th>REQUEST DESCRIPTION</th>
             <th>TIME</th>
+            <th>LOCATION</th>
+            <th>MARK COMPLETED</th>
           </tr>
         </thead>
         <tbody id="requests-body"></tbody>
       </table>
-      <p id="no-requests-message" class="'hidden">No Requests Found.</p>
+      <p id="no-requests-message" class="hidden">
+        No Requests are currently being served by you.
+      </p>
     </main>
 
-    <script src="../js/viewTechnicianRequests.js"></script>
+    <script src="../js/viewOngoingRequests.js"></script>
   </body>
 </html>

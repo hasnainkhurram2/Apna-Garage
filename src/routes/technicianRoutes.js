@@ -17,4 +17,12 @@ router
 
 router.route('/feedbacks').get(technicianController.getFeedbacks);
 
+router
+  .route('/getTechnicianByReqId')
+  .post(technicianController.getTechnicianByReqId);
+
+router.route('/curRequests').get(technicianController.getCurRequests);
+
+router.route('/markCompleted').put(technicianController.markCompleted);
+
 module.exports = router;

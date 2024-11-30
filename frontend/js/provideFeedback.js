@@ -1,6 +1,4 @@
-const urlParams = new URLSearchParams(window.location.search);
-const reqId = urlParams.get('reqId');
-console.log(reqId);
+let reqId = null;
 // Function to redirect to the homepage
 function returnToHome() {
   alert('Returning to homepage...');
@@ -16,6 +14,35 @@ function logout() {
 }
 
 // Star Rating Interaction
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    reqId = await urlParams.get('reqId');
+    console.log(reqId);
+    const response = await fetch(
+      'http://127.0.0.1:3000/api/v1/technicians/getTechnicianByReqId',
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          reqId,
+        }),
+      }
+    );
+    const result = await response.json();
+    if (!response.ok) {
+      alert(result.message);
+      return;
+    }
+    document.getElementById('name').textContent = result._user.name;
+  } catch (error) {
+    console.log(error);
+    alert('Oops, Something went wrong. Try Again Later.');
+  }
+});
 const stars = document.querySelectorAll('.star-rating span');
 let selectedRating = 0; // Store the selected rating
 
@@ -38,6 +65,7 @@ stars.forEach((star) => {
 });
 
 // Submit Feedback
+
 const submitButton = document.querySelector('.submit-feedback');
 const reviewBox = document.querySelector('.review-box');
 

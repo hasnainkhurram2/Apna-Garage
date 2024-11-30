@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('experience').textContent = technician.experience;
     document.getElementById('expertise').value = technician.type;
     document.getElementById('workshop').textContent = technician.workplace;
+    document.getElementById('rating').textContent = technician.rating;
 
     // console.log('Available:', document.getElementById('available').value);
     // console.log('Expertise:', document.getElementById('expertise').value);
