@@ -7,9 +7,11 @@ exports.getSessionData = async (req, res) => {
     console.log('Failed');
     return res.status(401).json({ message: 'Unauthorized' });
   }
+
+  console.log(req.session.reqDetails);
+
   res.status(200).json({
     userDetails: req.session.userDetails,
     reqDetails: req.session.reqDetails,
   });
 };
-

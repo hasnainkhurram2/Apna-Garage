@@ -1,7 +1,10 @@
 const models = require('../models/index');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const config = require('../config/config');
 const moment = require('moment');
+const nodemailer = require('nodemailer');
+
 exports.signUp = async (req, res) => {
   try {
     const salt = 10;
@@ -321,5 +324,47 @@ exports.markCompleted = async (req, res) => {
     return res.status(500).json({
       message: 'Error while trying to mark Completed.',
     });
+  }
+};
+exports.sendConfirmation = async (req, res) => {
+  try {
+    console.log('I did this now: ', req.params.id);
+    const _req = await models.Request.findByPk(req.params.id);
+    console.log('Email will be sent to him: ', _req.requesting_user_id);
+    const _user = await models.User.findByPk(_req.requesting_user_id);
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'apna.garage.2024@gmail.com',
+        pass: config.database.appPassword,
+      },
+    });
+
+    const mailOptions = {
+      from: 'Apna Garage Team <apna.garage.2024@gmail.com>',
+      to: _user.email,
+      subject: 'Offer Received',
+      text: `Dear User, you have an offer from a technician. Please login to view it`, // Plain text email
+      html: `<body>
+
+    <p>Dear User,</p>
+
+    <p>You have received an offer from a technician. Please log into your account to view it.</p>
+
+    <p><a href="http://127.0.0.1:5500/frontend/pages/login.html">Log into Your Account</a></p>
+
+    <p>Best Regards,</p>
+    <p>Apna Garage Team</p>
+
+</body>`, // HTML version
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ data: 'Email sent' });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+    console.log(error);
   }
 };
