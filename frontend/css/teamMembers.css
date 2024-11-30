@@ -1,0 +1,79 @@
+body {
+    padding-top: 70px; /* Account for fixed navbar */
+    background: url("../img/marble.png") no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: auto; 
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 70px); /* Full height minus navbar */
+    color: white;
+    text-align: center;
+  }
+  
+  .form-container h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  .team-layout {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five equal columns */
+    gap: 0.5rem;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    height: 100%; /* Fill the container height */
+  }
+  
+  .team-member {
+    padding: 0.5rem;
+    border: 1px solid orange;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    width: 100%; /* Adjust width for better fit */
+    max-width: 200px;
+    font-size: 0.9rem; /* Smaller font size to fit content */
+    height: 100%; /* Make each section fill vertically */
+  }
+  
+  @media (max-width: 768px) {
+    .team-layout {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    }
+  
+    .team-member {
+      max-width: 200px; /* Reduce size of team member cards */
+    }
+  
+    .form-container h2 {
+      font-size: 1.2rem; /* Adjust title font size for small screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .team-layout {
+      grid-template-columns: 1fr; /* 1 column for very small screens */
+    }
+  
+    .team-member {
+      max-width: 80%; /* Reduce card size further */
+    }
+  
+    .form-container h2 {
+      font-size: 1rem; /* Adjust title font size for mobile */
+    }
+  }
+  
