@@ -16,5 +16,8 @@ router
   .put(technicianController.updateTechnician);
 
 router.route('/feedbacks').get(technicianController.getFeedbacks);
+router
+  .route('/sendConfirmation/:id')
+  .get(technicianController.sendConfirmation);
 
 module.exports = router;
