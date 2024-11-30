@@ -8,7 +8,7 @@ exports.signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     console.log(req.body);
-    
+
     const _user = await models.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -76,8 +76,9 @@ exports.requestsMadeByCustomers = async (req, res) => {
     r."startTime" AS "startTime", 
     s.name AS "serviceName", 
     u.name AS "requestingUser", 
-    r.id AS "requestId"
-FROM 
+    r.id AS "requestId",
+    r.location AS "location"
+    FROM 
     "Request" r
 JOIN 
     "Service" s 
@@ -237,5 +238,88 @@ exports.getFeedbacks = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+exports.getTechnicianByReqId = async (req, res) => {
+  try {
+    const request = await models.Request.findOne({
+      where: { id: req.body.reqId },
+    });
+    if (!request) {
+      return res.status(400).json({
+        message: 'Request Not Found.',
+      });
+    }
+    const _user = await models.User.findOne({
+      where: { id: request.providing_user_id },
+    });
+    if (!_user) {
+      return res.status(400).json({
+        message: 'Technician who facilitated this Request was Not Found.',
+      });
+    }
+    res.status(200).json({
+      message: 'Technician who facilitated this Request was Found.',
+      _user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      message: 'Technician who facilitated this Request was Not Found.',
+    });
+  }
+};
+
+exports.getCurRequests = async (req, res) => {
+  try {
+    const userId = req.session.userDetails.userId;
+    const sql =
+      'SELECT r.id AS "reqId", u.name AS name, s.name AS "serviceName", r.description AS description, r."startTime" AS "startTime", r.location AS location FROM "Request" r JOIN "Service" s ON s.id = r.service_id JOIN "User" u ON u.id = r.requesting_user_id WHERE r.providing_user_id = :userId AND r.completed = false;';
+    const data = await models.sequelize.query(sql, {
+      type: models.Sequelize.QueryTypes.SELECT,
+      replacements: { userId }, // Parameter binding
+    });
+    if (!data) {
+      return res.status(400).json({
+        message: 'Error while fetching Requests',
+      });
+    }
+    res.status(200).json({
+      data,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      message: 'Error while fetching Requests',
+    });
+  }
+};
+
+exports.markCompleted = async (req, res) => {
+  try {
+    const data = await models.Request.update(
+      {
+        completed: true,
+      },
+      {
+        where: { id: req.body.reqId },
+      }
+    );
+    if (data) {
+      return res.status(200).json({
+        data,
+        message: 'Successfully marked the Request Completed',
+      });
+    } else {
+      return res.status(500).json({
+        message: 'Error while trying to mark Completed.',
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: 'Error while trying to mark Completed.',
+    });
   }
 };

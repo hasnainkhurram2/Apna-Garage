@@ -26,12 +26,14 @@ function logout() {
   }
 }
 
-
 function navigateToTechnicianRequests() {
-    window.location.href = 'viewTechnicianRequests.html'; // Redirect to login page
+  window.location.href = 'viewTechnicianRequests.html'; // Redirect to login page
 }
 
+function navigateToOngoingRequests() {
+  window.location.href = 'viewOngoingRequests.html'; // Redirect to login page
+}
 
-function redirectToUserProfile(){
-   window.location.href = 'technicianProfile.html';
+function redirectToUserProfile() {
+  window.location.href = 'technicianProfile.html';
 }
