@@ -7,7 +7,7 @@ function goToLandingPage() {
   const teamMembers = [
     { 
       name: "Farooq Haider", 
-      description: "Farooq Haider is a versatile Full Stack Developer known for his ability to seamlessly develop frontend and backend systems. With expertise in Node.js, Express, PostgreSQL, HTML, CSS, and JavaScript, he has a strong command of both programming and design. Farooq is also skilled in creative tools like Figma and Canva, enabling him to create visually appealing and user-friendly interfaces. He has a deep understanding of version control, branching strategies, and collaborative workflows using Git and GitHub. His expert-level proficiency and keen eye for detail make him a vital asset to any project."
+      description: "Farooq Haider is a versatile Full Stack Developer known for his ability to seamlessly develop frontend and backend systems. With expertise in Node.js, Express, PostgreSQL, HTML, CSS, and JavaScript, he has a strong command of both programming and design. Farooq is also skilled in creative tools like Figma and Canva, enabling him to create visually appealing and user-friendly interfaces. He has a deep understanding of version control, branching strategies, and collaborative workflows using Git and GitHub. His expert-level proficiency in making responsive designs and keen eye for detail make him a vital asset to any project."
     },
     { 
       name: "Hasnain Khurram", 
