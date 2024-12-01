@@ -4,7 +4,7 @@ let initialValues = {};
 // Fetch user data and display on page load
 document.addEventListener('DOMContentLoaded', async () => {
   const response = await fetch('http://127.0.0.1:3000/api/v1/users/getInfo', {
-    method: 'GET',
+    method: 'POST',
     credentials: 'include',
   });
   const result = await response.json();

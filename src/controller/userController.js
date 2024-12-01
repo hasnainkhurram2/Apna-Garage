@@ -63,6 +63,7 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
+    console.log(req.session.userDetails.userId);
     const _user = await models.User.findOne({
       where: {
         id: req.session.userDetails.userId,
@@ -164,6 +165,7 @@ exports.updatePassword = async (req, res) => {
 
 exports.sendVerificationCode = async (req, res) => {
   try {
+    console.log(req.body.email);
     const presence = await models.User.findOne({
       where: { email: req.body.email },
     });
@@ -197,9 +199,9 @@ exports.sendVerificationCode = async (req, res) => {
       verCode,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(500).json({
-      message: 'Error while trying to send Verification Code.',
+      message: `Error while trying to send Verification Code. ${error.message}`,
     });
   }
 };
