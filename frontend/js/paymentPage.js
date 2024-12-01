@@ -84,6 +84,8 @@ document
             }
           );
 
+          const result1 = await _user.json();
+
           try {
             const emailRes = await fetch(
               'http://127.0.0.1:3000/api/v1/users/sendCode',
@@ -93,7 +95,7 @@ document
                   'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-                body: JSON.stringify({ email: _user.email }),
+                body: JSON.stringify({ email: result1.email }),
               }
             );
 
