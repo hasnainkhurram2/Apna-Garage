@@ -11,20 +11,20 @@ body {
 .page-title {
     margin-top: 20px;
     font-size: 3rem;
-    color: white;
+    color: orange;
 }
 
 /* Table Styling */
 .requests-table {
-    margin: 0 auto;
+    margin: 20px auto;
     border-collapse: collapse;
-    width: 90%; /* Increased table width */
-    max-width: 100%; /* Larger maximum width */
-    background-color: #222; /* Slightly darker background */
-    color: #ddd; /* Lighter grey text */
+    width: 80%;
+    background-color: #222;
+    color: white;
     border: 2px solid orange;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Enhanced shadow for emphasis */
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 .requests-table th,
@@ -33,14 +33,13 @@ body {
     font-size: 1.2rem;
     text-align: center;
     border: 1px solid orange;
-    color: #ddd;
 }
 
 .requests-table th {
-    font-size: 1.3rem;
-    text-align: center;
-    color: white;
+    background-color: black;
+    color: orange;
     font-weight: bold;
+    cursor: default; /* Default cursor for headers */
 }
 
 .requests-table tr:hover {
