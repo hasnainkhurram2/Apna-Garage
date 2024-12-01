@@ -51,6 +51,7 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
+    console.log(req.session.userDetails.userId);
     const _user = await models.User.findOne({
       where: {
         id: req.session.userDetails.userId,
@@ -152,12 +153,14 @@ exports.updatePassword = async (req, res) => {
 
 exports.sendVerificationCode = async (req, res) => {
   try {
+    console.log(req.body.email);
     const presence = await models.User.findOne({
       where: { email: req.body.email },
     });
-    if(presence) {
+    if (presence) {
       return res.status(500).json({
-        message: 'An Account with this Email Already Exists. Use a Different Email to Sign Up.'
+        message:
+          'An Account with this Email Already Exists. Use a Different Email to Sign Up.',
       });
     }
     const verCode = crypto.randomBytes(4).toString('hex');

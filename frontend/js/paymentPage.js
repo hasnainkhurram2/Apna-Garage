@@ -1,13 +1,12 @@
 const params = new URLSearchParams(window.location.search);
-const data =
-{
-  requestId : params.get('requestId'),
-  demand : params.get('demand'),
-}
+const data = {
+  requestId: params.get('requestId'),
+  demand: params.get('demand'),
+};
 console.log(data);
 document.addEventListener('DOMContentLoaded', async () => {
   const costText = document.getElementById('payment-cost');
-    costText.textContent = `PKR ${data.demand}`;
+  costText.textContent = `PKR ${data.demand}`;
 });
 document
   .querySelector('.payment-form')
@@ -29,12 +28,13 @@ document
       // Prepare the request payload
       const payload = {
         paymentType: 'card', // Hardcoded to card payment
-        amount: data.demand
+        amount: data.demand,
       };
 
       // Send POST request to the API
       const response = await fetch(
-`http://127.0.0.1:3000/api/v1/customers/payment?requestId=${data.requestId}`,        {
+        `http://127.0.0.1:3000/api/v1/customers/payment?requestId=${data.requestId}`,
+        {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -47,21 +47,56 @@ document
       // Handle response
       if (response.ok) {
         try {
-          const result = await fetch(`http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`, {
-          method: 'POST',
-          credentials: 'include',
-        });
-        
-        // Check if the response is okay
-        if (!result.ok) {
-          throw new Error('There was an error');
+          const result = await fetch(
+            `http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`,
+            {
+              method: 'POST',
+              credentials: 'include',
+            }
+          );
+
+          // Check if the response is okay
+          if (!result.ok) {
+            throw new Error('There was an error');
+          }
+
+          const _user = await fetch(
+            `http://127.0.0.1:3000/api/v1/users/getInfo`,
+            {
+              method: 'GET',
+              credentials: 'include',
+            }
+          );
+
+          try {
+            const emailRes = await fetch(
+              'http://127.0.0.1:3000/api/v1/users/sendCode',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({ email: _user.email }),
+              }
+            );
+
+            const emailResult = await emailRes.json();
+            if (!emailRes.ok) {
+              alert(emailResult.message);
+              return;
+            }
+
+            verificationCode = emailResult.verCode;
+            modal.style.display = 'flex'; // Show the modal
+          } catch (error) {
+            alert(`Failed to send verification code.${error.message}`);
+          }
+        } catch (error) {
+          console.error(error);
+          alert(`An error occurred while processing payment ${error.message}`);
         }
-    
-      } catch (error) {
-        console.error(error);
-        alert('An error occurred while processing payment');
-      }
-          window.location.href = `./paymentSuccessful.html`;
+        window.location.href = `./paymentSuccessful.html`;
       } else {
         // Handle errors returned by the API
         const errorData = await response.json();
@@ -71,12 +106,11 @@ document
       // Handle network or unexpected errors
       console.error('Error:', error);
       alert(
-        'An error occurred while processing your payment. Please try again.'
+        `An error occurred while processing your payment. Please try again. ${error.message}`
       );
     }
   });
 
-  
-  function navigateToDashboard() {
-    window.location.href = './customerDashboard.html';
-  }
+function navigateToDashboard() {
+  window.location.href = './customerDashboard.html';
+}

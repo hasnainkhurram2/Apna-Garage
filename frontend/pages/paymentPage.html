@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payment Page</title>
-    <link rel="stylesheet" href="../css/paymentPage.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-left">
-        <h1>APNA GARAGE</h1>
-      </div>
-      <div class="nav-right">
-        <button class="nav-button" onclick="navigateToDashboard()">
-          RETURN
-        </button>
-      </div>
-    </nav>
 
-    <!-- Payment Form -->
-    <div class="payment-container">
-      <h1>PAYMENT</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="../css/paymentPage.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+</head>
 
-      <!-- Displaying the cost -->
-      <div class="payment-summary">
-        <h2>Total Amount</h2>
-        <p id="payment-cost">PKR 0</p>
-      </div>
-
-      <form class="payment-form" id="payment">
-        <label for="card-number">Card Number</label>
-        <input
-          type="text"
-          id="card-number"
-          name="card-number"
-          placeholder="XXXX XXXX XXXX XXXX"
-          required
-        />
-
-        <div class="form-row">
-          <div>
-            <label for="exp-date">Expiry Date</label>
-            <input
-              type="text"
-              id="exp-date"
-              name="exp-date"
-              placeholder="MM/YY"
-              required
-            />
-          </div>
-          <div>
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" name="cvv" placeholder="XXX" required />
-          </div>
-        </div>
-
-        <button type="submit" class="pay-button">PAY</button>
-      </form>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1>APNA GARAGE</h1>
     </div>
-    <script src="../js/paymentPage.js"></script>
-    <script>
-      // Example dynamic cost update (you can replace this logic)
-      const costElement = document.getElementById('payment-cost');
-      const totalCost = 1500; // Replace with dynamic value if needed
-      costElement.textContent = `PKR ${totalCost.toLocaleString()}`;
-    </script>
-  </body>
+    <div class="nav-right">
+      <button class="nav-button" onclick="navigateToDashboard()">
+        RETURN
+      </button>
+    </div>
+  </nav>
+
+  <!-- Payment Form -->
+  <div class="payment-container">
+    <h1>PAYMENT</h1>
+
+    <!-- Displaying the cost -->
+    <div class="payment-summary">
+      <h2>Total Amount</h2>
+      <p id="payment-cost">PKR 0</p>
+    </div>
+
+    <form class="payment-form" id="payment">
+      <label for="card-number">Card Number</label>
+      <input type="text" id="card-number" name="card-number" placeholder="XXXX XXXX XXXX XXXX" required />
+
+      <div class="form-row">
+        <div>
+          <label for="exp-date">Expiry Date</label>
+          <input type="text" id="exp-date" name="exp-date" placeholder="MM/YY" required />
+        </div>
+        <div>
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" placeholder="XXX" required />
+        </div>
+      </div>
+
+      <button type="submit" class="pay-button">PAY</button>
+    </form>
+  </div>
+
+  <div id="verificationModal" class="modal">
+    <div class="modal-content">
+      <h2>Email Verification</h2>
+      <p>A verification code has been sent to your email.</p>
+      <input type="text" id="verificationCode" placeholder="Enter verification code" required />
+      <button id="verifyCode" class="submit-button">Verify</button>
+      <button id="closeModal" class="cancel-button">Cancel</button>
+    </div>
+  </div>
+
+  <script src="../js/paymentPage.js"></script>
+  <script>
+    // Example dynamic cost update (you can replace this logic)
+    const costElement = document.getElementById('payment-cost');
+    const totalCost = 1500; // Replace with dynamic value if needed
+    costElement.textContent = `PKR ${totalCost.toLocaleString()}`;
+  </script>
+</body>
+
 </html>
