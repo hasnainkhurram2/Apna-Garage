@@ -12,6 +12,17 @@ exports.login = async (req, res) => {
   try {
     const _user = await models.User.findOne({ where: { email } });
     if (_user) {
+      const technician = await models.Technician.findOne({
+        where: { user_id: _user.id },
+      });
+      if (technician) {
+        if (technician.approved === false) {
+          return res.status(401).json({
+            message:
+              'Login as a Technician Failed because You are not Approved by the Admin. Contact our Support for further guidance.',
+          });
+        }
+      }
       const isMatch = await bcrypt.compare(password, _user.password);
       if (isMatch) {
         const userDetails = {
@@ -43,6 +54,7 @@ exports.login = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({
+      message: 'Error while trying to LOgin. Try Again Later.',
       error: 'Server error.',
     });
     console.log(err);
@@ -155,9 +167,10 @@ exports.sendVerificationCode = async (req, res) => {
     const presence = await models.User.findOne({
       where: { email: req.body.email },
     });
-    if(presence) {
+    if (presence) {
       return res.status(500).json({
-        message: 'An Account with this Email Already Exists. Use a Different Email to Sign Up.'
+        message:
+          'An Account with this Email Already Exists. Use a Different Email to Sign Up.',
       });
     }
     const verCode = crypto.randomBytes(4).toString('hex');

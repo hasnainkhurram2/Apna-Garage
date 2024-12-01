@@ -36,7 +36,7 @@ loginForm.addEventListener('submit', async function (e) {
       }
       console.log(result.userType);
     } else {
-      alert('Login Failed. Invalid Credentials.');
+      alert(result.message);
     }
   } catch (error) {
     console.log(error);

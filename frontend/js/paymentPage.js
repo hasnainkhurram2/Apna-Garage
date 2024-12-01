@@ -1,13 +1,12 @@
 const params = new URLSearchParams(window.location.search);
-const data =
-{
-  requestId : params.get('requestId'),
-  demand : params.get('demand'),
-}
+const data = {
+  requestId: params.get('requestId'),
+  demand: params.get('demand'),
+};
 console.log(data);
 document.addEventListener('DOMContentLoaded', async () => {
   const costText = document.getElementById('payment-cost');
-    costText.textContent = `PKR ${data.demand}`;
+  costText.textContent = `PKR ${data.demand}`;
 });
 document
   .querySelector('.payment-form')
@@ -19,6 +18,14 @@ document
     const expDate = document.getElementById('exp-date').value;
     const cvv = document.getElementById('cvv').value;
 
+    if (cvv.length !== 3) {
+      alert('CVV must be 3 numbers long.');
+      return;
+    }
+    if (cardNumber.length !== 16) {
+      alert('Card Number must be 16 numbers long.');
+      return;
+    }
     // Validate fields (Basic example)
     if (!cardNumber || !expDate || !cvv) {
       alert('Please fill in all fields.');
@@ -29,12 +36,13 @@ document
       // Prepare the request payload
       const payload = {
         paymentType: 'card', // Hardcoded to card payment
-        amount: data.demand
+        amount: data.demand,
       };
 
       // Send POST request to the API
       const response = await fetch(
-`http://127.0.0.1:3000/api/v1/customers/payment?requestId=${data.requestId}`,        {
+        `http://127.0.0.1:3000/api/v1/customers/payment?requestId=${data.requestId}`,
+        {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -47,21 +55,23 @@ document
       // Handle response
       if (response.ok) {
         try {
-          const result = await fetch(`http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`, {
-          method: 'POST',
-          credentials: 'include',
-        });
-        
-        // Check if the response is okay
-        if (!result.ok) {
-          throw new Error('There was an error');
+          const result = await fetch(
+            `http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`,
+            {
+              method: 'POST',
+              credentials: 'include',
+            }
+          );
+
+          // Check if the response is okay
+          if (!result.ok) {
+            throw new Error('There was an error');
+          }
+        } catch (error) {
+          console.error(error);
+          alert('An error occurred while processing payment');
         }
-    
-      } catch (error) {
-        console.error(error);
-        alert('An error occurred while processing payment');
-      }
-          window.location.href = `./paymentSuccessful.html`;
+        window.location.href = `./paymentSuccessful.html`;
       } else {
         // Handle errors returned by the API
         const errorData = await response.json();
@@ -76,7 +86,6 @@ document
     }
   });
 
-  
-  function navigateToDashboard() {
-    window.location.href = './customerDashboard.html';
-  }
+function navigateToDashboard() {
+  window.location.href = './customerDashboard.html';
+}
