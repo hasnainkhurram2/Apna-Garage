@@ -143,8 +143,8 @@ verifyCodeButton.addEventListener('click', async function () {
 
     modal.style.display = 'none'; // Close modal
   } else {
-    alert('Wrong OTP. Please try again later.');
-    window.location.href = './customerDashboard.html';
+    alert('Wrong OTP. Please try again.');
+    modal.style.display = 'none';
     return;
   }
 });

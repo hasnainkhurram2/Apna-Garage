@@ -302,9 +302,6 @@ WHERE
 exports.sendOTP = async (req, res) => {
   try {
     console.log(req.body.email);
-    const presence = await models.User.findOne({
-      where: { email: req.body.email },
-    });
 
     const verCode = crypto.randomBytes(4).toString('hex');
     const transporter = nodemailer.createTransport({
@@ -319,20 +316,20 @@ exports.sendOTP = async (req, res) => {
     const mailOptions = {
       from: 'Apna Garage Team <apna.garage.2024@gmail.com>',
       to: req.body.email,
-      subject: 'Sign Up Verification Code.',
-      text: `Type the following code in the dialogue box to Verify Your Email: ${verCode}`, // HTML version
+      subject: 'OTP Verification.',
+      text: `Type the following code in the dialogue box to Verify Your OTP: ${verCode}`, // HTML version
     };
 
     // Send email
     await transporter.sendMail(mailOptions);
     res.status(200).json({
-      message: `Email Verification Code sent at ${req.body.email}`,
+      message: `OTP sent at ${req.body.email}`,
       verCode,
     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
-      message: `Error while trying to send Verification Code. ${error.message}`,
+      message: `Error while trying to send OTP. ${error.message}`,
     });
   }
 };

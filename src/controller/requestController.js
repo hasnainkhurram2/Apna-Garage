@@ -1,9 +1,8 @@
 const models = require('../models/index');
 const session = require('express-session');
-const nodemailer = require('nodemailer'); 
+const nodemailer = require('nodemailer');
 const config = require('../config/config');
-const { Op } = require('sequelize');  // Sequelize operator to handle exclusion
-
+const { Op } = require('sequelize'); // Sequelize operator to handle exclusion
 
 exports.createRequest = async (req, res) => {
   try {
@@ -100,9 +99,8 @@ exports.updateOfferForRequest = async (req, res) => {
   }
 };
 
-
-
-exports.updateRequestAndNotifyTechnician = async (req, res) => {    // controller that labels request as IN PROGRESS and notifies technician
+exports.updateRequestAndNotifyTechnician = async (req, res) => {
+  // controller that labels request as IN PROGRESS and notifies technician
   try {
     const requestId = req.query.requestId;
 
@@ -127,13 +125,13 @@ exports.updateRequestAndNotifyTechnician = async (req, res) => {    // controlle
       include: [
         {
           model: models.Technician,
-          as: 'Provider', 
-          attributes: ['user_id'], 
+          as: 'Provider',
+          attributes: ['user_id'],
         },
         {
           model: models.Service,
-          as: 'service', 
-          attributes: ['name'], 
+          as: 'service',
+          attributes: ['name'],
         },
       ],
     });
@@ -149,7 +147,7 @@ exports.updateRequestAndNotifyTechnician = async (req, res) => {    // controlle
     const technician = requestDetails.Provider;
     const user = await models.User.findOne({
       where: { id: technician.user_id },
-      attributes: ['name', 'email'], 
+      attributes: ['name', 'email'],
     });
 
     if (!user) {
@@ -166,7 +164,7 @@ exports.updateRequestAndNotifyTechnician = async (req, res) => {    // controlle
 
     // Send email to the assigned technician (the one selected for the request)
     const transporter = nodemailer.createTransport({
-      service: 'Gmail', 
+      service: 'Gmail',
       auth: {
         user: 'apna.garage.2024@gmail.com',
         pass: config.database.appPassword,
@@ -234,13 +232,15 @@ exports.updateRequestAndNotifyTechnician = async (req, res) => {    // controlle
 
     return res.status(200).json({
       success: true,
-      message: 'Request updated, email sent to the technician, and notifications sent to non-selected technicians.',
+      message:
+        'Request updated, email sent to the technician, and notifications sent to non-selected technicians.',
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
       success: false,
-      message: 'An error occurred while updating the request or sending the emails.',
+      message:
+        'An error occurred while updating the request or sending the emails.',
     });
   }
 };
