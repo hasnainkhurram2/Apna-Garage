@@ -13,6 +13,8 @@ router.route('/:id').put(customerController.updateCustomer);
 
 router.route('/signup').post(customerController.signUp);
 
+router.route('/sendOTP').post(customerController.sendOTP);
+
 router.route('/provideFeedback').post(customerController.provideFeedback);
 
 router.route('/payment').post(customerController.payForRequest);
@@ -25,5 +27,5 @@ router.route('/technician').get(customerController.viewTechnician);
 
 router.route('/requestAccepted').post(customerController.updateProvidingUserId);
 
-router.route('/invoice').post(customerController.sendInvoiceToCustomer)
+router.route('/invoice').post(customerController.sendInvoiceToCustomer);
 module.exports = router;
