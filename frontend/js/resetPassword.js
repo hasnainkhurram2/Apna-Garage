@@ -14,7 +14,11 @@ resetPasswordForm1.addEventListener('submit', async function (e) {
   e.preventDefault(); // Prevent default form submission
 
   const newPassword = document.getElementById('newPassword').value;
-
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  if (newPassword !== confirmPassword) {
+    alert('Passwords in the fields do not match. Double check them');
+    return;
+  }
   try {
     const response = await fetch(
       'http://127.0.0.1:3000/api/v1/users/resetPassword',

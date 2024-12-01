@@ -46,6 +46,8 @@
         <label for="password">Password:</label>
         <input
           type="password"
+          minlength="8"
+          maxlength="15"
           id="password"
           name="password"
           placeholder="Enter your password"
@@ -55,6 +57,8 @@
         <label for="confirmPassword">Confirm Password:</label>
         <input
           type="password"
+          maxlength="15"
+          minlength="8"
           id="confirmPassword"
           name="confirmPassword"
           placeholder="Confirm your password"
@@ -74,7 +78,7 @@
 
         <label for="contact">Contact:</label>
         <input
-          type="tel"
+          type="number"
           id="contact"
           name="contact"
           placeholder="Enter your contact number"
