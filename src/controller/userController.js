@@ -187,9 +187,9 @@ exports.sendVerificationCode = async (req, res) => {
       verCode,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(500).json({
-      message: 'Error while trying to send Verification Code.',
+      message: `Error while trying to send Verification Code. ${error.message}`,
     });
   }
 };

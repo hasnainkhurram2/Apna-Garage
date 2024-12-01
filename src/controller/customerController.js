@@ -2,6 +2,8 @@ const models = require('../models/index');
 const bcrypt = require('bcrypt');
 const config = require('../config/config');
 const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+
 exports.getRequestHistory = async (req, res) => {
   const temp = await models.Request_Service.findAll({
     where: {
@@ -70,7 +72,7 @@ exports.getCustomerRequests = async (req, res) => {
         console.log(data[i].feedId);
       }
     }
-    
+
     return res.status(200).json({ data });
   } catch (error) {
     console.error('Error fetching requests and services:', error);
@@ -112,7 +114,7 @@ exports.signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     console.log(req.body);
-    
+
     const _user = await models.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -250,10 +252,8 @@ exports.payForRequest = async (req, res) => {
   }
 };
 
-
 exports.getOffersForRequests = async (req, res) => {
-   try {
-    
+  try {
     const customerId = req.query.userId;
     // // console.log(customerId);    correctly received
     const query = `
@@ -277,14 +277,12 @@ WHERE
     r.requesting_user_id = :customerId AND r.providing_user_id IS NULL
 
     `;
-  
+
     console.log('Executing query...');
     const data = await models.sequelize.query(query, {
       type: models.Sequelize.QueryTypes.SELECT,
       replacements: { customerId }, // Parameter binding
     });
-  
-  
 
     if (!data || data.length === 0) {
       console.log('No offers found');
@@ -295,13 +293,51 @@ WHERE
     return res.status(200).json({ data });
   } catch (error) {
     console.error('Error in getOffersForRequests:', error);
-    return res.status(500).json({ message: 'An internal server error occurred.' });
+    return res
+      .status(500)
+      .json({ message: 'An internal server error occurred.' });
   }
+};
 
+exports.sendOTP = async (req, res) => {
+  try {
+    console.log(req.body.email);
+    const presence = await models.User.findOne({
+      where: { email: req.body.email },
+    });
+
+    const verCode = crypto.randomBytes(4).toString('hex');
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'apna.garage.2024@gmail.com',
+        pass: config.database.appPassword,
+      },
+    });
+
+    // Email options
+    const mailOptions = {
+      from: 'Apna Garage Team <apna.garage.2024@gmail.com>',
+      to: req.body.email,
+      subject: 'Sign Up Verification Code.',
+      text: `Type the following code in the dialogue box to Verify Your Email: ${verCode}`, // HTML version
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({
+      message: `Email Verification Code sent at ${req.body.email}`,
+      verCode,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      message: `Error while trying to send Verification Code. ${error.message}`,
+    });
+  }
 };
 
 exports.viewTechnician = async (req, res) => {
-  
   const technicianId = req.query.techId;
   try {
     const _user = await models.User.findOne({
@@ -309,14 +345,12 @@ exports.viewTechnician = async (req, res) => {
         id: technicianId,
       },
     });
-    const _technician = await models.Technician.findOne(
-      {
-        where : {
-          user_id : technicianId,
-        },
-      }
-    );
-     res.status(200).json({
+    const _technician = await models.Technician.findOne({
+      where: {
+        user_id: technicianId,
+      },
+    });
+    res.status(200).json({
       _user,
       _technician,
     });
@@ -326,84 +360,95 @@ exports.viewTechnician = async (req, res) => {
       message: `Oops, Something went wrong. Session Expired. Redirecting to Login`,
     });
   }
-
 };
 
 exports.updateProvidingUserId = async (req, res) => {
-    try {
-        const { technicianId, requestId } = req.body;
+  try {
+    const { technicianId, requestId } = req.body;
 
-        if (!technicianId || !requestId) {
-            return res.status(400).json({ error: "An error occurred" });
-        }
-
-        // Update the providing_user_id in the Request table
-        const updatedRequest = await models.Request.update(
-            { providing_user_id: technicianId },
-            {
-                where: {
-                    id: requestId
-                }
-            }
-        );
-
-        if (updatedRequest[0] === 0) { // Check if any rows were updated
-            return res.status(404).json({ error: "Request not found or no changes made" });
-        }
-        else
-        {
-          res.status(200).json({ message: "Request updated successfully" });
-        }
-    } catch (error) {
-        console.error("Error updating providing_user_id:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+    if (!technicianId || !requestId) {
+      return res.status(400).json({ error: 'An error occurred' });
     }
-};
 
+    // Update the providing_user_id in the Request table
+    const updatedRequest = await models.Request.update(
+      { providing_user_id: technicianId },
+      {
+        where: {
+          id: requestId,
+        },
+      }
+    );
+
+    if (updatedRequest[0] === 0) {
+      // Check if any rows were updated
+      return res
+        .status(404)
+        .json({ error: 'Request not found or no changes made' });
+    } else {
+      res.status(200).json({ message: 'Request updated successfully' });
+    }
+  } catch (error) {
+    console.error('Error updating providing_user_id:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 exports.sendInvoiceToCustomer = async (req, res) => {
   try {
-      // Retrieve userId from session
-      const userId = req.session.userDetails.userId;
+    // Retrieve userId from session
+    const userId = req.session.userDetails.userId;
 
-      if (!userId) {
-          return res.status(400).json({ error: "User is not logged in" });
-      }
+    if (!userId) {
+      return res.status(400).json({ error: 'User is not logged in' });
+    }
 
-      // Fetch the user's email
-      const user = await models.User.findOne({ where: { id: userId } });
+    // Fetch the user's email
+    const user = await models.User.findOne({ where: { id: userId } });
 
-      if (!user || !user.email) {
-          return res.status(404).json({ error: "User not found or email is missing" });
-      }
+    if (!user || !user.email) {
+      return res
+        .status(404)
+        .json({ error: 'User not found or email is missing' });
+    }
 
-      const customerEmail = user.email;
+    const customerEmail = user.email;
 
-      // Extract invoice details from request body
-      const {
-          requestId,
-          serviceName,
-          requestDescription,
-          technicianId,
-          technicianName,
-          offerDemand,
-          offerDescription,
-      } = req.body;
+    // Extract invoice details from request body
+    const {
+      requestId,
+      serviceName,
+      requestDescription,
+      technicianId,
+      technicianName,
+      offerDemand,
+      offerDescription,
+    } = req.body;
 
-      // Validate that required fields are provided
-      if (!requestId || !serviceName || !technicianId || !technicianName || !offerDemand) {
-          return res.status(400).json({ error: "Missing required fields in the request body" });
-      }
-      const user1 = await models.User.findOne({
-        where: { id: technicianId },
-        attributes: ['email', 'contact'], 
-      });
-      // Construct the payment page URL
-      const paymentPageUrl = `http://127.0.0.1:5500/Apna-Garage/frontend/pages/paymentPage.html?requestId=${requestId}&demand=${encodeURIComponent(offerDemand)}`;
-      const technicianContact = user1.contact;
-      const technicianEmail = user1.email;
-      // Create email content
-      const emailHtml = `
+    // Validate that required fields are provided
+    if (
+      !requestId ||
+      !serviceName ||
+      !technicianId ||
+      !technicianName ||
+      !offerDemand
+    ) {
+      return res
+        .status(400)
+        .json({ error: 'Missing required fields in the request body' });
+    }
+    const user1 = await models.User.findOne({
+      where: { id: technicianId },
+      attributes: ['email', 'contact'],
+    });
+    // Construct the payment page URL
+    const paymentPageUrl = `http://127.0.0.1:5500/Apna-Garage/frontend/pages/paymentPage.html?requestId=${requestId}&demand=${encodeURIComponent(
+      offerDemand
+    )}`;
+    const technicianContact = user1.contact;
+    const technicianEmail = user1.email;
+    // Create email content
+    const emailHtml = `
           <h1>Apna Garage - Service Invoice</h1>
           <p>Dear ${user.name},</p>
           <p>Thank you for using Apna Garage! Below are the details of your recent service request:</p>
@@ -418,7 +463,7 @@ exports.sendInvoiceToCustomer = async (req, res) => {
               </tr>
               <tr>
                   <th>Request Description</th>
-                  <td>${requestDescription || "Not Provided"}</td>
+                  <td>${requestDescription || 'Not Provided'}</td>
               </tr>
               <tr>
                   <th>Technician ID</th>
@@ -452,34 +497,30 @@ exports.sendInvoiceToCustomer = async (req, res) => {
           <p><b>Apna Garage Team</b></p>
       `;
 
-      // Create the transporter
-      const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-              user: 'apna.garage.2024@gmail.com',
-              pass: config.database.appPassword,
-          },
-      });
+    // Create the transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'apna.garage.2024@gmail.com',
+        pass: config.database.appPassword,
+      },
+    });
 
-      // Define mail options
-      const mailOptions = {
-          from: '"Apna Garage" <apna.garage.2024@gmail.com>',
-          to: customerEmail,
-          subject: `Invoice ID: ${requestId}`,
-          html: emailHtml,
-      };
+    // Define mail options
+    const mailOptions = {
+      from: '"Apna Garage" <apna.garage.2024@gmail.com>',
+      to: customerEmail,
+      subject: `Invoice ID: ${requestId}`,
+      html: emailHtml,
+    };
 
-      // Send the email
-      const info = await transporter.sendMail(mailOptions);
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
 
-      console.log('Email sent: %s', info.messageId);
-      res.status(200).json({ message: "Invoice sent successfully!" });
+    console.log('Email sent: %s', info.messageId);
+    res.status(200).json({ message: 'Invoice sent successfully!' });
   } catch (error) {
-      console.error('Error sending invoice email:', error);
-      res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error sending invoice email:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
-
-
-
