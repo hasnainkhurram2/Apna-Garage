@@ -70,7 +70,7 @@ exports.getCustomerRequests = async (req, res) => {
         console.log(data[i].feedId);
       }
     }
-    console.log(data[1].feedId);
+    
     return res.status(200).json({ data });
   } catch (error) {
     console.error('Error fetching requests and services:', error);
