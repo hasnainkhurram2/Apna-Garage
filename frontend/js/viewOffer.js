@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const technicianProfileUrl = `viewTechnician.html?id=${offerData.technicianId}`;
     document.getElementById("technician-name").href = technicianProfileUrl; // Set href to direct to technician profile page
-
   });
   
   // Redirect function for the RETURN button
@@ -47,32 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 // Handle confirmation (Yes button)
-async function handlePopupConfirm() {
-    const technicianId = params.get("technicianId");
-    const requestId = params.get("requestId"); // Get requestId from params
-
-    try {
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/customers/requestAccepted`,  {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({technicianId, requestId}),
-        });
-        if(!response.ok)
-        {
-            alert("There was an error accepting requesting");
-        }
-    }
-    catch(error)
-    {
-        console.log(error);
-    }
+ function handlePopupConfirm() {
     window.location.href = `invoiceForwarded.html?${params.toString()}`;
 }
 
-// Handle cancellation (No button)
+
 function handlePopupCancel() {
     // Close the popup
     document.getElementById("confirmation-popup").style.display = "none";

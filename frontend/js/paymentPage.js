@@ -9,6 +9,7 @@ const params = new URLSearchParams(window.location.search);
 const data = {
   requestId: params.get('requestId'),
   demand: params.get('demand'),
+  technicianId : params.get('technicianId'),
 };
 console.log(data);
 
@@ -50,7 +51,6 @@ document
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify(),
       });
 
       const result1 = await _user.json();
@@ -112,7 +112,7 @@ verifyCodeButton.addEventListener('click', async function () {
     if (response.ok) {
       try {
         const result = await fetch(
-          `http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}`,
+          `http://127.0.0.1:3000/api/v1/requests/completeRequest?requestId=${data.requestId}&technicianId=${data.technicianId}`,
           {
             method: 'POST',
             credentials: 'include',
