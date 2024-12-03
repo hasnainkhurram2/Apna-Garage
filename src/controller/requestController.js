@@ -100,18 +100,20 @@ class RequestController {
     }
   };
 
-  static updateRequestAndNotifyTechnician = async (req, res) => {
-    // controller that labels request as IN PROGRESS and notifies technician
-    try {
-      const requestId = req.query.requestId;
+exports.updateRequestAndNotifyTechnician = async (req, res) => {
+  // controller that labels request as IN PROGRESS and notifies technician
+  try {
+    const requestId = req.query.requestId;
+    const technicianId = req.query.technicianId;
 
-      // Update the request to IN PROGRESS
-      const [rowsUpdated] = await models.Request.update(
-        {
-          completed: false, // IN PROGRESS
-        },
-        { where: { id: requestId } }
-      );
+    // Update the request to IN PROGRESS
+    const [rowsUpdated] = await models.Request.update(
+      {
+        completed: false, // IN PROGRESS
+        providing_user_id : technicianId,
+      },
+      { where: { id: requestId } }
+    );
 
       if (rowsUpdated === 0) {
         return res.status(404).json({
