@@ -439,7 +439,7 @@ exports.sendInvoiceToCustomer = async (req, res) => {
       attributes: ['email', 'contact'],
     });
     // Construct the payment page URL
-    const paymentPageUrl = `http://127.0.0.1:5500/Apna-Garage/frontend/pages/paymentPage.html?requestId=${requestId}&demand=${encodeURIComponent(
+    const paymentPageUrl = `http://127.0.0.1:5500/Apna-Garage/frontend/pages/paymentPage.html?requestId=${requestId}&technicianId=${technicianId}&demand=${encodeURIComponent(
       offerDemand
     )}`;
     const technicianContact = user1.contact;
